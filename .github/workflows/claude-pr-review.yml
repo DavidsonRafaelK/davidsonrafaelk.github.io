@@ -27,9 +27,11 @@ on:
 permissions:
   contents: read
   pull-requests: write
-  # id-token: write is only needed if you switch to OIDC-based auth
-  # (Bedrock/Vertex/workload identity federation) instead of a plain API key.
-  # Not required for the anthropic_api_key setup below — omitted on purpose.
+  # claude-code-action needs this to mint a GitHub OIDC token internally
+  # (used for its own GitHub App auth), independent of anthropic_api_key vs
+  # claude_code_oauth_token. Omitting it fails with:
+  # "Could not fetch an OIDC token. Did you remember to add `id-token: write`?"
+  id-token: write
 
 jobs:
   review:
