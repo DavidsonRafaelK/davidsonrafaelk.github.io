@@ -15,10 +15,10 @@ import { PulseAudioRow } from "@/components/layouts/hero/pulse-audio-row";
 // and GitHub activity graph. Copy/data lives in hero/hero-data.ts.
 export default function FlipWordsDemo() {
   return (
-    <div className="flex min-h-[25rem] flex-col px-4">
+    <div className="flex w-full min-h-[25rem] flex-col px-4">
       <HeroGreeting />
 
-      <div className="mx-auto text-left text-4xl font-normal text-neutral-600 dark:text-neutral-400">
+      <div className="w-full mx-auto text-left text-3xl font-normal text-neutral-600 dark:text-neutral-400 sm:text-4xl">
         <HeroFlipIntro words={flipWords} description={heroDescription} />
 
         <PulseAudioRow sequence={pulseSequence} audioSrc={audioSrc} />
