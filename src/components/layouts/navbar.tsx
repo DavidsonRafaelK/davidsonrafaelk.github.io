@@ -10,6 +10,7 @@ import {
   NavbarButton,
   NavItems,
 } from "@/components/ui/resizable-navbar";
+import { ThemeToggleButton } from "@/components/ui/skiper-ui/skiper26";
 
 export function NavBar() {
   // Each `link` must match a section `id` in page.tsx, or the anchor scroll does nothing.
@@ -38,6 +39,7 @@ export function NavBar() {
           <span className="font-bold tracking-tight">Davidson Rafael</span>
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
+            <ThemeToggleButton variant="rectangle" start="bottom-up" />
             <NavbarButton variant="primary">Book a call</NavbarButton>
           </div>
         </NavBody>
@@ -46,10 +48,13 @@ export function NavBar() {
         <MobileNav>
           <MobileNavHeader>
             <span className="font-bold tracking-tight">Davidson Rafael</span>
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
+            <div className="flex items-center gap-2">
+              <ThemeToggleButton variant="rectangle" start="bottom-up" />
+              <MobileNavToggle
+                isOpen={isMobileMenuOpen}
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              />
+            </div>
           </MobileNavHeader>
 
           <MobileNavMenu
