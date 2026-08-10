@@ -1,6 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans, Geist, Geist_Mono, Roboto } from "next/font/google";
 import "./globals.css";
+import { NavBar } from "@/components/layouts/navbar";
+import { SiteFooter } from "@/components/layouts/site-footer";
+import { SmoothScroll } from "@/components/layouts/smooth-scroll";
+import { cn } from "@/lib/utils";
+
+const dmSansHeading = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-heading",
+});
+
+const roboto = Roboto({ subsets: ["latin"], variable: "--font-sans" });
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,9 +32,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={cn(
+        "h-full",
+        "antialiased",
+        geistSans.variable,
+        geistMono.variable,
+        "font-sans",
+        roboto.variable,
+        dmSansHeading.variable,
+      )}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {/* Global: smooth-scroll behavior, nav, and footer wrap every route. */}
+        <SmoothScroll />
+        <NavBar />
+        {children}
+        <SiteFooter />
+      </body>
     </html>
   );
 }
