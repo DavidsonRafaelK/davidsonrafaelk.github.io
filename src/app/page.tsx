@@ -7,7 +7,7 @@ import { WorkEducationSection } from "@/components/layouts/sections/work-educati
 export default function Home() {
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-4xl flex-col items-center justify-between py-32 px-16 dark:bg-black sm:items-start">
+      <main className="flex flex-1 w-full max-w-4xl flex-col items-center justify-between px-4 py-16 dark:bg-black sm:items-start sm:px-8 sm:py-24 md:px-16 md:py-32">
         <FlipWordsDemo />
         <AboutMeSection />
         <SkillsSection />
