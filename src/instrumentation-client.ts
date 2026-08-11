@@ -1,7 +1,6 @@
 import posthog from "posthog-js";
 
 const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST;
 
 if (!posthogKey) {
   if (process.env.NODE_ENV === "development") {
@@ -11,9 +10,12 @@ if (!posthogKey) {
   }
 } else {
   posthog.init(posthogKey, {
-    api_host: posthogHost,
+    api_host: "/ingest",
+    ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.posthog.com",
     defaults: "2026-01-30",
+    capture_pageview: "history_change",
     capture_exceptions: true,
+    person_profiles: "identified_only",
     debug: process.env.NODE_ENV === "development",
   });
 }
