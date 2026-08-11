@@ -12,7 +12,7 @@ const bio =
 export function AboutMeSection() {
   return (
     <section className="mt-12" id="about-me">
-      <h2 className="text-4xl">
+      <h2 className="text-3xl sm:text-4xl">
         A little about <span className="text-neutral-400">me.</span>
       </h2>
       <TextGenerateEffect words={bio} className="font-normal" />

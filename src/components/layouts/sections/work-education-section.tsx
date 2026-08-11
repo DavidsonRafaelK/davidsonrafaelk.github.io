@@ -24,7 +24,7 @@ const experiences: Experience[] = [
 export function WorkEducationSection() {
   return (
     <section className="mt-12" id="work-and-education">
-      <h2 className="text-4xl">
+      <h2 className="text-3xl sm:text-4xl">
         Work and <span className="text-neutral-400">Education.</span>
       </h2>
       <TextGenerateEffect words={intro} className="font-normal" />
@@ -33,7 +33,7 @@ export function WorkEducationSection() {
         {experiences.map((experience) => (
           <div
             key={experience.title}
-            className="grid grid-cols-[1fr_auto] items-center gap-12"
+            className="grid grid-cols-1 items-start gap-2 sm:grid-cols-[1fr_auto] sm:items-center sm:gap-12"
           >
             <div>
               <h3 className="text-2xl tracking-tight">{experience.title}</h3>
@@ -42,7 +42,7 @@ export function WorkEducationSection() {
               </p>
             </div>
 
-            <div className="self-center whitespace-nowrap font-normal text-neutral-500 dark:text-neutral-400">
+            <div className="self-center font-normal text-neutral-500 dark:text-neutral-400 sm:whitespace-nowrap">
               {experience.organization} {experience.date}
             </div>
           </div>

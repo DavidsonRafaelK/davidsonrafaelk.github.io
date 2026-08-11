@@ -7,11 +7,8 @@ const GitHubCalendar = dynamic(
 
 export function GithubActivity({ username }: { username: string }) {
   return (
-    <GitHubCalendar
-      username={username}
-      colorScheme="light"
-      fontSize={12}
-      className="mt-12"
-    />
+    <div className="mt-12 w-full overflow-x-auto">
+      <GitHubCalendar username={username} colorScheme="light" fontSize={12} />
+    </div>
   );
 }

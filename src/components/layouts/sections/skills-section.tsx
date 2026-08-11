@@ -7,7 +7,7 @@ const intro = "Here's a snapshot of the technologies i work with regularly:";
 export function SkillsSection() {
   return (
     <section className="mt-12" id="skills-and-stacks">
-      <h2 className="text-4xl">
+      <h2 className="text-3xl sm:text-4xl">
         Skills & <span className="text-neutral-400">Stacks.</span>
       </h2>
       <TextGenerateEffect words={intro} className="font-normal" />
