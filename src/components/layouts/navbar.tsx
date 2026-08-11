@@ -1,4 +1,5 @@
 "use client";
+import posthog from "posthog-js";
 import { useState } from "react";
 import {
   MobileNav,
@@ -40,7 +41,12 @@ export function NavBar() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <ThemeToggleButton variant="rectangle" start="bottom-up" />
-            <NavbarButton variant="primary">Book a call</NavbarButton>
+            <NavbarButton
+              onClick={() => posthog.capture("portfolio_call_requested")}
+              variant="primary"
+            >
+              Book a call
+            </NavbarButton>
           </div>
         </NavBody>
 
@@ -73,7 +79,10 @@ export function NavBar() {
             ))}
             <div className="flex w-full flex-col gap-4">
               <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  posthog.capture("portfolio_call_requested");
+                  setIsMobileMenuOpen(false);
+                }}
                 variant="primary"
                 className="w-full"
               >
