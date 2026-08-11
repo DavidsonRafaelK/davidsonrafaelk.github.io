@@ -1,5 +1,6 @@
 "use client";
 import { Pause, Play } from "lucide-react";
+import posthog from "posthog-js";
 import { useEffect, useRef, useState } from "react";
 import WaveSurfer from "wavesurfer.js";
 
@@ -40,6 +41,9 @@ export default function AudioPlayer({ src }: { src: string }) {
   }, [src]);
 
   const togglePlay = () => {
+    if (!isPlaying) {
+      posthog.capture("portfolio_audio_played");
+    }
     wavesurferRef.current?.playPause();
   };
 
