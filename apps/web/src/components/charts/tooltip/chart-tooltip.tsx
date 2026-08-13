@@ -1,0 +1,361 @@
+"use client";
+
+import { useSpring } from "motion/react";
+import * as m from "motion/react-m";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import {
+	resolveTooltipBoxMotion,
+	type SpringConfig,
+	useChartConfig,
+} from "@/components/charts/contexts/chart-config-context";
+import {
+	chartCssVars,
+	type LineConfig,
+	useChart,
+	useChartStable,
+} from "@/components/charts/contexts/chart-context";
+import { weekdayDateFmt } from "@/components/charts/utils/chart-formatters";
+import type { IndicatorFadeEdges } from "@/components/charts/utils/indicator-fade";
+import { DateTicker } from "./date-ticker";
+import { TooltipBox } from "./tooltip-box";
+import { TooltipContent, type TooltipRow } from "./tooltip-content";
+import { TooltipDot } from "./tooltip-dot";
+import { TooltipIndicator } from "./tooltip-indicator";
+
+export interface ChartTooltipProps {
+	/** Whether to show the date pill at bottom. Default: true */
+	showDatePill?: boolean;
+	/** Whether to show the vertical crosshair line. Default: true */
+	showCrosshair?: boolean;
+	/** Whether to show dots on the lines. Default: true */
+	showDots?: boolean;
+	/**
+	 * Color for the crosshair/indicator line. When a function, receives the hovered point
+	 * (e.g. for candlestick: match candle color from close vs open). Default: --chart-crosshair.
+	 */
+	indicatorColor?: string | ((point: Record<string, unknown>) => string);
+	/** Custom content renderer for the tooltip box */
+	content?: (props: {
+		point: Record<string, unknown>;
+		index: number;
+	}) => React.ReactNode;
+	/** Custom row renderer - return array of TooltipRow */
+	rows?: (point: Record<string, unknown>) => TooltipRow[];
+	/**
+	 * Override tooltip dot fill. When omitted and `rows` is set, dot colors match row colors.
+	 * When a function, receives the hovered point and line config.
+	 */
+	dotColor?:
+		| string
+		| ((point: Record<string, unknown>, line: LineConfig) => string);
+	/** Additional content to show below rows (e.g., markers) */
+	children?: React.ReactNode;
+	/** Custom class name */
+	className?: string;
+	/** Per-chart override for the crosshair / dot / date-pill spring. */
+	springConfig?: SpringConfig;
+	/**
+	 * When `true`, the floating panel uses the crosshair spring and stays in sync.
+	 * Default `false` — panel follow uses `damping` (`20`).
+	 */
+	matchCrosshair?: boolean;
+	/**
+	 * Spring damping for the floating tooltip panel when `matchCrosshair` is `false`.
+	 * `0` disables spring motion (instant). Default: `20`.
+	 */
+	damping?: number;
+	/** SVG stroke dash pattern for the crosshair. Omit for solid. */
+	indicatorDasharray?: string;
+	/** Vertical crosshair fade: `both`, `top`, `bottom`, or `none` (solid). Default: `both`. */
+	indicatorFadeEdges?: IndicatorFadeEdges;
+	/** Crosshair fade zone size (% of height). Default: `10`. */
+	indicatorFadeLength?: number;
+	/** Per-chart override for the floating-panel spring. */
+	boxSpringConfig?: SpringConfig;
+	/** Inline styles for the tooltip panel (background, blur, etc.). */
+	panelStyle?: React.CSSProperties;
+}
+
+interface ChartTooltipInnerProps extends ChartTooltipProps {
+	container: HTMLElement;
+}
+
+function ChartTooltipInner({
+	showDatePill = true,
+	showCrosshair = true,
+	showDots = true,
+	indicatorColor: indicatorColorProp,
+	content,
+	rows: rowsRenderer,
+	dotColor: dotColorProp,
+	children,
+	className = "",
+	container,
+	springConfig,
+	matchCrosshair = false,
+	damping,
+	indicatorDasharray,
+	indicatorFadeEdges,
+	indicatorFadeLength,
+	boxSpringConfig,
+	panelStyle,
+}: ChartTooltipInnerProps) {
+	const {
+		tooltipData,
+		width,
+		height,
+		innerHeight,
+		margin,
+		columnWidth,
+		lines,
+		xAccessor,
+		dateLabels,
+		containerRef,
+		orientation,
+		barXAccessor,
+	} = useChart();
+	const { tooltipSpring } = useChartConfig();
+
+	const isHorizontal = orientation === "horizontal";
+	const discreteInteraction = dateLabels.length > 60;
+	const boxMotion = boxSpringConfig
+		? {
+				animate: !discreteInteraction,
+				springConfig: boxSpringConfig,
+			}
+		: matchCrosshair
+			? {
+					animate: !discreteInteraction,
+					springConfig: springConfig ?? tooltipSpring,
+				}
+			: resolveTooltipBoxMotion(damping);
+
+	const visible = tooltipData !== null;
+	const x = tooltipData?.x ?? 0;
+	const xWithMargin = x + margin.left;
+
+	// For horizontal charts, get the y position from the first line's yPosition (center of bar)
+	const firstLineDataKey = lines[0]?.dataKey;
+	const firstLineY = firstLineDataKey
+		? (tooltipData?.yPositions[firstLineDataKey] ?? 0)
+		: 0;
+	const yWithMargin = firstLineY + margin.top;
+
+	const tooltipRows = !tooltipData
+		? []
+		: rowsRenderer
+			? rowsRenderer(tooltipData.point)
+			: lines.map((line) => ({
+					color: line.stroke,
+					label: line.dataKey,
+					value: (tooltipData.point[line.dataKey] as number) ?? 0,
+				}));
+
+	const resolveDotColor = (line: LineConfig, index: number): string => {
+		if (rowsRenderer && tooltipRows[index]?.color) {
+			return tooltipRows[index].color;
+		}
+		if (dotColorProp != null) {
+			if (typeof dotColorProp === "function" && tooltipData) {
+				return dotColorProp(tooltipData.point, line);
+			}
+			if (typeof dotColorProp === "string") {
+				return dotColorProp;
+			}
+		}
+		return line.stroke;
+	};
+
+	// Resolve indicator color (static or from hovered point)
+	const indicatorColor =
+		indicatorColorProp == null
+			? chartCssVars.crosshair
+			: typeof indicatorColorProp === "function"
+				? tooltipData
+					? indicatorColorProp(tooltipData.point)
+					: chartCssVars.crosshair
+				: indicatorColorProp;
+
+	// Title from date or category
+	const title = !tooltipData
+		? undefined
+		: barXAccessor
+			? barXAccessor(tooltipData.point)
+			: weekdayDateFmt.format(xAccessor(tooltipData.point));
+
+	const tooltipContent = (
+		<>
+			{/* Crosshair indicator - rendered as SVG overlay */}
+			{showCrosshair && (
+				<svg
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-0"
+					height="100%"
+					width="100%"
+				>
+					<g transform={`translate(${margin.left},${margin.top})`}>
+						<TooltipIndicator
+							animate={!discreteInteraction}
+							colorEdge={indicatorColor}
+							colorMid={indicatorColor}
+							columnWidth={columnWidth}
+							fadeEdges={
+								indicatorDasharray ? "none" : (indicatorFadeEdges ?? "both")
+							}
+							fadeLength={indicatorFadeLength}
+							height={innerHeight}
+							springConfig={springConfig}
+							strokeDasharray={indicatorDasharray}
+							visible={visible}
+							width="line"
+							x={x}
+						/>
+					</g>
+				</svg>
+			)}
+
+			{/* Dots on bars/lines - show for vertical charts only */}
+			{showDots && visible && !isHorizontal && (
+				<svg
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-0"
+					height="100%"
+					width="100%"
+				>
+					<g transform={`translate(${margin.left},${margin.top})`}>
+						{lines.map((line, index) => (
+							<TooltipDot
+								color={resolveDotColor(line, index)}
+								key={line.dataKey}
+								springConfig={springConfig}
+								strokeColor={chartCssVars.background}
+								visible={visible}
+								x={tooltipData?.xPositions?.[line.dataKey] ?? x}
+								y={tooltipData?.yPositions[line.dataKey] ?? 0}
+							/>
+						))}
+					</g>
+				</svg>
+			)}
+
+			{/* Tooltip Box */}
+			<TooltipBox
+				animate={boxMotion.animate}
+				className={className}
+				containerHeight={height}
+				containerRef={containerRef}
+				containerWidth={width}
+				panelStyle={panelStyle}
+				springConfig={boxMotion.springConfig}
+				visible={visible}
+				x={xWithMargin}
+				y={height / 2}
+			>
+				{content && tooltipData
+					? content({
+							point: tooltipData.point,
+							index: tooltipData.index,
+						})
+					: !content && (
+							<TooltipContent rows={tooltipRows} title={title}>
+								{children}
+							</TooltipContent>
+						)}
+			</TooltipBox>
+
+			{/* Date/Category Ticker - only show for vertical charts */}
+			<DatePillTracker
+				currentIndex={tooltipData?.index ?? 0}
+				discreteInteraction={discreteInteraction}
+				enabled={showDatePill && !isHorizontal}
+				labels={dateLabels}
+				springConfig={springConfig}
+				visible={visible}
+				xWithMargin={xWithMargin}
+			/>
+		</>
+	);
+
+	return createPortal(tooltipContent, container);
+}
+
+ChartTooltipInner.chartPhase = "overlay" as const;
+
+export function ChartTooltip(props: ChartTooltipProps) {
+	const { containerRef } = useChartStable();
+	const [container, setContainer] = useState<HTMLElement | null>(null);
+
+	useEffect(() => {
+		setContainer(containerRef.current);
+	}, [containerRef]);
+
+	if (!container) {
+		return null;
+	}
+
+	return <ChartTooltipInner {...props} container={container} />;
+}
+
+ChartTooltip.displayName = "ChartTooltip";
+
+interface DatePillTrackerProps {
+	enabled: boolean;
+	visible: boolean;
+	labels: string[];
+	currentIndex: number;
+	xWithMargin: number;
+	discreteInteraction: boolean;
+	springConfig?: SpringConfig;
+}
+
+// Inner-only-on-visible so `useSpring` initializes at the real cursor x
+// instead of `margin.left` on first hover.
+function DatePillTracker(props: DatePillTrackerProps) {
+	if (!(props.enabled && props.visible && props.labels.length > 0)) {
+		return null;
+	}
+	return <DatePillTrackerInner {...props} />;
+}
+
+function DatePillTrackerInner({
+	labels,
+	currentIndex,
+	xWithMargin,
+	discreteInteraction,
+	springConfig,
+	visible,
+}: DatePillTrackerProps) {
+	const { tooltipSpring } = useChartConfig();
+	const effectiveSpring = springConfig ?? tooltipSpring;
+	const animatedX = useSpring(xWithMargin, effectiveSpring);
+
+	useEffect(() => {
+		if (!discreteInteraction) {
+			animatedX.set(xWithMargin);
+		}
+	}, [animatedX, discreteInteraction, xWithMargin]);
+
+	useEffect(() => {
+		animatedX.set(xWithMargin);
+	}, [animatedX, xWithMargin]);
+
+	return (
+		<m.div
+			className="pointer-events-none absolute z-50"
+			style={{
+				left: discreteInteraction ? xWithMargin : animatedX,
+				transform: "translateX(-50%)",
+				bottom: 4,
+			}}
+		>
+			<DateTicker
+				currentIndex={currentIndex}
+				labels={labels}
+				visible={visible}
+			/>
+		</m.div>
+	);
+}
+
+export default ChartTooltip;
