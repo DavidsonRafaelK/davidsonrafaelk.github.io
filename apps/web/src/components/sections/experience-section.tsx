@@ -1,0 +1,49 @@
+import { Column, Flex } from "@once-ui-system/core";
+import { ExperienceBlock } from "@/components/experience-block";
+import { ActionRow } from "@/components/section-ui/action-row";
+import {
+	SectionHeading,
+	SectionRoot,
+	SectionText,
+} from "@/components/section-ui/section-heading";
+import SVGMarqueeImg from "@/components/svg-marquee/svg-marquee-img";
+import { education, experiences } from "@/content/experiences";
+
+export default function ExperienceSection({ id }: { id: string }) {
+	return (
+		<SectionRoot id={id}>
+			<SectionHeading before="Work and" highlight="Education." />
+			<SectionText>
+				I've been fortunate to work with some incredible organizations and
+				contribute to building some cool stuff. Here are my work and education:
+			</SectionText>
+			<Column fillWidth gap={1} marginTop={1}>
+				<ExperienceBlock experiences={experiences} />
+				<hr />
+				<ExperienceBlock experiences={education} />
+			</Column>
+			<Column fillWidth gap={1} marginTop={1}>
+				<ActionRow
+					buttons={[
+						{
+							text: "Get my Resume",
+							boxColor: "bg-teal-500",
+							ariaLabel: "Get my resume",
+							href: "/files/Davidson_Rafael_Resume.pdf",
+							download: "Davidson_Rafael_Resume.pdf",
+						},
+						{
+							text: "Do nothing",
+							boxColor: "bg-yellow-500",
+							pattern: "x",
+							ariaLabel: "Do nothing experience",
+						},
+					]}
+				/>
+			</Column>
+			<Flex s={{ hide: true }} fillWidth fitHeight>
+				<SVGMarqueeImg />
+			</Flex>
+		</SectionRoot>
+	);
+}
