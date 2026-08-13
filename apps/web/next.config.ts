@@ -13,8 +13,8 @@ const nextConfig: NextConfig = {
 			{ protocol: "https", hostname: "i.scdn.co" },
 			{ protocol: "https", hostname: "img.avatardecoration.com" },
 			{ protocol: "https", hostname: "cdn.cosmos.so" },
-			{ protocol: "https", hostname: "**" },
-			{ protocol: "http", hostname: "**" },
+			{ protocol: "https", hostname: "avatars.githubusercontent.com" },
+			{ protocol: "https", hostname: "skiper-ui.com" },
 		],
 	},
 	async headers() {
