@@ -55,6 +55,7 @@ temp
 
 # Architecture docs (internal, not for commit)
 ARCHITECTURE.md
+CLAUDE.md
 
 .agents
 
