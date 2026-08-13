@@ -1,0 +1,46 @@
+name: Lighthouse CI
+
+on:
+  schedule:
+    - cron: "0 4 * * 1" # every Monday at 04:00 UTC
+  workflow_dispatch: # manual trigger option
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: https://www.davidsonrafael.xyz/
+      MIN_SCORE: "80" # out of 100, per category
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Run Lighthouse CI
+        id: lhci
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          urls: ${{ env.SITE_URL }}
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+      - name: Check scores against threshold
+        id: check
+        env:
+          RESULTS_PATH: ${{ steps.lhci.outputs.resultsPath }}
+        run: node scripts/check-lighthouse.mjs
+
+      - name: File or update issue on regression
+        if: steps.check.outputs.regressed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create lighthouse --color 0e8a16 --description "Lighthouse CI score regressions" --force
+          existing=$(gh issue list --label lighthouse --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file /tmp/lighthouse-body.md
+          else
+            gh issue create --title "Lighthouse score regression" --label lighthouse --body-file /tmp/lighthouse-body.md
+          fi

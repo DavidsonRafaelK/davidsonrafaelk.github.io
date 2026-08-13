@@ -1,0 +1,62 @@
+name: Post-Deploy Check
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch: # manual trigger option
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  SITE_URL: https://www.davidsonrafael.xyz
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for deploy to be live
+        run: |
+          for i in $(seq 1 20); do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL/")
+            if [ "$code" = "200" ]; then
+              echo "Site is live (attempt $i)."
+              exit 0
+            fi
+            echo "Attempt $i: got $code, retrying in 15s..."
+            sleep 15
+          done
+          echo "Site never came back up." >&2
+          exit 1
+
+      - name: Check key endpoints
+        id: endpoints
+        run: |
+          failures=""
+          for path in "/" "/llms.txt" "/sitemap.xml" "/robots.txt"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL$path")
+            echo "$path -> $code"
+            if [ "$code" != "200" ]; then
+              failures="$failures\n- $path returned $code"
+            fi
+          done
+          if [ -n "$failures" ]; then
+            echo -e "Failures:$failures"
+            echo -e "$failures" > /tmp/failures.txt
+            exit 1
+          fi
+
+      - name: File issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create deploy-check --color d93f0b --description "Post-deploy endpoint check failures" --force
+          body="Post-deploy check failed for $SITE_URL after commit ${{ github.sha }}.\n\n$(cat /tmp/failures.txt 2>/dev/null || echo 'Site did not come back up within 5 minutes.')\n\nRun: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          existing=$(gh issue list --label deploy-check --state open --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "Post-deploy check failing" --label deploy-check --body "$body"
+          fi
