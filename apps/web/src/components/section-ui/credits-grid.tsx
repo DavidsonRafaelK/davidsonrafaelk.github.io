@@ -1,0 +1,50 @@
+import { Grid, Text } from "@once-ui-system/core";
+import * as React from "react";
+
+const credits: [string, string][] = [
+	["Crafted by", "Davidson Rafael"],
+	["Source code", "Github"],
+	["Inspired by", "once-ui.com"],
+	["", "ui.shadcn.com"],
+	["", "tailwindcss.com"],
+	["", "bklit.ui"],
+	["", "evilcharts.com"],
+	["", "cult-ui.com"],
+	["", "skiper-ui.com"],
+	["Deployed on", "Vercel"],
+	["", "Cummand"],
+	["", "Github"],
+	["", "Supabase Cron"],
+	["Analytics", "PostHog"],
+];
+
+export function CreditsGrid() {
+	return (
+		<Grid fillWidth columns={2} gap={0.5}>
+			{credits.map(([label, value]) => (
+				<React.Fragment key={`${label || ""}::${value}`}>
+					<Text
+						className="font-body font-normal text-lg text-muted-foreground/80"
+						align="right"
+					>
+						{label}
+					</Text>
+					<Text
+						className="font-body font-normal text-lg text-muted-foreground/80"
+						align="left"
+					>
+						<span
+							className={
+								value === "Davidson Rafael"
+									? "text-orange-500/80"
+									: "text-foreground/80"
+							}
+						>
+							{value}
+						</span>
+					</Text>
+				</React.Fragment>
+			))}
+		</Grid>
+	);
+}
