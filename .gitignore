@@ -62,6 +62,9 @@ apps/server
 
 packages/*
 !packages/ui
+!packages/env
 
 .next
 /.agents
+.vercel
+.env*
