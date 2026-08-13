@@ -100,4 +100,12 @@ export const dadJokes: string[] = [
 	"why did the cookie cry? because its mom was a wafer so long.",
 	"what do you call a fish that plays the piano? a piano tuna.",
 	"deployed on a friday, said a little prayer, went home anyway.",
+	"i got fired from the transmission factor, turns out i didn't put on enough shifts...",
+	"where do young cows eat lunch? in the calf-ateria.",
+	"i went to the doctor today and he told me i had type a blood but it was a type o.",
+	"how does a french skeleton say hello? bone-jour.",
+	"why was the big cat disqualified from the race? because it was a cheetah.",
+	"what do prisoners use to call each other? cell phones.",
+	"what’s e.t. short for? he’s only got little legs.",
+	"we all know where the big apple is but does anyone know where the minneapolis?",
 ];

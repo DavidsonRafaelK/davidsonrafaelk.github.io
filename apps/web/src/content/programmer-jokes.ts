@@ -101,4 +101,12 @@ export const programmerJokes: string[] = [
 	"I don't need luck, I need better error messages.",
 	"error 200: everything's fine, somehow.",
 	"deployed on a Friday, prayed all weekend.",
+	"udp is better in the covid era since it avoids unnecessary handshakes.",
+	"// this line doesn't actually do anything, but the code stops working when i delete it.",
+	'today i learned that changing random stuff until your program works is "hacky" and a "bad coding practice" but if you do it fast enough it\'s "machine learning" and pays 4x your current salary.',
+	"a programmer puts two glasses on his bedside table before going to sleep. a full one, in case he gets thirsty, and an empty one, in case he doesn't.",
+	'"knock, knock." "who\'s there?" [very long pause] "java."',
+	"debugging is like being the detective in a crime movie where you're also the murderer at the same time.",
+	'a sql statement walks into a bar and sees two tables. it approaches, and asks "may i join you?"',
+	'two sql tables sit at the bar. a query approaches and asks "can i join you?"',
 ];
