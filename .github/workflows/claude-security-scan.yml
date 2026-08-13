@@ -1,0 +1,65 @@
+name: Claude Security Scan
+
+on:
+  push:
+    branches: ["main"]
+  schedule:
+    - cron: "0 0 * * 0" # every Sunday at midnight UTC
+  workflow_dispatch: # manual trigger option
+
+permissions:
+  contents: read
+  issues: write
+  id-token: write
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Ensure security label exists
+        run: gh label create security --color d93f0b --description "Security vulnerability findings" --force
+        env:
+          GH_TOKEN: ${{ github.token }}
+
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            REPO: ${{ github.repository }}
+
+            Perform a focused security review of this Next.js codebase
+            (apps/web/src, apps/web/next.config.ts, packages/). Only flag
+            HIGH-CONFIDENCE vulnerabilities (>=8/10 confidence) with a
+            concrete, exploitable attack path — not style nits or
+            theoretical concerns.
+
+            Categories to examine:
+            - Injection: SQL/NoSQL/command/template injection, path traversal
+            - SSRF: server-side fetches where an attacker controls the host
+              or protocol (not just path/query)
+            - Auth/authorization bypass logic
+            - Hardcoded secrets, API keys, or credentials in source
+            - Unsafe deserialization or dynamic code execution (eval, Function())
+            - XSS via dangerouslySetInnerHTML or similar unsafe sinks
+              (React auto-escapes JSX by default, so plain JSX is not a concern)
+
+            Exclusions — do NOT report:
+            - Denial of Service / resource exhaustion / rate limiting
+            - Outdated third-party library versions (handled via Dependabot)
+            - Client-side authorization checks (enforced server-side instead)
+            - SSRF where only the URL path is attacker-controlled, host is fixed
+            - Findings in markdown/docs files or test files
+            - Anything already covered by an existing open issue labeled
+              "security" — run `gh issue list --label security --state open`
+              first and skip duplicates of what's already filed
+
+            For each new high-confidence finding, open a separate GitHub
+            issue with `gh issue create --label security` including: file
+            and line number, severity (High/Medium), description, a
+            concrete exploit scenario, and a fix recommendation. If nothing
+            new is found, do not create any issue — just end the run.
+
+          claude_args: |
+            --allowedTools "Read,Grep,Glob,Bash(gh issue list:*),Bash(gh issue create:*)"
