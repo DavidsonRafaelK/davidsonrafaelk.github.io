@@ -1,0 +1,20 @@
+{
+	"site": {
+		"url": "https://davidsonrafael.xyz",
+		"name": "Home / Davidson Rafael",
+		"description": "Portfolio of Davidson Rafael, a web developer building modern, scalable web platforms with Next.js, React, and Python."
+	},
+	"openGraph": {
+		"locale": "en_US",
+		"type": "website",
+		"image": "/og.webp"
+	},
+	"twitter": {
+		"card": "summary_large_image",
+		"image": "/og.webp"
+	},
+	"robots": {
+		"index": true,
+		"follow": true
+	}
+}
