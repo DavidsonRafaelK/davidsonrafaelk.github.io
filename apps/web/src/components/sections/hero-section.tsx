@@ -3,7 +3,7 @@
 import { Flex, Row, Text } from "@once-ui-system/core";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { Inline } from "@/components/inline";
 import PremiumButton from "@/components/premium-button";
 import { pfpOverlays } from "@/content/pfp-overlays";
@@ -26,22 +26,33 @@ export default function HeroSection({ id }: { id: string }) {
 	const [pfpFade, setPfpFade] = useState(true);
 	const [joke, setJoke] = useState(programmerJokes[0]);
 
-	useEffect(() => {
-		setJoke(programmerJokes[Math.floor(Math.random() * programmerJokes.length)]);
+	useLayoutEffect(() => {
+		setJoke(
+			programmerJokes[Math.floor(Math.random() * programmerJokes.length)],
+		);
 	}, []);
 
+	// Sync the displayed pfp whenever the index advances.
+	useEffect(() => {
+		setPfp(pfpOverlays[pfpIndex]);
+	}, [pfpIndex]);
+
+	// Schedule the fade-out once the current pfp has been shown long enough.
 	useEffect(() => {
 		const duration = pfpDurations[pfpIndex] ?? 3000;
-		const timeout = setTimeout(() => {
-			setPfpFade(false);
-			setTimeout(() => {
-				setPfpIndex((prev) => (prev + 1) % pfpOverlays.length);
-				setPfp(pfpOverlays[(pfpIndex + 1) % pfpOverlays.length]);
-				setPfpFade(true);
-			}, 500);
-		}, duration * 2);
+		const timeout = setTimeout(() => setPfpFade(false), duration * 2);
 		return () => clearTimeout(timeout);
 	}, [pfpIndex]);
+
+	// Once faded out, wait for the fade transition then advance and fade back in.
+	useEffect(() => {
+		if (pfpFade) return;
+		const timeout = setTimeout(() => {
+			setPfpIndex((prev) => (prev + 1) % pfpOverlays.length);
+			setPfpFade(true);
+		}, 500);
+		return () => clearTimeout(timeout);
+	}, [pfpFade]);
 
 	return (
 		<Flex
