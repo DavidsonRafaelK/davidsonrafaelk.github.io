@@ -1,12 +1,42 @@
 import { socials } from "@/content/socials";
 import config from "./metadata.json" with { type: "json" };
 
+const personId = `${config.site.url}/#person`;
+const websiteId = `${config.site.url}/#website`;
+
 const personSchema = {
-	"@context": "https://schema.org",
 	"@type": "Person",
-	name: config.site.name,
+	"@id": personId,
+	name: "Davidson Rafael",
 	url: config.site.url,
-	sameAs: [socials.github],
+	jobTitle: "Web Developer",
+	description: config.site.description,
+	sameAs: [socials.github, socials.linkedin, socials.kaggle],
+};
+
+const webSiteSchema = {
+	"@type": "WebSite",
+	"@id": websiteId,
+	url: config.site.url,
+	name: config.site.name,
+	description: config.site.description,
+	author: { "@id": personId },
+	publisher: { "@id": personId },
+};
+
+const profilePageSchema = {
+	"@type": "ProfilePage",
+	"@id": `${config.site.url}/#profilepage`,
+	url: config.site.url,
+	name: config.site.name,
+	isPartOf: { "@id": websiteId },
+	about: { "@id": personId },
+	mainEntity: { "@id": personId },
+};
+
+const schemaGraph = {
+	"@context": "https://schema.org",
+	"@graph": [personSchema, webSiteSchema, profilePageSchema],
 };
 
 function toSafeJson(data: unknown): string {
@@ -17,7 +47,7 @@ function toSafeJson(data: unknown): string {
 		.replace(/\//g, "\\u002F");
 }
 
-const schemaScript = toSafeJson(personSchema);
+const schemaScript = toSafeJson(schemaGraph);
 
 export function JsonLd() {
 	return (
