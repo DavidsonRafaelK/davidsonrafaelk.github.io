@@ -12,6 +12,17 @@ import type { Projects } from "@/components/projects-block";
 
 export const projectsData: Projects[] = [
 	{
+		title: "U-Reserve",
+		description:
+			"University room reservation platform with an interactive floor map, drag-and-drop scheduling, and booking history — built as a campus software engineering group project.",
+		imageUrl:
+			"https://i.pinimg.com/736x/1a/f9/7b/1af97bbcaba8b8ed28f2ae1137ab9793.jpg",
+		repoUrl: "https://github.com/DavidsonRafaelK/U-Reserve",
+		liveUrl: "https://u-reserve.vercel.app",
+		invert: false,
+		date: "Present",
+	},
+	{
 		title: "Church Fundraising Platform",
 		description:
 			"Monorepo e-commerce platform for church fundraising, built on a Medusa (Next.js + Node.js) commerce boilerplate.",
