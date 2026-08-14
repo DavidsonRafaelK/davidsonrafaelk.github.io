@@ -3,7 +3,7 @@
 import { Flex, Row, Text } from "@once-ui-system/core";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Inline } from "@/components/inline";
 import PremiumButton from "@/components/premium-button";
 import { pfpOverlays } from "@/content/pfp-overlays";
@@ -18,24 +18,17 @@ const WavePlayer = dynamic(
 	{ ssr: false },
 );
 
+const JokeLine = dynamic(
+	() => import("@/components/random-line").then((m) => m.RandomLine),
+	{ ssr: false, loading: () => <>{programmerJokes[0]}</> },
+);
+
 const pfpDurations = pfpOverlays.map(() => 3000);
 
 export default function HeroSection({ id }: { id: string }) {
 	const [pfpIndex, setPfpIndex] = useState(0);
-	const [pfp, setPfp] = useState(pfpOverlays[0]);
 	const [pfpFade, setPfpFade] = useState(true);
-	const [joke, setJoke] = useState(programmerJokes[0]);
-
-	useLayoutEffect(() => {
-		setJoke(
-			programmerJokes[Math.floor(Math.random() * programmerJokes.length)],
-		);
-	}, []);
-
-	// Sync the displayed pfp whenever the index advances.
-	useEffect(() => {
-		setPfp(pfpOverlays[pfpIndex]);
-	}, [pfpIndex]);
+	const pfp = pfpOverlays[pfpIndex];
 
 	// Schedule the fade-out once the current pfp has been shown long enough.
 	useEffect(() => {
@@ -94,7 +87,9 @@ export default function HeroSection({ id }: { id: string }) {
 			>
 				<>
 					Hi I'm Davidson Rafael —{" "}
-					<span className="text-muted-foreground">{joke}</span>
+					<span className="text-muted-foreground">
+						<JokeLine lines={programmerJokes} />
+					</span>
 				</>
 			</Inline>
 			<Text

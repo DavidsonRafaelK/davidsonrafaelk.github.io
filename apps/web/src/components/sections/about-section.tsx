@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import { ActionRow } from "@/components/section-ui/action-row";
 import {
 	SectionHeading,
@@ -10,13 +10,12 @@ import {
 import { dadJokes } from "@/content/dad-jokes";
 import { socials } from "@/content/socials";
 
+const JokeLine = dynamic(
+	() => import("@/components/random-line").then((m) => m.RandomLine),
+	{ ssr: false, loading: () => <>{dadJokes[0]}</> },
+);
+
 export default function AboutSection({ id }: { id: string }) {
-	const [joke, setJoke] = useState(dadJokes[0]);
-
-	useLayoutEffect(() => {
-		setJoke(dadJokes[Math.floor(Math.random() * dadJokes.length)]);
-	}, []);
-
 	return (
 		<SectionRoot id={id}>
 			<SectionHeading before="A little about" highlight="me." />
@@ -29,7 +28,8 @@ export default function AboutSection({ id }: { id: string }) {
 				Fun fact: people say I look like Park Seo-roi from Itaewon Class, and
 				honestly, I'll take it. <br />
 				<br />
-				And since every about page needs a dad joke: {joke}
+				And since every about page needs a dad joke:{" "}
+				<JokeLine lines={dadJokes} />
 			</SectionText>
 			<ActionRow
 				buttons={[
