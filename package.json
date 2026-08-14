@@ -29,7 +29,8 @@
 		"check-types": "turbo check-types",
 		"dev:web": "turbo -F web dev",
 		"check": "biome check --write .",
-		"doctor": "npx react-doctor@latest"
+		"doctor": "npx react-doctor@latest",
+		"prepare": "lefthook install"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.16",
