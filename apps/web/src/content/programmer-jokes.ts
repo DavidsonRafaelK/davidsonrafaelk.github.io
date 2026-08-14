@@ -109,4 +109,11 @@ export const programmerJokes: string[] = [
 	"debugging is like being the detective in a crime movie where you're also the murderer at the same time.",
 	'a sql statement walks into a bar and sees two tables. it approaches, and asks "may i join you?"',
 	'two sql tables sit at the bar. a query approaches and asks "can i join you?"',
+	"i've got a really good udp joke to tell you but i don’t know if you'll get it.",
+	'a byte walks into a bar looking miserable. the bartender asks it: "what\'s wrong buddy?" "parity error." it replies. "ah that makes sense, i thought you looked a bit off."',
+	"java and c were telling jokes. it was c's turn, so he writes something on the wall, points to it and says \"do you get the reference?\" but java didn't.",
+	'a guy walks into a bar and asks for 1.4 root beers. the bartender says "i\'ll have to charge you extra, that\'s a root beer float". the guy says "in that case, better make it a double."',
+	'eight bytes walk into a bar. the bartender asks, "can i get you anything?" "yeah," reply the bytes. "make us a double."',
+	"the six stages of debugging: 1. that can't happen. 2. that doesn't happen on my machine. 3. that shouldn't happen. 4. why does that happen? 5. oh, i see. 6. how did that ever work?",
+	"debugging: removing the needles from the haystack.",
 ];

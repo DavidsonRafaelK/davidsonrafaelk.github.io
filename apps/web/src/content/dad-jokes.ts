@@ -108,4 +108,12 @@ export const dadJokes: string[] = [
 	"what do prisoners use to call each other? cell phones.",
 	"what’s e.t. short for? he’s only got little legs.",
 	"we all know where the big apple is but does anyone know where the minneapolis?",
+	"what do you call a monkey in a mine field? a babooooom!",
+	"scientists finally did a study on forks. it's about tine!",
+	"i cut my finger cutting cheese. i know it may be a cheesy story but i feel grate now.",
+	"how do you steal a coat? you jacket.",
+	"why don't you find hippopotamuses hiding in trees? they're really good at it.",
+	"what happens when you cross a sheep with a kangaroo ? a woolly jumper!",
+	"i’m reading a book on the history of glue – can’t put it down.",
+	"want to hear a joke about construction? nah, i'm still working on it.",
 ];
