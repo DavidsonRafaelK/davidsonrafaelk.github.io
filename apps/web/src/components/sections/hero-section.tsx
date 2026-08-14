@@ -88,6 +88,7 @@ export default function HeroSection({ id }: { id: string }) {
 				</div>
 			</Flex>
 			<Inline
+				as="h1"
 				className="wrap-break-word font-display font-normal font-s text-foreground opacity-90"
 				style={{ fontWeight: "500" }}
 			>

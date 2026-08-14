@@ -9,7 +9,10 @@ type SectionHeadingProps = {
 
 export function SectionHeading({ before, highlight }: SectionHeadingProps) {
 	return (
-		<Inline className="font-default font-display font-s text-foreground">
+		<Inline
+			as="h2"
+			className="font-default font-display font-s text-foreground"
+		>
 			<b>
 				{before}{" "}
 				{highlight && (
