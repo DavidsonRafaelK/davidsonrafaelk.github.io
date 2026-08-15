@@ -116,4 +116,12 @@ export const dadJokes: string[] = [
 	"what happens when you cross a sheep with a kangaroo ? a woolly jumper!",
 	"i’m reading a book on the history of glue – can’t put it down.",
 	"want to hear a joke about construction? nah, i'm still working on it.",
+	"why are fish easy to weigh? because they have their own scales.",
+	"what did the scarf say to the hat? you go on ahead, i am going to hang around a bit longer.",
+	"did you hear about the scientist who was lab partners with a pot of boiling water? he had a very esteemed colleague.",
+	"this morning i was wondering where the sun was, but then it dawned on me.",
+	"writing with a broken pencil is pointless.",
+	'what did the sea say to the sand? "we have to stop meeting like this."',
+	"why is it so windy inside an arena? all those fans.",
+	"a panda walks into a bar and says to the bartender “i’ll have a scotch and . . . . . . . . . . . . . . coke thank you”. “sure thing” the bartender replies and asks “but what’s with the big pause?” the panda holds up his hands and says “i was born with them”",
 ];

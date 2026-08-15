@@ -116,4 +116,7 @@ export const programmerJokes: string[] = [
 	'eight bytes walk into a bar. the bartender asks, "can i get you anything?" "yeah," reply the bytes. "make us a double."',
 	"the six stages of debugging: 1. that can't happen. 2. that doesn't happen on my machine. 3. that shouldn't happen. 4. why does that happen? 5. oh, i see. 6. how did that ever work?",
 	"debugging: removing the needles from the haystack.",
+	'four engineers get into a car. the car won\'t start. the mechanical engineer says "it\'s a broken starter". the electrical engineer says "dead battery". the chemical engineer says "impurities in the gasoline". the it engineer says "hey guys, i have an idea: how about we all get out of the car and get back in".',
+	"algorithm: a word used by programmers when they don't want to explain how their code works.",
+	"i'd tell you a joke about nat but i would have to translate.",
 ];
