@@ -1,0 +1,82 @@
+---
+title: macOS Installation Guide
+summary: A step-by-step guide to running macOS Sequoia on VMware Workstation, covering both Intel and AMD host machines.
+publishedAt: 2026-03-01
+role: Solo
+stack:
+  - VMware Workstation
+  - macOS Sequoia
+  - Documentation
+repoUrl: https://github.com/DavidsonRafaelK/MacOS-Installation
+cover:
+  src: https://i.pinimg.com/736x/df/8d/d8/df8dd859bd92cd770839e0c6fa010ab2.jpg
+  alt: macOS installation guide for VMware Workstation
+draft: false
+---
+
+My laptop was slow. The kind of slow where opening a second app is a decision
+you think about first.
+
+Then a relative lent me a MacBook for one day and told me to do whatever I
+wanted with it. I spent the whole day just using it. What stuck with me was not
+any particular feature. Apps opened with no delay at all, and moving between
+them cost nothing. After a year of waiting for windows to finish drawing
+themselves, it felt like a different category of machine.
+
+I gave it back the next morning and started wondering whether I could get macOS
+running on my own hardware, either in a VM or straight on the metal.
+
+## Everything failed in the same place
+
+Most guides I found did not work. Different steps, different tools, same
+ending: bootloop. The installer starts, the Apple logo shows up, the machine
+restarts. Again and again.
+
+So I stopped working through tutorials one at a time and lined all of them up
+next to each other instead, along with whatever else I could dig up, looking for
+what they had in common.
+
+It came down to the CPU. Mine is an AMD Ryzen. Macs run Intel, and macOS is
+built expecting Intel. The two are different enough that the kernel gives up
+early.
+
+## Lying to the kernel
+
+That changed the question. Instead of "how do I install macOS on AMD", it became
+"how do I make macOS believe this is not an AMD chip".
+
+That is what the CPUID spoof does. A script rewrites the CPU identity the kernel
+reads at boot, so macOS sees an Intel i7 instead of a Ryzen. Once that was in
+place the bootloop stopped and the installer ran all the way through.
+
+Everything after that was ordinary. Partitioning, install, first boot, signing
+in with an Apple account. No tricks needed, it just worked.
+
+It was also unbelievably slow, because my laptop was still my laptop.
+
+## What's in the guide
+
+The requirements section does most of the work. Before anything else it tells
+you what your machine needs: a CPU with AVX2, because macOS 13 and up require
+it; virtualization turned on in BIOS, AMD-V or Intel VT-x; 8 GB of RAM minimum
+and 16 GB if you want a good time; 70 GB of disk minimum, 200 GB recommended. It
+also notes that VMware Workstation Pro went free for personal and commercial use
+in May 2024, which makes a lot of the licensing advice out there outdated.
+
+The AMD warning is the part most guides bury: turn off Hyper-V and Windows
+Memory Integrity first. If you don't, the VM fails in a way that gives you no
+hint about why.
+
+After that it walks through getting VMware Workstation Pro from the Broadcom
+portal, finding a macOS Sequoia 15 image, and running the DrDonk unlocker that
+makes macOS show up as a guest option at all, then the install itself and a
+troubleshooting section for when it still refuses to boot.
+
+## What I still haven't fixed
+
+3D acceleration. The VM has no GPU acceleration, so the entire desktop is drawn
+on the CPU. It stays heavy even on a Windows laptop with a dedicated GPU,
+because the GPU is not the part doing the work.
+
+I have not found a fix, and I am not convinced a clean one exists. So the guide
+gets you a working macOS, just not a fast one.
