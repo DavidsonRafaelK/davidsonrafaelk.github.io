@@ -4,7 +4,12 @@ import { usePathname, useSearchParams } from "next/navigation";
 import posthog from "posthog-js";
 import { Suspense, useEffect, useRef } from "react";
 
-function PageViewTracker({ children }: { children: React.ReactNode }) {
+/**
+ * Renders nothing and, crucially, does not wrap the page. `useSearchParams`
+ * forces its closest Suspense boundary to be client-rendered, so anything
+ * inside this component would be missing from the prerendered HTML.
+ */
+function PageViewTracker() {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 	const pageUrl =
@@ -16,7 +21,7 @@ function PageViewTracker({ children }: { children: React.ReactNode }) {
 		});
 	}, [pageUrl]);
 
-	return <>{children}</>;
+	return null;
 }
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
@@ -35,8 +40,11 @@ export function PostHogProvider({ children }: { children: React.ReactNode }) {
 	}, []);
 
 	return (
-		<Suspense fallback={null}>
-			<PageViewTracker>{children}</PageViewTracker>
-		</Suspense>
+		<>
+			<Suspense fallback={null}>
+				<PageViewTracker />
+			</Suspense>
+			{children}
+		</>
 	);
 }
