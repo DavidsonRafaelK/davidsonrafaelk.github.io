@@ -4,6 +4,7 @@
 	"tasks": {
 		"build": {
 			"dependsOn": ["^build"],
+			"env": ["POSTHOG_PROJECT_ID", "POSTHOG_PERSONAL_API_KEY"],
 			"inputs": ["$TURBO_DEFAULT$", ".env*"],
 			"outputs": ["dist/**", ".next/**", "!.next/cache/**"]
 		},
