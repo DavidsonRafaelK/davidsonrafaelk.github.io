@@ -56,9 +56,12 @@ async function readAllDocs(): Promise<ProjectDoc[]> {
 		return [];
 	}
 
-	const docs = await Promise.all(
-		fileNames.filter((name) => name.endsWith(".mdx")).map(readDoc),
-	);
+	const pending: Promise<ProjectDoc>[] = [];
+	for (const name of fileNames) {
+		if (name.endsWith(".mdx")) pending.push(readDoc(name));
+	}
+
+	const docs = await Promise.all(pending);
 
 	return docs.sort(
 		(a, b) =>

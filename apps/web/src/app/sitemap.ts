@@ -2,12 +2,12 @@ import type { MetadataRoute } from "next";
 import config from "@/content/metadata.json" with { type: "json" };
 import { getProjects } from "@/lib/projects-content";
 
-// Frozen at build time so `lastmod` reflects a real content release instead of
-// changing on every request (Google treats a churning lastmod as noise).
-const buildDate = new Date();
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 	const projects = await getProjects();
+
+	// This route is statically prerendered, so the clock is read once during the
+	// build rather than per request. Google treats a churning lastmod as noise.
+	const buildDate = new Date();
 
 	return [
 		{
