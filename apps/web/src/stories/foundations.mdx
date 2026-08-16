@@ -26,11 +26,10 @@ overrides are breakpoint prop objects.
 	language="tsx"
 />
 
-This repo departs from Once UI's own house style on purpose. Upstream tells you
-to prefer `Row`/`Column` over `Flex`, use string gap tokens, and reach for
-semantic Once UI colours. This site uses `Flex` as its dominant primitive,
-numeric rem gaps, and Tailwind tokens for colour. Follow the repo, not the
-upstream defaults.
+This site departs from Once UI's own house style on purpose. Upstream prefers
+`Row`/`Column` over `Flex`, string gap tokens, and semantic Once UI colours.
+Here `Flex` is the dominant primitive, gaps are numeric rem, and colour comes
+from Tailwind. Where the two disagree, what is already in the codebase wins.
 
 | Once UI rule | What this repo does |
 | --- | --- |
@@ -138,9 +137,11 @@ for checking it.
 
 ## Voice
 
-First person, casual, self-deprecating. Sections often offer a deliberately
-useless second option, and "Do nothing" is a real button rather than a
-placeholder. New copy should match that register rather than sounding like
-marketing.
+First person, casual, self-deprecating. The hero introduces me as "19, I write
+code and occasionally it works on the first try". The about section closes on a
+Park Seo-roi joke. The experience section offers a resume download next to a
+button labelled "Do nothing", and that button is real.
 
-No em dashes. Use a full stop, a comma, or restructure the sentence.
+Jokes are pulled from two lists that a daily CI job refreshes, so the page reads
+slightly differently on every visit. That is the register the rest of the copy
+sits in.

@@ -28,6 +28,7 @@ const preview: Preview = {
 					"Lists",
 					"Content",
 					"Text",
+					"Charts",
 					"Widgets",
 					"Effects",
 					"Showpieces",

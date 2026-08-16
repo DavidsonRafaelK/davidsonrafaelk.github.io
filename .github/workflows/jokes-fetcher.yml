@@ -30,8 +30,11 @@ jobs:
             echo "No new jokes this run."
             exit 0
           fi
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Author the commit as Davidson so it lands on his contribution
+          # graph. The push still runs under GITHUB_TOKEN, which only affects
+          # the committer field; the graph counts the author.
+          git config user.name "DavidsonRafaelK"
+          git config user.email "davidson.rafael120@gmail.com"
           git add apps/web/src/content/dad-jokes.ts apps/web/src/content/programmer-jokes.ts
           git commit -m "chore: fetch new jokes"
           git push
