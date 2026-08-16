@@ -25,13 +25,17 @@ const PremiumButton = ({
 	ariaLabel,
 }: PremiumButtonProps) => {
 	const Tag = href ? "a" : "button";
+	// Same-origin links stay in the tab; only outbound ones open a new one.
+	const isInternal = Boolean(href?.startsWith("/") && !href.startsWith("//"));
 	return (
 		<Tag
 			{...(Tag === "button"
 				? { type: "button" }
 				: download
 					? { href, download }
-					: { href, target: "_blank", rel: "noopener noreferrer" })}
+					: isInternal
+						? { href }
+						: { href, target: "_blank", rel: "noopener noreferrer" })}
 			onClick={onClick}
 			aria-label={ariaLabel}
 			className={cn(

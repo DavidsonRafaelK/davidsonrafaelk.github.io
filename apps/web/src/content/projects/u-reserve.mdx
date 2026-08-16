@@ -1,0 +1,112 @@
+---
+title: U-Reserve
+summary: A campus room reservation platform with an interactive floor map, drag-and-drop scheduling, and an admin activity log.
+publishedAt: 2026-08-14
+role: Group software engineering project
+stack:
+  - Next.js
+  - JavaScript
+  - Supabase
+  - PostgreSQL
+  - dnd-kit
+repoUrl: https://github.com/DavidsonRafaelK/U-Reserve
+liveUrl: https://u-reserve.vercel.app
+cover:
+  src: https://i.pinimg.com/736x/1a/f9/7b/1af97bbcaba8b8ed28f2ae1137ab9793.jpg
+  alt: U-Reserve room reservation platform
+draft: false
+---
+
+This started as a class assignment. Build a web app for a problem you've
+actually run into.
+
+I'm in BPM, the student representative body at UKRIDA, so I run into this one a
+lot. Every time we hold an event we need a room, and getting one means finding
+the right person to ask.
+
+That's the whole problem. Different rooms have different people in charge. Labs
+go through one person, classrooms through another. If you guess wrong you do it
+twice: you send the request to Person A, wait, and eventually hear back that
+it's Person B who handles that room. So you send it again to Person B.
+
+And the waiting costs you. Rooms aren't held for one organization, so while
+you're still figuring out who to ask, another org can take the slot you wanted.
+
+So that's what we built. A site where students can see which rooms are free and
+what hours are open, then send the request straight to whoever actually manages
+that room. It makes the approver's side smaller too. They don't have to redirect
+anyone anymore, they just read what you need the room for and decide.
+
+Nothing clever. It mostly removes the part where your request sits with the
+wrong person for three days.
+
+## How it's built
+
+Next.js 15 with the App Router, written in plain JavaScript. Supabase handles
+Postgres and auth, and `middleware.js` keeps people out of the pages they
+shouldn't be in.
+
+There are two sides to it. `src/app/user` is for booking, where `floor-map.jsx`
+draws the plan, `form-reservation.jsx` takes the request, and `pop-up.jsx`
+confirms it.
+`src/app/admin` is for whoever runs the place: a data table on TanStack Table,
+some Recharts summaries, and a log at `admin/logs` so nothing happens without a
+trace.
+
+Scheduling uses dnd-kit, so you drag a booking onto a slot instead of filling in
+a time field. The UI is shadcn/ui on Radix, with Sonner for toasts and
+react-day-picker for dates.
+
+## Why SVG, and why plain JavaScript
+
+The floor map idea came from a repo I found that drew a map in SVG you could
+hover over and click. We built our own version of that for the campus plan.
+
+Part of it is that it looks better. Most of it is that a list of buttons tells
+you a room exists and nothing else. It doesn't tell you how big the room is.
+Before this you'd have to walk over and look at it yourself to know whether your
+event would fit. Drawing the rooms to scale means you can see that from the
+booking page.
+
+First we tried to find a map. We asked seniors, we asked around, anyone who
+might have a floor plan of the campus sitting somewhere. Nobody had one. As far
+as we could tell nobody had ever made one, so ours ended up being the first.
+
+Which is how we got here. We opened Google Maps, searched for UKRIDA, switched
+to 3D, and screenshotted the buildings. Then we dropped the screenshots into
+Canva, or Figma, I honestly don't remember which, and traced the outlines on
+top. After that we counted how many rooms were actually on each floor and
+estimated how big each one was.
+
+So it's about as accurate as you'd expect from tracing a screenshot. It works. I
+would not volunteer to do it a second time.
+
+The JavaScript part was about the team, not the code. Nobody else on the project
+had touched TypeScript, and some of them had only written JavaScript a few
+times. Going with TypeScript would have meant teaching it and building the app
+at the same time. JavaScript was the one thing everyone had at least some
+footing in, so that's what we used.
+
+## What happens if two people want the same room
+
+Both requests go through. Nothing stops the second one.
+
+That sounds broken, but sending a request doesn't book the room. It asks for it.
+The room is only really taken once the person managing it approves. So two
+students both asking for the same room on Thursday at 10 is fine. Both land in
+front of the same approver, who reads the reasons and picks one.
+
+The approval step was already doing that job, so we didn't build anything on top
+of it.
+
+## What I'd change
+
+The floor map is the weak point. Because we drew it by hand, the room paths live
+in a JSON file we wrote ourselves, so adding a building means measuring and
+drawing the whole thing again. It covers the buildings we mapped and it stops
+there.
+
+If I did it again I'd want a way to add a floor without touching the code. Upload
+a plan, mark out the rooms, done. That's a bigger project than the
+assignment was, which is probably why we ended up doing it by hand in the first
+place.

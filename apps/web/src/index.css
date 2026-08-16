@@ -1,3 +1,21 @@
 @import "@homepage/ui/globals.css";
 @import "@once-ui-system/core/css/tokens.css";
 @import "@once-ui-system/core/css/styles.css";
+
+/*
+ * `rehype-pretty-code` emits both themes as CSS variables on every token and
+ * leaves the choice to CSS, so nothing is coloured until these rules pick one.
+ * Matches the `.dark` class variant declared in @homepage/ui/globals.css.
+ */
+[data-rehype-pretty-code-figure] span {
+	color: var(--shiki-light);
+}
+
+.dark [data-rehype-pretty-code-figure] span {
+	color: var(--shiki-dark);
+}
+
+/* Each line is a span; without this a multi-line block collapses onto one row. */
+[data-rehype-pretty-code-figure] pre > code > [data-line] {
+	display: block;
+}

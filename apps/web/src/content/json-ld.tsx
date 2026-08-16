@@ -1,5 +1,4 @@
 import { education, experiences } from "@/content/experiences";
-import { projectsData } from "@/content/projects";
 import { socials } from "@/content/socials";
 import { stacksData } from "@/content/stacks";
 import config from "./metadata.json" with { type: "json" };
@@ -57,27 +56,6 @@ const webSiteSchema = {
 	publisher: { "@id": personId },
 };
 
-const projectsSchema = {
-	"@type": "ItemList",
-	"@id": `${config.site.url}/#projects`,
-	name: "Projects by Davidson Rafael",
-	itemListOrder: "https://schema.org/ItemListOrderDescending",
-	numberOfItems: projectsData.length,
-	itemListElement: projectsData.map((project, index) => ({
-		"@type": "ListItem",
-		position: index + 1,
-		item: {
-			"@type": "SoftwareSourceCode",
-			name: project.title,
-			description: project.description,
-			author: { "@id": personId },
-			...(project.imageUrl ? { image: project.imageUrl } : {}),
-			...(project.repoUrl ? { codeRepository: project.repoUrl } : {}),
-			...(project.liveUrl ? { url: project.liveUrl } : {}),
-		},
-	})),
-};
-
 const profilePageSchema = {
 	"@type": "ProfilePage",
 	"@id": `${config.site.url}/#profilepage`,
@@ -88,13 +66,12 @@ const profilePageSchema = {
 	isPartOf: { "@id": websiteId },
 	about: { "@id": personId },
 	mainEntity: { "@id": personId },
-	hasPart: { "@id": `${config.site.url}/#projects` },
 	primaryImageOfPage: config.person.image,
 };
 
 const schemaGraph = {
 	"@context": "https://schema.org",
-	"@graph": [personSchema, webSiteSchema, profilePageSchema, projectsSchema],
+	"@graph": [personSchema, webSiteSchema, profilePageSchema],
 };
 
 function toSafeJson(data: unknown): string {

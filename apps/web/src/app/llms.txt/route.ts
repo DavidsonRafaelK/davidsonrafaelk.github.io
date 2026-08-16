@@ -1,14 +1,14 @@
 import { education, experiences } from "@/content/experiences";
 import config from "@/content/metadata.json" with { type: "json" };
-import { projectsData } from "@/content/projects";
 import { socials } from "@/content/socials";
 import { stacksData } from "@/content/stacks";
+import { getProjects } from "@/lib/projects-content";
 
 function formatRange(start: string, end?: string) {
 	return `${start} - ${end ?? "Now"}`;
 }
 
-export function GET() {
+export async function GET() {
 	const skills = stacksData
 		.map(
 			(cat) => `- ${cat.category}: ${cat.items.map((i) => i.label).join(", ")}`,
@@ -29,11 +29,15 @@ export function GET() {
 		)
 		.join("\n");
 
-	const projects = projectsData
-		.map(
-			(p) =>
-				`- ${p.title}: ${p.description}${p.repoUrl ? ` (${p.repoUrl})` : ""}`,
-		)
+	const docs = await getProjects();
+	const projects = docs
+		.map((doc) => {
+			const { title, summary, repoUrl } = doc.frontmatter;
+			const links = [`${config.site.url}/projects/${doc.slug}`, repoUrl]
+				.filter(Boolean)
+				.join(", ");
+			return `- ${title}: ${summary} (${links})`;
+		})
 		.join("\n");
 
 	const body = `# ${config.site.name}

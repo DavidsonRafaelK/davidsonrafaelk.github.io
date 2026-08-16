@@ -1,8 +1,9 @@
 "use client";
 
 import { Column, Flex, StatusIndicator, Text } from "@once-ui-system/core";
+import type { Route } from "next";
 import { DotGothic16 } from "next/font/google";
-import { useCallback } from "react";
+import Link from "next/link";
 import { getDate } from "@/lib/get-date";
 
 const bitcountFont = DotGothic16({
@@ -11,24 +12,29 @@ const bitcountFont = DotGothic16({
 });
 
 const navLinks = [
-	{ label: "Introduction", href: "#hero" },
-	{ label: "About", href: "#about" },
-	{ label: "Stacks", href: "#skills" },
-	{ label: "Works", href: "#experience" },
-	{ label: "Projects", href: "#projects" },
-	{ label: "Awards", href: "#awards" },
-	{ label: "Insights", href: "#insights" },
+	{ label: "Introduction", href: "/#hero" },
+	{ label: "About", href: "/#about" },
+	{ label: "Stacks", href: "/#skills" },
+	{ label: "Works", href: "/#experience" },
+	{ label: "Projects", href: "/projects" },
+	{ label: "Awards", href: "/#awards" },
+	{ label: "Insights", href: "/#insights" },
 ];
 
-function scrollTo(e: React.MouseEvent<HTMLAnchorElement>) {
-	e.preventDefault();
+/**
+ * Hash links smooth-scroll when the section is already on the page; anywhere
+ * else the click falls through to `Link` so it navigates home first.
+ */
+function scrollToHash(e: React.MouseEvent<HTMLAnchorElement>) {
 	const href = e.currentTarget.getAttribute("href");
-	if (!href) return;
-	const id = href.slice(1);
+	const id = href?.split("#")[1];
+	if (!id) return;
+
 	const el = document.getElementById(id);
-	if (el) {
-		el.scrollIntoView({ behavior: "smooth" });
-	}
+	if (!el) return;
+
+	e.preventDefault();
+	el.scrollIntoView({ behavior: "smooth" });
 }
 
 export default function SiteHeader() {
@@ -72,10 +78,10 @@ export default function SiteHeader() {
 					m={{ hide: true }}
 				>
 					{navLinks.map((link) => (
-						<a
+						<Link
 							key={link.href}
-							href={link.href}
-							onClick={scrollTo}
+							href={link.href as Route}
+							onClick={scrollToHash}
 							className="flex min-h-11 min-w-11 cursor-pointer touch-manipulation items-center justify-center"
 						>
 							<Text
@@ -84,7 +90,7 @@ export default function SiteHeader() {
 							>
 								{link.label}
 							</Text>
-						</a>
+						</Link>
 					))}
 				</Flex>
 			</Column>

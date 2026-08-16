@@ -36,10 +36,10 @@ export default function ProjectsSection({ id }: { id: string }) {
 			<ActionRow
 				buttons={[
 					{
-						text: "View more",
+						text: "Read the case studies",
 						boxColor: "bg-rose-500",
-						pattern: "linkedin",
-						href: socials.linkedin,
+						pattern: "arrow",
+						href: "/projects",
 					},
 					{
 						text: "View on Github",
