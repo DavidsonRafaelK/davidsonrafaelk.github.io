@@ -119,4 +119,8 @@ export const programmerJokes: string[] = [
 	'four engineers get into a car. the car won\'t start. the mechanical engineer says "it\'s a broken starter". the electrical engineer says "dead battery". the chemical engineer says "impurities in the gasoline". the it engineer says "hey guys, i have an idea: how about we all get out of the car and get back in".',
 	"algorithm: a word used by programmers when they don't want to explain how their code works.",
 	"i'd tell you a joke about nat but i would have to translate.",
+	'judge: "i sentence you to the maximum punishment..." me (thinking): "please be death, please be death..." judge: "learn java!" me: "damn."',
+	'a man is smoking a cigarette and blowing smoke rings into the air. his girlfriend becomes irritated with the smoke and says "can\'t you see the warning on the cigarette pack? smoking is hazardous to your health!" to which the man replies, "i am a programmer. we don\'t worry about warnings; we only worry about errors."',
+	'"we messed up the keming again guys."',
+	"there are only 10 kinds of people in this world: those who know binary and those who don't.",
 ];

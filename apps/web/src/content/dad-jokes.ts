@@ -124,4 +124,12 @@ export const dadJokes: string[] = [
 	'what did the sea say to the sand? "we have to stop meeting like this."',
 	"why is it so windy inside an arena? all those fans.",
 	"a panda walks into a bar and says to the bartender “i’ll have a scotch and . . . . . . . . . . . . . . coke thank you”. “sure thing” the bartender replies and asks “but what’s with the big pause?” the panda holds up his hands and says “i was born with them”",
+	"what musical instrument is found in the bathroom? a tuba toothpaste.",
+	"i can't take my dog to the pond anymore because the ducks keep attacking him. that's what i get for buying a pure bread dog.",
+	"my boss told me to attach two pieces of wood together... i totally nailed it!",
+	"what was the pumpkin’s favorite sport? squash.",
+	"recent survey revealed 6 out of 7 dwarf's aren't happy.",
+	"what do you call corn that joins the army? kernel.",
+	"i've been trying to come up with a dad joke about momentum . . . but i just can't seem to get it going.",
+	"‘put the cat out’ … ‘i didn’t realize it was on fire",
 ];
