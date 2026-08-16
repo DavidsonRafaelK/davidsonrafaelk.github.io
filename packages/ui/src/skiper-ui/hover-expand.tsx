@@ -72,7 +72,10 @@ const CardItem = memo(function CardItem({
 	index,
 	onActivate,
 }: CardItemProps) {
-	const handleActivate = useCallback(() => onActivate(index), [onActivate, index]);
+	const handleActivate = useCallback(
+		() => onActivate(index),
+		[onActivate, index],
+	);
 	return (
 		<m.div
 			role="button"
