@@ -123,4 +123,8 @@ export const programmerJokes: string[] = [
 	'a man is smoking a cigarette and blowing smoke rings into the air. his girlfriend becomes irritated with the smoke and says "can\'t you see the warning on the cigarette pack? smoking is hazardous to your health!" to which the man replies, "i am a programmer. we don\'t worry about warnings; we only worry about errors."',
 	'"we messed up the keming again guys."',
 	"there are only 10 kinds of people in this world: those who know binary and those who don't.",
+	"if bill gates had a dime for every time windows crashed ... oh wait, he does.",
+	"hey girl, roses are #ff0000, violets are #0000ff, i use hex codes, but i'd use rgb for you.",
+	"the glass is neither half-full nor half-empty, the glass is twice as big as it needs to be.",
+	'two c strings walk into a bar. the bartender asks "what can i get ya?" the first string says "i\'ll have a gin and tonic." the second string thinks for a minute, then says "i\'ll take a tequila sunrisejf()#$jf(#)$(@j#()$@#())!*fnin!obn134ufh1ui34hf9813f8h8384h981h3984h5f!##@" the first string apologizes, "you\'ll have to excuse my friend, he\'s not null-terminated."',
 ];

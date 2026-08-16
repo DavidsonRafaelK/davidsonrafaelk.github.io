@@ -132,4 +132,12 @@ export const dadJokes: string[] = [
 	"what do you call corn that joins the army? kernel.",
 	"i've been trying to come up with a dad joke about momentum . . . but i just can't seem to get it going.",
 	"‘put the cat out’ … ‘i didn’t realize it was on fire",
+	"what do you get when you cross a snowman with a vampire? frostbite.",
+	"what do you do when your bunny gets wet? you get your hare dryer.",
+	"did you know crocodiles could grow up to 15 feet? but most just have 4.",
+	"there are two types of people in this world, those who can extrapolate from incomplete data...",
+	"why did the fireman wear red, white, and blue suspenders? to hold his pants up.",
+	"in the news a courtroom artist was arrested today, i'm not surprised, he always seemed sketchy.",
+	"i wanted to be a tailor but i didn't suit the job",
+	"what do you call someone with no nose? nobody knows.",
 ];
