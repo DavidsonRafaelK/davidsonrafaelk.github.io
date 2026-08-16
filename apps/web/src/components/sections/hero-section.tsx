@@ -63,6 +63,7 @@ export default function HeroSection({ id }: { id: string }) {
 					<Image
 						src={pfp}
 						alt=""
+						aria-hidden
 						fill
 						className="object-cover"
 						sizes="128px"
@@ -72,7 +73,7 @@ export default function HeroSection({ id }: { id: string }) {
 				<div className="size-[128px] overflow-hidden rounded-2xl">
 					<Image
 						src="https://avatars.githubusercontent.com/u/171815443?v=4"
-						alt=""
+						alt="Portrait of Davidson Rafael, web developer based in Jakarta"
 						width={128}
 						height={128}
 						className="size-full object-cover"
@@ -86,7 +87,7 @@ export default function HeroSection({ id }: { id: string }) {
 				style={{ fontWeight: "500" }}
 			>
 				<>
-					Hi I'm Davidson Rafael —{" "}
+					Hi I'm Davidson Rafael, web developer —{" "}
 					<span className="text-muted-foreground">
 						<JokeLine lines={programmerJokes} />
 					</span>

@@ -1,8 +1,22 @@
 {
 	"site": {
-		"url": "https://davidsonrafael.xyz",
-		"name": "Home / Davidson Rafael",
-		"description": "Portfolio of Davidson Rafael, a web developer building modern, scalable web platforms with Next.js, React, and Python."
+		"url": "https://www.davidsonrafael.xyz",
+		"name": "Davidson Rafael",
+		"title": "Davidson Rafael — Web Developer in Jakarta",
+		"description": "Davidson Rafael is a web developer and Computer Science student in Jakarta, Indonesia, building modern, scalable web platforms with Next.js, React, TypeScript, and Python."
+	},
+	"person": {
+		"givenName": "Davidson",
+		"familyName": "Rafael",
+		"jobTitle": "Web Developer",
+		"image": "https://avatars.githubusercontent.com/u/171815443?v=4",
+		"locality": "Jakarta",
+		"country": "Indonesia",
+		"countryCode": "ID",
+		"alumniOf": {
+			"name": "Universitas Kristen Krida Wacana (UKRIDA)",
+			"url": "https://ukrida.ac.id"
+		}
 	},
 	"openGraph": {
 		"locale": "en_US",

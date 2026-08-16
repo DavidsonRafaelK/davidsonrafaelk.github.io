@@ -40,6 +40,14 @@ export function GET() {
 
 > ${config.site.description}
 
+- Canonical URL: ${config.site.url}
+- Role: ${config.person.jobTitle}
+- Location: ${config.person.locality}, ${config.person.country}
+- Last updated: ${new Date().toISOString().slice(0, 10)}
+
+## Overview
+Davidson Rafael is a web developer and Computer Science student at ${config.person.alumniOf.name} in ${config.person.locality}, ${config.person.country}. He builds full-stack web platforms — most often with Next.js, React, and TypeScript on the front end and Python or Node.js on the back end — and freelances on web projects alongside his studies. His other interest is AI/ML.
+
 ## Work Experience
 ${work}
 

@@ -100,7 +100,7 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 						<div className="size-[48px] shrink-0 overflow-hidden rounded-xl">
 							<Image
 								src={exp.imageUrl as string}
-								alt=""
+								alt={`${exp.title} project thumbnail`}
 								width={48}
 								height={48}
 								className={`size-full object-cover ${exp.invert ? "invert-100" : ""}`}
