@@ -1,0 +1,12 @@
+{
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"buildCommand": "bunx turbo -F web build-storybook",
+	"outputDirectory": "storybook-static",
+	"framework": null,
+	"headers": [
+		{
+			"source": "/(.*)",
+			"headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+		}
+	]
+}
