@@ -30,7 +30,9 @@
 		"dev:web": "turbo -F web dev",
 		"check": "biome check --write .",
 		"doctor": "npx react-doctor@latest",
-		"prepare": "lefthook install || true"
+		"prepare": "lefthook install || true",
+		"storybook": "turbo -F web storybook",
+		"build-storybook": "turbo -F web build-storybook"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.16",

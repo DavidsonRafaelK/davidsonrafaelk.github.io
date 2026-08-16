@@ -1,0 +1,146 @@
+import {
+	ColorItem,
+	ColorPalette,
+	Meta,
+	Source,
+	Typeset,
+} from "@storybook/addon-docs/blocks";
+
+<Meta title="Foundations/Overview" />
+
+# Foundations
+
+The visual system is three layers stacked, and each one owns a different job.
+Mixing them up is what makes a new page look bolted on.
+
+## Layer 1: Once UI owns layout and typography
+
+Structure is built from `Flex`, `Column`, `Row` and `Text`, not from raw
+Tailwind flex utilities. Numeric spacing props are rem values rather than a step
+scale, so `gap={1}` is 1rem and `gap={0.65}` is valid and used. Sizing is
+boolean props, alignment is `horizontal` and `vertical`, and responsive
+overrides are breakpoint prop objects.
+
+<Source
+	code={`<Flex fillWidth fitHeight horizontal="center" gap={1} s={{ hide: true }}>`}
+	language="tsx"
+/>
+
+This repo departs from Once UI's own house style on purpose. Upstream tells you
+to prefer `Row`/`Column` over `Flex`, use string gap tokens, and reach for
+semantic Once UI colours. This site uses `Flex` as its dominant primitive,
+numeric rem gaps, and Tailwind tokens for colour. Follow the repo, not the
+upstream defaults.
+
+| Once UI rule | What this repo does |
+| --- | --- |
+| `Row`/`Column`, never `Flex direction=` | `Flex` dominates: 15 imports against 7 and 4 |
+| `fill` / `center` shorthands | Explicit `fillWidth fillHeight`, `horizontal=` and `vertical=` |
+| Gap as string tokens (`"16"`) | Numeric rem (`gap={1}`, `gap={0.65}`) |
+| Section gap 80 to 160 | `gap={4}`, which is 64px |
+| Semantic Once UI colours | Tailwind and shadcn tokens |
+| `Media` for images | Mostly `next/image` with `unoptimized` |
+| Default `maxWidth="m"` (880px) | `maxWidth="s"` (768px) |
+
+## Layer 2: Tailwind and shadcn own colour and radius
+
+Only semantic tokens. No hardcoded hex in components, with `ProgressiveBlur` the
+single exception, and it earns it by having to match the page background exactly.
+
+<ColorPalette>
+	<ColorItem
+		title="Surfaces"
+		subtitle="Page and panel"
+		colors={{
+			background: "var(--background)",
+			accent: "var(--accent)",
+			muted: "var(--muted)",
+			card: "var(--card)",
+		}}
+	/>
+	<ColorItem
+		title="Text"
+		subtitle="Foreground and its muted partner"
+		colors={{
+			foreground: "var(--foreground)",
+			"muted-foreground": "var(--muted-foreground)",
+			"accent-foreground": "var(--accent-foreground)",
+		}}
+	/>
+	<ColorItem
+		title="Lines"
+		subtitle="Borders, inputs, focus rings"
+		colors={{
+			border: "var(--border)",
+			input: "var(--input)",
+			ring: "var(--ring)",
+		}}
+	/>
+	<ColorItem
+		title="Accents"
+		subtitle="Primary and destructive"
+		colors={{
+			primary: "var(--primary)",
+			destructive: "var(--destructive)",
+		}}
+	/>
+</ColorPalette>
+
+The palette is warm neutral, defined in oklch in
+`packages/ui/src/styles/globals.css`. That warmth is why the code blocks use
+Shiki's vitesse themes rather than a blue-grey set, which would read as foreign.
+
+### Radius
+
+`--radius` is `0.45rem` and everything else derives from it. The rhythm in use:
+
+| Element | Radius |
+| --- | --- |
+| Page panel | `rounded-3xl` |
+| List rows, cards, code blocks | `rounded-2xl` |
+| 48px thumbnails | `rounded-xl` |
+| Stack chips | `rounded-lg` |
+| Buttons | `rounded-[8px]` |
+
+## Typography
+
+Headings use `font-display` at `font-s`, body copy uses `font-body`. Both come
+from Once UI, layered over DM Sans loaded through `next/font`.
+
+<Typeset
+	fontSizes={[12, 14, 16, 18, 20, 24]}
+	sampleText="Hi I'm Davidson Rafael, web developer"
+	fontFamily="var(--font-sans)"
+/>
+
+Section titles are hand-rolled as `Inline as="h2"` rather than Once UI's
+`Heading`, which is another standing deviation. It exists so the two-tone
+heading can split a phrase across two colours.
+
+## The page shell
+
+Everything sits in a `rounded-3xl` `bg-accent` panel, and all reading content
+lives in a single column capped at `maxWidth="s"`, which is 768px. Sections are
+separated by `gap={4}`.
+
+Every story in this Storybook renders inside that same panel and column, so
+spacing and measure match the real site rather than a blank canvas.
+
+## Dark mode
+
+next-themes with `attribute="class"`, so dark mode is a `.dark` class on the
+root. The toolbar switcher here toggles the same class.
+
+Where this bites is stack icons. Single-colour logos are stored as black SVGs
+and need `dark:invert`, handled by a `mono` flag in the icon registry. The
+[StackButton docs](?path=/docs/stack-stackbutton--docs) has a story specifically
+for checking it.
+
+## Voice
+
+First person, casual, self-deprecating. Sections often offer a deliberately
+useless second option, and "Do nothing" is a real button rather than a
+placeholder. New copy should match that register rather than sounding like
+marketing.
+
+No em dashes. Use a full stop, a comma, or restructure the sentence.

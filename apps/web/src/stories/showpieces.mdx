@@ -1,0 +1,77 @@
+import {
+	Canvas,
+	Meta,
+	Source,
+	Stories,
+	Subtitle,
+	Title,
+} from "@storybook/addon-docs/blocks";
+import * as ShowpieceStories from "../components/showpieces.stories";
+
+<Meta of={ShowpieceStories} />
+
+<Title />
+
+<Subtitle>Layer three: the animated one-offs</Subtitle>
+
+`@homepage/ui/skiper-ui` holds the components that exist to be looked at. They
+are not general-purpose building blocks and should not be treated as such.
+
+The rule is one per section at most, placed as a full-bleed break after the
+content rather than inside the reading column. Two in a row and the page starts
+competing with itself.
+
+## HoverExpand
+
+Closes the projects section. Hovering a panel expands it while the rest
+contract. It takes `{ src, alt, code }` and the site feeds it `projectsData`.
+
+<Canvas of={ShowpieceStories.HoverExpand} />
+
+<Source
+	code={`<HoverExpand_001
+  images={projectsData.map((p) => ({
+    src: p.imageUrl ?? "",
+    alt: p.title,
+    code: p.title,
+  }))}
+/>`}
+	language="tsx"
+/>
+
+## CutoutCard
+
+A compound component: `CutoutCardMedia`, `CutoutCardContent`, `CutoutCardFooter`
+and friends, with `CutoutCorner` cutting the inverted radius that gives it its
+name. `ProjectCard` composes them and picks six projects at random per render.
+
+The date stamp in `CutoutCardInsetLabel` is where the site's micro-label style
+comes from, and the project pages reuse it.
+
+<Canvas of={ShowpieceStories.CutoutCards} />
+
+## ProgressiveBlur
+
+A fixed gradient mask pinned to the top or bottom of the viewport, softening
+where content meets the edge. It is the one component in the codebase allowed to
+carry a hardcoded hex, because it has to match the page background exactly
+rather than track a token that might shift.
+
+<Canvas of={ShowpieceStories.ProgressiveBlurBottom} />
+
+<Source
+	code={`<ProgressiveBlur position="bottom" backgroundColor="#f5f4f3" height="110px" />`}
+	language="tsx"
+/>
+
+In the story above it is given `className="absolute"` so it stays inside the
+frame. On a real page it is `fixed` and belongs at the root, outside the panel.
+
+## A gotcha worth remembering
+
+Once UI's own notes flag this one, and it applies to every full-bleed section
+here: `overflow="hidden"` clips gradients into hard bands unless the parent has
+a radius. The homepage gets away with it because the crowd canvas wrapper is
+`rounded-b-3xl`.
+
+<Stories title="All stories" />

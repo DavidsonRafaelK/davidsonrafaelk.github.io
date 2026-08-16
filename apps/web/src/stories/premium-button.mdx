@@ -1,0 +1,81 @@
+import {
+	ArgTypes,
+	Canvas,
+	Controls,
+	Meta,
+	Primary,
+	Source,
+	Stories,
+	Subtitle,
+	Title,
+} from "@storybook/addon-docs/blocks";
+import * as PremiumButtonStories from "../components/premium-button.stories";
+
+<Meta of={PremiumButtonStories} />
+
+<Title />
+
+<Subtitle>The only button on the site</Subtitle>
+
+There is one button. It is 44px tall, `rounded-[8px]`, scales to 105% on hover
+and drops to 98% on press. On its left sits an animated pixel grid whose colour
+comes from `boxColor` and whose shape comes from `pattern`.
+
+In practice you never reach for it directly. Calls to action go through
+[`ActionRow`](?path=/docs/actions-actionrow--docs), which joins buttons with a
+lowercase "or" between them.
+
+<Primary />
+
+<Controls />
+
+## Usage
+
+<Source
+	code={`import PremiumButton from "@/components/premium-button";
+
+<PremiumButton
+  text="Get my Resume"
+  boxColor="bg-teal-500"
+  href="/files/Davidson_Rafael_Resume.pdf"
+  download="Davidson_Rafael_Resume.pdf"
+/>`}
+	language="tsx"
+/>
+
+## Patterns
+
+Six pixel grids, each animating on its own loop. Pick the one that describes the
+destination rather than the one that looks best.
+
+<Canvas of={PremiumButtonStories.Patterns} />
+
+## Colour
+
+`boxColor` takes a Tailwind background class. Sections deliberately use
+different hues so that no two adjacent action rows repeat a colour, which is
+what stops a long page reading as one undifferentiated list of buttons.
+
+<Canvas of={PremiumButtonStories.BoxColors} />
+
+## Links
+
+The tag is chosen from the props. No `href` renders a `<button type="button">`.
+An `href` renders an anchor, and same-origin links stay in the tab while
+external ones get `target="_blank"` with `rel="noopener noreferrer"`.
+
+<Canvas of={PremiumButtonStories.LinkBehaviour} />
+
+<Source
+	code={`const isInternal = Boolean(href?.startsWith("/") && !href.startsWith("//"));`}
+	language="ts"
+/>
+
+That check matters more than it looks. Before it existed, "Back home" opened a
+new tab.
+
+## Props
+
+<ArgTypes />
+
+<Stories title="All stories" />

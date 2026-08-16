@@ -1,0 +1,85 @@
+import {
+	Canvas,
+	Meta,
+	Primary,
+	Source,
+	Stories,
+	Subtitle,
+	Title,
+} from "@storybook/addon-docs/blocks";
+import * as MdxComponentStories from "../components/mdx-components.stories";
+
+<Meta of={MdxComponentStories} />
+
+<Title />
+
+<Subtitle>How long-form writing stays inside the design system</Subtitle>
+
+Project case studies are MDX files in `content/projects`. Rendering them with
+default HTML styling would produce pages that share the site's colours and none
+of its typography. `mdxComponents` maps every element to the primitives the
+sections already use.
+
+<Primary />
+
+## Usage
+
+<Source
+	code={`import { compileMDX } from "next-mdx-remote/rsc";
+import { mdxComponents } from "@/components/mdx-components";
+import { mdxOptions } from "@/lib/mdx";
+
+const { content } = await compileMDX({
+  source: doc.body,
+  options: mdxOptions,
+  components: mdxComponents,
+});`}
+	language="tsx"
+/>
+
+## The mapping
+
+| Element | Renders as |
+| --- | --- |
+| `h2` | `Inline as="h2"` with `font-display font-s`, same as `SectionHeading` |
+| `h3` | `font-body font-semibold text-lg` |
+| `p`, `li` | Once UI `Text` at `body-default-l`, full opacity |
+| `a` | `next/link` for internal, plain anchor with `rel="noopener noreferrer"` for external |
+| `pre` | `overflow-x-auto` container on `bg-muted` |
+| `table` | Wrapped in a `Row` with `overflow-x-auto` |
+
+## One deliberate departure
+
+`SectionText` is `opacity-70`, bold, at `label-default-xl`. That reads well for
+a two-sentence intro and becomes tiring over six hundred words, so body copy in
+articles runs at full opacity and normal weight in the same font family.
+
+It is the one place the case study pages knowingly differ from the homepage. If
+that ever needs revisiting, it is a single change in `mdx-components.tsx`.
+
+<Canvas of={MdxComponentStories.Prose} />
+
+## Code blocks
+
+Highlighting happens at build time through `rehype-pretty-code`, so no
+highlighter ships to the browser. It emits both themes as CSS variables on every
+token and leaves the choice to CSS:
+
+<Source
+	code={`[data-rehype-pretty-code-figure] span {
+  color: var(--shiki-light);
+}
+
+.dark [data-rehype-pretty-code-figure] span {
+  color: var(--shiki-dark);
+}`}
+	language="css"
+/>
+
+Without those rules code renders with no colour at all. There is a third rule in
+`index.css` making each line a block, because without it a multi-line snippet
+collapses onto one row.
+
+<Canvas of={MdxComponentStories.Code} />
+
+<Stories title="All stories" />

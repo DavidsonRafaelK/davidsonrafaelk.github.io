@@ -1,0 +1,75 @@
+import {
+	ArgTypes,
+	Canvas,
+	Controls,
+	Meta,
+	Primary,
+	Source,
+	Stories,
+	Subtitle,
+	Title,
+} from "@storybook/addon-docs/blocks";
+import * as ActionRowStories from "../components/section-ui/action-row.stories";
+
+<Meta of={ActionRowStories} />
+
+<Title />
+
+<Subtitle>Calls to action, never a bare button</Subtitle>
+
+`ActionRow` takes a list of button definitions and renders them with a lowercase
+"or" between each pair. That word is the whole point. It turns a row of controls
+into an offer, which is the difference between a toolbar and a conversation.
+
+<Primary />
+
+<Controls />
+
+## Usage
+
+<Source
+	code={`import { ActionRow } from "@/components/section-ui/action-row";
+
+<ActionRow
+  buttons={[
+    {
+      text: "Email me",
+      boxColor: "bg-orange-500",
+      pattern: "mail",
+      href: socials.email,
+    },
+    {
+      text: "See my Kaggle",
+      boxColor: "bg-teal-500",
+      pattern: "globe",
+      href: socials.kaggle,
+    },
+  ]}
+/>`}
+	language="tsx"
+/>
+
+## The useless option
+
+Several sections offer a second choice that does nothing on purpose. It is part
+of the site's voice, not an unfinished feature, and removing it would make the
+page read like a product landing page.
+
+<Canvas of={ActionRowStories.WithAJoke} />
+
+A button with no `href` and no `action` renders as an inert `<button>`. That is
+intentional and should stay that way.
+
+## Colour discipline
+
+Each button carries its own `boxColor`, and sections pick distinct hues so no
+two adjacent rows repeat. When you add a section, look at what the sections
+above and below it use before choosing.
+
+<Canvas of={ActionRowStories.OnAProjectPage} />
+
+## Props
+
+<ArgTypes />
+
+<Stories title="All stories" />

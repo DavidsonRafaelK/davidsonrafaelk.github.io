@@ -6,7 +6,9 @@
 		"dev": "next dev --port 3001",
 		"build": "next build",
 		"start": "next start",
-		"check-types": "tsc --noEmit"
+		"check-types": "tsc --noEmit",
+		"storybook": "storybook dev -p 6006",
+		"build-storybook": "storybook build"
 	},
 	"dependencies": {
 		"@homepage/env": "workspace:*",
@@ -44,13 +46,19 @@
 		"zod": "catalog:"
 	},
 	"devDependencies": {
+		"@storybook/addon-a11y": "^10.5.8",
+		"@storybook/addon-docs": "^10.5.8",
+		"@storybook/addon-themes": "^10.5.8",
+		"@storybook/nextjs": "^10.5.8",
 		"@tailwindcss/postcss": "^4.1.18",
 		"@types/d3": "^7.4.3",
 		"@types/node": "^20",
 		"@types/react": "catalog:",
 		"@types/react-dom": "catalog:",
 		"babel-plugin-react-compiler": "^1.0.0",
+		"storybook": "^10.5.8",
 		"tailwindcss": "catalog:",
-		"typescript": "catalog:"
+		"typescript": "catalog:",
+		"webpack": "^5.109.2"
 	}
 }

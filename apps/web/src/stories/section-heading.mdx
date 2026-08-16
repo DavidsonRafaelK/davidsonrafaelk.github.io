@@ -1,0 +1,84 @@
+import {
+	ArgTypes,
+	Canvas,
+	Controls,
+	Meta,
+	Primary,
+	Source,
+	Stories,
+	Subtitle,
+	Title,
+} from "@storybook/addon-docs/blocks";
+import * as SectionHeadingStories from "../components/section-ui/section-heading.stories";
+
+<Meta of={SectionHeadingStories} />
+
+<Title />
+
+<Subtitle>The two-tone heading every section on the site is built on</Subtitle>
+
+Sections never write their own heading markup. They compose `SectionRoot`,
+`SectionHeading` and `SectionText`, which is what keeps the vertical rhythm
+identical from the hero down to the footer.
+
+`SectionHeading` renders an `h2` in two tones: `before` at full contrast,
+`highlight` in `text-muted-foreground`. The house rule is that the highlight
+half ends in a period. That full stop is doing real work, it turns a label into
+a statement and it is the single most recognisable thing about the page.
+
+<Primary />
+
+<Controls />
+
+## Usage
+
+<Source
+	code={`import {
+  SectionHeading,
+  SectionRoot,
+  SectionText,
+} from "@/components/section-ui/section-heading";
+
+export default function ProjectsSection({ id }: { id: string }) {
+  return (
+    <SectionRoot id={id}>
+      <SectionHeading before="Featured" highlight="projects." />
+      <SectionText>
+        Some of my favourite projects that I've worked on:
+      </SectionText>
+      {/* content */}
+    </SectionRoot>
+  );
+}`}
+	language="tsx"
+/>
+
+## The parts
+
+| Component | Job |
+| --- | --- |
+| `SectionRoot` | The `id` anchor plus column layout at `gap={1}` |
+| `SectionHeading` | The two-tone `h2` |
+| `SectionText` | Intro copy, one or two sentences, `label-default-xl` at `opacity-70` |
+
+`SectionRoot` takes the `id` because the header navigation scrolls to it. Every
+section on the homepage is addressable that way, so the `id` is part of the
+contract rather than an optional extra.
+
+## Rhythm
+
+The order inside a section is always the same: heading, short intro, content,
+`ActionRow`, then an optional full-bleed visual. Breaking that order is what
+makes a new section feel like it came from a different site.
+
+<Canvas of={SectionHeadingStories.AsUsedOnTheSite} />
+
+Read those four together and the pattern is obvious. The split lands on a
+natural pause in the phrase, never mid-word, and the second half always closes
+with a period.
+
+## Props
+
+<ArgTypes />
+
+<Stories title="All stories" />

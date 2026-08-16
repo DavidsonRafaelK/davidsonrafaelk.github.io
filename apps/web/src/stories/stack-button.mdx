@@ -1,0 +1,97 @@
+import {
+	ArgTypes,
+	Canvas,
+	Controls,
+	Meta,
+	Primary,
+	Source,
+	Stories,
+	Subtitle,
+	Title,
+} from "@storybook/addon-docs/blocks";
+import * as StackButtonStories from "../components/stack-button.stories";
+
+<Meta of={StackButtonStories} />
+
+<Title />
+
+<Subtitle>One chip shape for every technology on the site</Subtitle>
+
+The skills section and the project pages both need to show a list of
+technologies. They use the same chip: 32px tall, `rounded-lg`, `border-2`, on
+`bg-border`, with a logo on the left.
+
+You pass a `label` and the logo is looked up for you. That lookup is the reason
+the component is worth having, because it means a technology name is the only
+thing a caller needs to know.
+
+<Primary />
+
+<Controls />
+
+## Usage
+
+<Source
+	code={`import { StackButton } from "@/components/stack-button";
+
+// Linked, from content/stacks.ts
+<StackButton url="https://nextjs.org" label="Next.js" />
+
+// Unlinked, still gets its logo
+<StackButton label="dnd-kit" />`}
+	language="tsx"
+/>
+
+## The icon registry
+
+Logos live in `content/stack-icons.ts`, keyed by the same label the chip
+displays. Coloured marks come from devicon, single-colour ones from
+simple-icons, and all of them are served from `public/icons/stacks` rather than
+fetched at runtime.
+
+<Source
+	code={`export const stackIcons: Record<string, StackIcon> = {
+  Python: { src: "/icons/stacks/python.svg" },
+  Biome: { src: "/icons/stacks/biome.svg", mono: true },
+  "Once UI": { src: "/onceui.webp" },
+};`}
+	language="ts"
+/>
+
+Before this existed, every chip fired a request to Google's favicon service on
+render. Hosting them means no third-party request and no surprise when someone
+else's site changes its favicon.
+
+<Canvas of={StackButtonStories.AllIcons} />
+
+## Mono icons and dark mode
+
+Single-colour logos are stored as black SVGs. On the light chip they read fine.
+On the dark one they disappear completely, so the registry flags them `mono` and
+the component applies `dark:invert`.
+
+Flip the theme toolbar on this story. If a logo vanishes, the flag is missing.
+
+<Canvas of={StackButtonStories.MonoIconsNeedInverting} />
+
+Next.js is in that list for a reason worth knowing: its mark is a black circle
+with a white letter inside. On a dark background the circle disappears and only
+the letter survives. Inverted, it becomes the white-circle version the brand
+publishes for dark backgrounds.
+
+## Two callers, one component
+
+`ProjectStackRow` takes plain strings from MDX frontmatter and resolves each one
+against `content/stacks.ts`. Names it recognises become links, names it does not
+still render with their logo.
+
+<Canvas of={StackButtonStories.ProjectStackRowStory} />
+
+That is why adding a technology to `stacks.ts` improves the project pages too,
+without touching them.
+
+## Props
+
+<ArgTypes />
+
+<Stories title="All stories" />
