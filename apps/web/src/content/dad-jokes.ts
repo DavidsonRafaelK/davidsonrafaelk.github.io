@@ -140,4 +140,12 @@ export const dadJokes: string[] = [
 	"in the news a courtroom artist was arrested today, i'm not surprised, he always seemed sketchy.",
 	"i wanted to be a tailor but i didn't suit the job",
 	"what do you call someone with no nose? nobody knows.",
+	"i'm tired of following my dreams. i'm just going to ask them where they are going and meet up with them later.",
+	"did you hear about the guy whose whole left side was cut off? he's all right now.",
+	"why didn’t the skeleton cross the road? because he had no guts.",
+	"what did one nut say as he chased another nut? i'm a cashew!",
+	"where do fish keep their money? in the riverbank",
+	"i accidentally took my cats meds last night. don’t ask meow.",
+	"chances are if you' ve seen one shopping center, you've seen a mall.",
+	"dermatologists are always in a hurry. they spend all day making rash decisions.",
 ];

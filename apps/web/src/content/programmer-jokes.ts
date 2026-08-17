@@ -127,4 +127,5 @@ export const programmerJokes: string[] = [
 	"hey girl, roses are #ff0000, violets are #0000ff, i use hex codes, but i'd use rgb for you.",
 	"the glass is neither half-full nor half-empty, the glass is twice as big as it needs to be.",
 	'two c strings walk into a bar. the bartender asks "what can i get ya?" the first string says "i\'ll have a gin and tonic." the second string thinks for a minute, then says "i\'ll take a tequila sunrisejf()#$jf(#)$(@j#()$@#())!*fnin!obn134ufh1ui34hf9813f8h8384h981h3984h5f!##@" the first string apologizes, "you\'ll have to excuse my friend, he\'s not null-terminated."',
+	"have a great weekend! i hope your code behaves the same on monday as it did on friday.",
 ];
