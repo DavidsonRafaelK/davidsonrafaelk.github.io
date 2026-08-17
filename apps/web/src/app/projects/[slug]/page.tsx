@@ -30,8 +30,12 @@ export async function generateMetadata({
 	const project = await getProject(slug);
 	if (!project) return {};
 
-	const { title, summary, publishedAt, updatedAt } = project.frontmatter;
+	const { title, summary, publishedAt, updatedAt, cover } = project.frontmatter;
 	const url = `${config.site.url}/projects/${slug}`;
+
+	// Setting `openGraph` here replaces the root object rather than merging into
+	// it, so the share image has to be repeated or the card ships without one.
+	const image = cover?.src ?? config.openGraph.image;
 
 	return {
 		title,
@@ -45,11 +49,13 @@ export async function generateMetadata({
 			publishedTime: publishedAt.toISOString(),
 			modifiedTime: (updatedAt ?? publishedAt).toISOString(),
 			authors: [config.site.url],
+			images: [{ url: image, alt: cover?.alt ?? title }],
 		},
 		twitter: {
 			card: "summary_large_image",
 			title: `${title} — ${config.site.name}`,
 			description: summary,
+			images: [image],
 		},
 	};
 }

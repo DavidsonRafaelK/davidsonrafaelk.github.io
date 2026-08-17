@@ -57,19 +57,25 @@ It was also unbelievably slow, because my laptop was still my laptop.
 ## What's in the guide
 
 The requirements section does most of the work. Before anything else it tells
-you what your machine needs: a CPU with AVX2, because macOS 13 and up require
-it; virtualization turned on in BIOS, AMD-V or Intel VT-x; 8 GB of RAM minimum
-and 16 GB if you want a good time; 70 GB of disk minimum, 200 GB recommended. It
-also notes that VMware Workstation Pro went free for personal and commercial use
-in May 2024, which makes a lot of the licensing advice out there outdated.
+you what your machine needs:
+
+- A CPU with AVX2, because macOS 13 and up require it
+- Virtualization turned on in BIOS, AMD-V or Intel VT-x
+- 8 GB of RAM minimum, 16 GB if you want a good time
+- 70 GB of disk minimum, 200 GB recommended
+
+It also notes that [VMware Workstation Pro](https://access.broadcom.com/) went
+free for personal and commercial use in May 2024, which makes a lot of the
+licensing advice still floating around outdated.
 
 The AMD warning is the part most guides bury: turn off Hyper-V and Windows
 Memory Integrity first. If you don't, the VM fails in a way that gives you no
 hint about why.
 
-After that it walks through getting VMware Workstation Pro from the Broadcom
-portal, finding a macOS Sequoia 15 image, and running the DrDonk unlocker that
-makes macOS show up as a guest option at all, then the install itself and a
+After that it walks through pulling VMware Workstation Pro from the Broadcom
+portal, finding a macOS Sequoia 15 image on [Olarila](https://www.olarila.com/),
+and running the [DrDonk unlocker](https://github.com/DrDonk/unlocker) that makes
+macOS show up as a guest option at all, then the install itself and a
 troubleshooting section for when it still refuses to boot.
 
 ## What I still haven't fixed

@@ -24,6 +24,9 @@ export const metadata: Metadata = {
 			"Write-ups from Davidson Rafael on the things he's built: reservation systems, commerce platforms, and inventory tooling.",
 		url: `${config.site.url}/projects`,
 		type: "website",
+		// `openGraph` replaces the root object instead of merging, so the share
+		// image has to be repeated here.
+		images: [{ url: config.openGraph.image, width: 1200, height: 630 }],
 	},
 };
 
