@@ -87,7 +87,7 @@ export default function HeroSection({ id }: { id: string }) {
 				style={{ fontWeight: "500" }}
 			>
 				<>
-					Hi I'm Davidson Rafael, web developer —{" "}
+					Hi I'm Davidson Rafael, web developer.{" "}
 					<span className="text-muted-foreground">
 						<JokeLine lines={programmerJokes} />
 					</span>
