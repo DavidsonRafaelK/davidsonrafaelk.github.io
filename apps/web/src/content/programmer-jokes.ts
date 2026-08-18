@@ -128,4 +128,7 @@ export const programmerJokes: string[] = [
 	"the glass is neither half-full nor half-empty, the glass is twice as big as it needs to be.",
 	'two c strings walk into a bar. the bartender asks "what can i get ya?" the first string says "i\'ll have a gin and tonic." the second string thinks for a minute, then says "i\'ll take a tequila sunrisejf()#$jf(#)$(@j#()$@#())!*fnin!obn134ufh1ui34hf9813f8h8384h981h3984h5f!##@" the first string apologizes, "you\'ll have to excuse my friend, he\'s not null-terminated."',
 	"have a great weekend! i hope your code behaves the same on monday as it did on friday.",
+	'"honey, go to the store and buy some eggs." "ok." "oh and while you\'re there, get some milk." he never returned.',
+	"knock knock. who's there? recursion. recursion who? knock knock.",
+	"how do you tell html from html5? - try it out in internet explorer - did it work? - no? - it's html5.",
 ];

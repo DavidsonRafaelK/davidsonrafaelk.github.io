@@ -148,4 +148,12 @@ export const dadJokes: string[] = [
 	"i accidentally took my cats meds last night. don’t ask meow.",
 	"chances are if you' ve seen one shopping center, you've seen a mall.",
 	"dermatologists are always in a hurry. they spend all day making rash decisions.",
+	"what lies at the bottom of the ocean and twitches? a nervous wreck.",
+	"what is red and smells like blue paint? red paint!",
+	'*reversing the car* "ah, this takes me back"',
+	"doctor you've got to help me, i'm addicted to twitter. doctor: i don't follow you.",
+	"how do locomotives know where they're going? lots of training",
+	"how did the hipster burn the roof of his mouth? he ate the pizza before it was cool.",
+	"a butcher accidentally backed into his meat grinder and got a little behind in his work that day.",
+	"did you hear about the new restaurant on the moon? the food is great, but there’s just no atmosphere.",
 ];
