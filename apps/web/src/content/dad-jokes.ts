@@ -156,4 +156,12 @@ export const dadJokes: string[] = [
 	"how did the hipster burn the roof of his mouth? he ate the pizza before it was cool.",
 	"a butcher accidentally backed into his meat grinder and got a little behind in his work that day.",
 	"did you hear about the new restaurant on the moon? the food is great, but there’s just no atmosphere.",
+	"why was santa's little helper feeling depressed? because he has low elf esteem.",
+	"why did sweden start painting barcodes on the sides of their battleships? so they could scandinavian.",
+	"want to hear a chimney joke? got stacks of em! first one's on the house",
+	"what do you call a pig that knows karate? a pork chop!",
+	"if two vegans are having an argument, is it still considered beef?",
+	"my sea sickness comes in waves.",
+	"for valentine's day, i decided to get my wife some beads for an abacus. it's the little things that count.",
+	"what's the worst thing about ancient history class? the teachers tend to babylon.",
 ];
