@@ -131,4 +131,5 @@ export const programmerJokes: string[] = [
 	'"honey, go to the store and buy some eggs." "ok." "oh and while you\'re there, get some milk." he never returned.',
 	"knock knock. who's there? recursion. recursion who? knock knock.",
 	"how do you tell html from html5? - try it out in internet explorer - did it work? - no? - it's html5.",
+	"ascii silly question, get a silly ansi.",
 ];

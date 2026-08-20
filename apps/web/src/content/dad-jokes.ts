@@ -164,4 +164,12 @@ export const dadJokes: string[] = [
 	"my sea sickness comes in waves.",
 	"for valentine's day, i decided to get my wife some beads for an abacus. it's the little things that count.",
 	"what's the worst thing about ancient history class? the teachers tend to babylon.",
+	"some people say that i never got over my obsession with phil collins. but take a look at me now.",
+	"why did the girl smear peanut butter on the road? to go with the traffic jam.",
+	"it takes guts to be an organ donor.",
+	"the rotation of earth really makes my day.",
+	"how much does a hipster weigh? an instagram.",
+	"a woman is on trial for beating her husband to death with his guitar collection. judge says, ‘first offender?’ she says, ‘no, first a gibson! then a fender!’",
+	'i saw an ad in a shop window, "television for sale, $1, volume stuck on full", i thought, "i can\'t turn that down".',
+	"what kind of dog lives in a particle accelerator? a fermilabrador retriever.",
 ];
