@@ -172,4 +172,12 @@ export const dadJokes: string[] = [
 	"a woman is on trial for beating her husband to death with his guitar collection. judge says, ‘first offender?’ she says, ‘no, first a gibson! then a fender!’",
 	'i saw an ad in a shop window, "television for sale, $1, volume stuck on full", i thought, "i can\'t turn that down".',
 	"what kind of dog lives in a particle accelerator? a fermilabrador retriever.",
+	"my new thesaurus is terrible. in fact, it's so bad, i'd say it's terrible.",
+	"what type of music do balloons hate? pop music!",
+	"do you want a brief explanation of what an acorn is? in a nutshell, it's an oak tree.",
+	"how come a man driving a train got struck by lightning? he was a good conductor.",
+	"camping is intense.",
+	"dad died because he couldn't remember his blood type. i will never forget his last words. be positive.",
+	"i’m on a whiskey diet. i’ve lost three days already.",
+	"how does darth vader like his toast? on the dark side.",
 ];
