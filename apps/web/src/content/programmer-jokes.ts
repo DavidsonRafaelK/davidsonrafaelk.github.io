@@ -132,4 +132,7 @@ export const programmerJokes: string[] = [
 	"knock knock. who's there? recursion. recursion who? knock knock.",
 	"how do you tell html from html5? - try it out in internet explorer - did it work? - no? - it's html5.",
 	"ascii silly question, get a silly ansi.",
+	"programming is 10% science, 20% ingenuity, and 70% getting the ingenuity to work with the science.",
+	'"can i tell you a tcp joke?" "please tell me a tcp joke." "ok, i\'ll tell you a tcp joke."',
+	"i have a joke about stack overflow, but you would say it's a duplicate.",
 ];

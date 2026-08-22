@@ -180,4 +180,12 @@ export const dadJokes: string[] = [
 	"dad died because he couldn't remember his blood type. i will never forget his last words. be positive.",
 	"i’m on a whiskey diet. i’ve lost three days already.",
 	"how does darth vader like his toast? on the dark side.",
+	"why do bees hum? because they don't know the words.",
+	"what do you call a troublesome canadian high schooler? a poutine.",
+	"a magician was driving down the street and then he turned into a driveway.",
+	"don't trust atoms. they make up everything.",
+	"if you walk into a forest and cut down a tree, but the tree doesn't understand why you cut it down, do you think it's stumped?",
+	"where do bees go to the bathroom? the bp station.",
+	"what is the best way to carve? whittle by whittle.",
+	"what's a ninja's favorite type of shoes? sneakers!",
 ];
