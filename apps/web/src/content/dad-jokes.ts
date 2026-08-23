@@ -188,4 +188,12 @@ export const dadJokes: string[] = [
 	"where do bees go to the bathroom? the bp station.",
 	"what is the best way to carve? whittle by whittle.",
 	"what's a ninja's favorite type of shoes? sneakers!",
+	"the word queue is ironic. it's just q with a bunch of silent letters waiting in line.",
+	"what do you call a droid that takes the long way around? r2 detour.",
+	"what's the best thing about elevator jokes? they work on so many levels.",
+	"where do rabbits go after they get married? on a bunny-moon.",
+	"why do cows wear bells? because their horns don't work.",
+	'two fish are in a tank, one turns to the other and says, "how do you drive this thing?"',
+	"i finally bought the limited edition thesaurus that i've always wanted. when i opened it, all the pages were blank. i have no words to describe how angry i am.",
+	"this is my step ladder. i never knew my real ladder.",
 ];
