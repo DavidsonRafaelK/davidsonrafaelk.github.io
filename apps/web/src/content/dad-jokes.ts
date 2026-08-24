@@ -196,4 +196,12 @@ export const dadJokes: string[] = [
 	'two fish are in a tank, one turns to the other and says, "how do you drive this thing?"',
 	"i finally bought the limited edition thesaurus that i've always wanted. when i opened it, all the pages were blank. i have no words to describe how angry i am.",
 	"this is my step ladder. i never knew my real ladder.",
+	"i knew i shouldn't steal a mixer from work, but it was a whisk i was willing to take.",
+	"i won an argument with a weather forecaster once. his logic was cloudy...",
+	"how come the stadium got hot after the game? because all of the fans left.",
+	'"why do seagulls fly over the ocean?" "because if they flew over the bay, we\'d call them bagels."',
+	"why was it called the dark ages? because of all the knights.",
+	"a steak pun is a rare medium well done.",
+	"why did the tomato blush? because it saw the salad dressing.",
+	"did you hear the joke about the wandering nun? she was a roman catholic.",
 ];
