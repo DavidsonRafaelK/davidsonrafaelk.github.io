@@ -1,6 +1,6 @@
 # Hi, I'm David :)
 
-Source for my personal site — [davidsonrafael.xyz](https://www.davidsonrafael.xyz).
+Source for my personal site [davidsonrafael.xyz](https://www.davidsonrafael.xyz).
 
 ## Stack
 
@@ -13,7 +13,7 @@ Source for my personal site — [davidsonrafael.xyz](https://www.davidsonrafael.
 ## Structure
 
 ```
-apps/web       Next.js app — the site itself
+apps/web       Next.js app - the site itself
 packages/ui    shared components, styles, hooks
 packages/env   typed env var validation (zod)
 ```
