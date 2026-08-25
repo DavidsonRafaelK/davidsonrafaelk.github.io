@@ -204,4 +204,12 @@ export const dadJokes: string[] = [
 	"a steak pun is a rare medium well done.",
 	"why did the tomato blush? because it saw the salad dressing.",
 	"did you hear the joke about the wandering nun? she was a roman catholic.",
+	"what kind of award did the dentist receive? a little plaque.",
+	"got a new suit recently made entirely of living plants. i wasn’t sure at first, but it’s grown on me",
+	"do you know where you can get chicken broth in bulk? the stock market.",
+	"a sandwich walks into a bar, the bartender says “sorry, we don’t serve food here”",
+	"what do you get hanging from apple trees? sore arms.",
+	"i thought about going on an all-almond diet. but that's just nuts.",
+	"i don’t play soccer because i enjoy the sport. i’m just doing it for kicks.",
+	"people are shocked to discover i have a police record but i love their greatest hits!",
 ];
