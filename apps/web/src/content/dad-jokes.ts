@@ -212,4 +212,12 @@ export const dadJokes: string[] = [
 	"i thought about going on an all-almond diet. but that's just nuts.",
 	"i don’t play soccer because i enjoy the sport. i’m just doing it for kicks.",
 	"people are shocked to discover i have a police record but i love their greatest hits!",
+	"i dreamed about drowning in an ocean made out of orange soda last night. it took me a while to work out it was just a fanta sea.",
+	"i had a dream that i was a muffler last night. i woke up exhausted!",
+	'a dad washes his car with his son. but after a while, the son says, "why can\'t you just use a sponge?"',
+	"doctor you've got you help me, i'm addicted to twitter. doctor: i don't follow you.",
+	"my boss told me to have a good day. so i went home...",
+	"why do we tell actors to “break a leg?” because every play has a cast.",
+	"i broke my finger at work today, on the other hand i'm completely fine.",
+	"i went to a book store and asked the saleswoman where the self help section was, she said if she told me it would defeat the purpose.",
 ];
