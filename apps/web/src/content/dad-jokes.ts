@@ -220,4 +220,12 @@ export const dadJokes: string[] = [
 	"why do we tell actors to “break a leg?” because every play has a cast.",
 	"i broke my finger at work today, on the other hand i'm completely fine.",
 	"i went to a book store and asked the saleswoman where the self help section was, she said if she told me it would defeat the purpose.",
+	"every machine in the coin factory broke down all of a sudden without explanation. it just doesn’t make any cents.",
+	"why does it take longer to get from 1st to 2nd base, than it does to get from 2nd to 3rd base? because there’s a shortstop in between!",
+	"what do you do when you see a space man? park your car, man.",
+	"if you want a job in the moisturizer industry, the best advice i can give is to apply daily.",
+	"where do you take someone who has been injured in a peek-a-boo accident? to the i.c.u.",
+	"when you have a bladder infection, urine trouble.",
+	"how do you make lady gaga cry? poker face.",
+	"what do you call a group of killer whales playing instruments? an orca-stra.",
 ];
