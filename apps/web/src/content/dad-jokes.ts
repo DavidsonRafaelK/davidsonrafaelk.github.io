@@ -228,4 +228,12 @@ export const dadJokes: string[] = [
 	"when you have a bladder infection, urine trouble.",
 	"how do you make lady gaga cry? poker face.",
 	"what do you call a group of killer whales playing instruments? an orca-stra.",
+	"why don't skeletons ride roller coasters? they don't have the stomach for it.",
+	"is there a hole in your shoe? no… then how’d you get your foot in it?",
+	"every night at 11:11, i make a wish that someone will come fix my broken clock.",
+	"two muffins were sitting in an oven, and the first looks over to the second, and says, “man, it’s really hot in here”. the second looks over at the first with a surprised look, and answers, “whoa, a talking muffin!”",
+	"what's the difference between a guitar and a fish? you can tune a guitar but you can't \"tuna\" fish!",
+	"did you hear that the police have a warrant out on a midget psychic ripping people off? it reads “small medium at large.”",
+	"why don't sharks eat clowns? because they taste funny.",
+	"just read a few facts about frogs. they were ribbiting.",
 ];
