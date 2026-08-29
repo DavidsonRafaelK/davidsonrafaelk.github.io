@@ -236,4 +236,12 @@ export const dadJokes: string[] = [
 	"did you hear that the police have a warrant out on a midget psychic ripping people off? it reads “small medium at large.”",
 	"why don't sharks eat clowns? because they taste funny.",
 	"just read a few facts about frogs. they were ribbiting.",
+	"i saw my husband trip and fall while carrying a laundry basket full of ironed clothes. i watched it all unfold.",
+	"did you hear about the chameleon who couldn't change color? they had a reptile dysfunction.",
+	"why did the house go to the doctor? it was having window panes.",
+	"i made a playlist for hiking. it has music from peanuts, the cranberries, and eminem. i call it my trail mix.",
+	"what do you call a dictionary on drugs? high definition.",
+	"a skeleton walked into a bar he said i need a beer and a mop",
+	"how do robots eat guacamole? with computer chips.",
+	'today, my son asked "can i have a book mark?" and i burst into tears. 11 years old and he still doesn\'t know my name is brian.',
 ];
