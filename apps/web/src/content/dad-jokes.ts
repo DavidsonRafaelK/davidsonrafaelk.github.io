@@ -244,4 +244,12 @@ export const dadJokes: string[] = [
 	"a skeleton walked into a bar he said i need a beer and a mop",
 	"how do robots eat guacamole? with computer chips.",
 	'today, my son asked "can i have a book mark?" and i burst into tears. 11 years old and he still doesn\'t know my name is brian.',
+	"why did the tree go to the dentist? it needed a root canal.",
+	"it was raining cats and dogs the other day. i almost stepped in a poodle.",
+	"why do bananas have to put on sunscreen before they go to the beach? because they might peel!",
+	"what do you call a bee that lives in america? a usb.",
+	"i was wondering why the frisbee was getting bigger, then it hit me.",
+	"a farmer had 297 cows, when he rounded them up, he found he had 300",
+	"what's the difference between a hippo and a zippo? one is really heavy, the other is a little lighter.",
+	"i’ve got this disease where i can’t stop making airport puns. the doctor says it terminal.",
 ];
