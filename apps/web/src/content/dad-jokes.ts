@@ -252,4 +252,12 @@ export const dadJokes: string[] = [
 	"a farmer had 297 cows, when he rounded them up, he found he had 300",
 	"what's the difference between a hippo and a zippo? one is really heavy, the other is a little lighter.",
 	"i’ve got this disease where i can’t stop making airport puns. the doctor says it terminal.",
+	"what creature is smarter than a talking parrot? a spelling bee.",
+	"i'll tell you what often gets over looked... garden fences.",
+	"why did the kid cross the playground? to get to the other slide.",
+	"why do birds fly south for the winter? because it's too far to walk.",
+	"what is a centipedes's favorite beatle song? i want to hold your hand, hand, hand, hand...",
+	"my first time using an elevator was an uplifting experience. the second time let me down.",
+	"to be frank, i'd have to change my name.",
+	"slept like a log last night … woke up in the fireplace.",
 ];
