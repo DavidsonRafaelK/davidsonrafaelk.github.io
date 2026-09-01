@@ -260,4 +260,12 @@ export const dadJokes: string[] = [
 	"my first time using an elevator was an uplifting experience. the second time let me down.",
 	"to be frank, i'd have to change my name.",
 	"slept like a log last night … woke up in the fireplace.",
+	"i always wanted to look into why i procrastinate, but i keep putting it off.",
+	"what's blue and not very heavy? light blue.",
+	'guy told me today he did not know what cloning is. i told him, "that makes 2 of us."',
+	"i was so proud when i finished the puzzle in six months, when on the side it said three to four years.",
+	"where did you learn to make ice cream? sunday school.",
+	"coffee has a tough time at my house, every morning it gets mugged.",
+	"a quick shoutout to all of the sidewalks out there... thanks for keeping me off the streets.",
+	"where does napoleon keep his armies? in his sleevies.",
 ];
