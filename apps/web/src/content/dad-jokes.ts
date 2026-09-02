@@ -268,4 +268,12 @@ export const dadJokes: string[] = [
 	"coffee has a tough time at my house, every morning it gets mugged.",
 	"a quick shoutout to all of the sidewalks out there... thanks for keeping me off the streets.",
 	"where does napoleon keep his armies? in his sleevies.",
+	"what do birds give out on halloween? tweets.",
+	"i used to think i was indecisive, but now i'm not sure.",
+	"velcro… what a rip-off.",
+	"have you heard the rumor going around about butter? never mind, i shouldn't spread it.",
+	"every morning when i go out, i get hit by bicycle. every morning! it's a vicious cycle.",
+	"what happens to a frog's car when it breaks down? it gets toad.",
+	"i fear for the calendar, its days are numbered.",
+	"i'm glad i know sign language, it's pretty handy.",
 ];
