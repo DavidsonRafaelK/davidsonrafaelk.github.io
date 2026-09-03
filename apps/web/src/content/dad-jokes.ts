@@ -276,4 +276,12 @@ export const dadJokes: string[] = [
 	"what happens to a frog's car when it breaks down? it gets toad.",
 	"i fear for the calendar, its days are numbered.",
 	"i'm glad i know sign language, it's pretty handy.",
+	"what do you call a girl between two posts? annette.",
+	"what do you call a criminal going down the stairs? condescending",
+	"what do you call a fat psychic? a four-chin teller.",
+	"why can't a bicycle stand on its own? it's two-tired.",
+	"what does a pirate pay for his corn? a buccaneer!",
+	"astronomers got tired watching the moon go around the earth for 24 hours. they decided to call it a day.",
+	"my dog used to chase people on a bike a lot. it got so bad i had to take his bike away.",
+	"i ate a clock yesterday. it was so time consuming.",
 ];
