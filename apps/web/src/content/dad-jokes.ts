@@ -284,4 +284,12 @@ export const dadJokes: string[] = [
 	"astronomers got tired watching the moon go around the earth for 24 hours. they decided to call it a day.",
 	"my dog used to chase people on a bike a lot. it got so bad i had to take his bike away.",
 	"i ate a clock yesterday. it was so time consuming.",
+	"what is this movie about? it is about 2 hours long.",
+	"why are pirates called pirates? because they arrr!",
+	"where does fonzie like to go for lunch? chick-fil-eyyyyyyyy.",
+	"how does a dyslexic poet write? inverse.",
+	"don't tell secrets in corn fields. too many ears around.",
+	"what did the pirate say on his 80th birthday? aye matey!",
+	"why did the a go to the bathroom and come out as an e? because he had a vowel movement.",
+	"yesterday a clown held a door open for me. i thought it was a nice jester.",
 ];
