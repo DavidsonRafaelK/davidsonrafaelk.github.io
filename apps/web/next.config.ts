@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
 			{ protocol: "https", hostname: "img.avatardecoration.com" },
 			{ protocol: "https", hostname: "cdn.cosmos.so" },
 			{ protocol: "https", hostname: "avatars.githubusercontent.com" },
+			{ protocol: "https", hostname: "raw.githubusercontent.com" },
 			{ protocol: "https", hostname: "skiper-ui.com" },
 		],
 	},

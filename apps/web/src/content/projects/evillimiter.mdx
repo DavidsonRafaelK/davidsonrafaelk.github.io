@@ -1,0 +1,99 @@
+---
+title: Evil Limiter
+summary: A maintained fork of evillimiter, a Linux tool that limits device bandwidth on a LAN via ARP/NDP spoofing and traffic shaping.
+publishedAt: 2026-08-27
+role: Solo
+stack:
+  - Python
+  - ARP spoofing
+  - NDP spoofing
+  - Linux tc / iptables
+repoUrl: https://github.com/DavidsonRafaelK/evillimiter
+cover:
+  src: https://raw.githubusercontent.com/DavidsonRafaelK/evillimiter/master/docs/images/logo.jpeg
+  alt: Evil Limiter logo
+draft: false
+---
+
+There's always someone on a shared network who treats it like a personal
+download pipe. On campus, that person is a friend of mine: he'll happily
+saturate the room's LAN downloading games, partly because he wants them and
+partly because he enjoys stirring things up. Either way, everyone else on the
+network feels it.
+
+I've been on the receiving end before. Back in vocational high school, I
+suspected that a neighbor was piggybacking on my home WiFi. `evillimiter`
+confirmed it: more than eight people were sharing a 20 Mbps connection, which
+explained the lagging games and crawling downloads. I blocked the unknown
+devices, then changed the password to keep them from reconnecting.
+
+## What it does
+
+`evillimiter` is a command-line tool for Linux that monitors, analyzes, and
+limits the bandwidth of devices on a local network, without needing
+administrative access to the router itself. It ARP spoofs the target host so
+its traffic routes through the machine running the tool, then shapes that
+traffic with `tc` and `iptables`. On networks with an IPv6 default route it
+also does NDP spoofing, since IPv6 traffic would otherwise bypass an
+IPv4-only limit entirely.
+
+The original project, `bitbrute/evillimiter`, stopped receiving updates after
+its last release, v1.5.0. This fork picks up from there instead of starting
+over, since the ARP-spoofing and traffic-shaping core already worked.
+
+## What I added on top of v1.5.0
+
+### Network & security enhancements
+
+- Restrictions now also cover IPv6, not just IPv4, so a device can't dodge a limit by using the "wrong" kind of traffic
+- Independent upload and download speed limits, instead of one shared number
+- A way to simulate lag and packet loss on a device, useful for testing how an app behaves on a bad connection
+
+### Host tracking & visibility
+
+- Fixed a bug where a device would drop off the watch list and lose its restriction just by reconnecting
+- Live online/offline status for every device you're watching
+- Better name detection for devices that don't show up cleanly on the network
+
+### Configuration & diagnostics
+
+- A saved settings file, so you don't have to retype the same setup every time
+- Clear error messages when a restriction fails to apply, instead of pretending everything's fine
+- Logging that persists across sessions
+
+### Quality assurance
+
+- Automated tests that run on every change, so a fix doesn't quietly break something else
+
+## The Fix That Mattered Most
+
+The host-tracking fix mattered most in practice. Upstream tracked hosts by IP
+address, but a router handing out a new DHCP lease, or a device just
+rejoining the network, is enough to change that. The result was duplicate
+entries for the same physical device and a `watch` that lost track of hosts
+it was supposed to be restricting. Keying tracking off the MAC address
+instead fixed both.
+
+## What happens if a device just switches to cellular
+
+Nothing stops it. `evillimiter` only controls traffic that touches the
+network it's watching, so a blocked or throttled phone can just fall back to
+LTE/5G once WiFi degrades, which most phones do automatically. That traffic
+never routes through the machine running the tool, so there's nothing to
+spoof or shape.
+
+The same gap shows up with MAC randomization. Most phones present a
+different MAC address each time they join a network, and `watch` matches
+hosts by MAC, so a reconnecting device just looks like a brand new host with
+no restrictions attached. This fork flags addresses that look
+randomly-assigned (their locally-administered bit is set) in the `hosts`
+table, so at least you can see which devices are likely to slip past a
+restriction on their next reconnect. It doesn't close the gap, just makes it
+visible.
+
+MAC randomization is the restriction I'd most want to close. Flagging
+likely-randomized addresses in the `hosts` table helps you notice a device
+that's about to slip past a restriction, but it doesn't stop it from
+happening. Actually following a device across a MAC change would need some
+way to fingerprint it by something other than its address, which is a much
+bigger feature than anything else on this list.

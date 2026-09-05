@@ -18,15 +18,21 @@ function formatTotalTime(s: number) {
 	return `${h.toString().padStart(2, "0")}:${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
 }
 
-function readInitialTotal(): number {
-	if (typeof window === "undefined") return 0;
+function readStoredTotal(): number {
 	const saved = localStorage.getItem(TOTAL_KEY);
 	return saved ? Number.parseInt(saved, 10) : 0;
 }
 
 export default function TimerSection({ id }: { id: string }) {
-	const [storedTotal] = useState(readInitialTotal);
+	// Starts at 0 to match the server render; the real stored value (if any)
+	// is only known on the client, so it's applied after mount to avoid a
+	// hydration mismatch.
+	const [storedTotal, setStoredTotal] = useState(0);
 	const sessionRef = useRef(0);
+
+	useEffect(() => {
+		setStoredTotal(readStoredTotal());
+	}, []);
 
 	const session = useTimer({ loading: true, format: "HH:MM:SS" });
 
@@ -36,7 +42,11 @@ export default function TimerSection({ id }: { id: string }) {
 
 	const totalTime = storedTotal + session.elapsedTime;
 
-	const saveRef = useRef(storedTotal);
+	const saveRef = useRef(0);
+
+	useEffect(() => {
+		saveRef.current = storedTotal;
+	}, [storedTotal]);
 
 	useEffect(() => {
 		const save = () => {
