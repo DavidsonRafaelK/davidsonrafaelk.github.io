@@ -57,9 +57,14 @@ export const mdxComponents = {
 	),
 
 	li: ({ children }: Children) => (
-		<li className="font-body text-foreground text-lg leading-relaxed">
+		<Text
+			as="li"
+			variant="body-default-l"
+			onBackground="neutral-strong"
+			className="font-body leading-relaxed"
+		>
 			{children}
-		</li>
+		</Text>
 	),
 
 	a: ({ href = "", children }: Children & { href?: string }) => {

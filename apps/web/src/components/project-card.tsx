@@ -16,14 +16,23 @@ import {
 import { cutoutCardSurfaceClassName } from "@homepage/ui/skiper-ui/cutout-card-tokens";
 import { ExternalLink } from "lucide-react";
 import * as m from "motion/react-m";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { projectsData } from "@/content/projects";
 
 function ProjectCard() {
 	const stagger = useCutoutContentStaggerVariants();
-	const [randomProjects] = useState(() =>
-		projectsData.toSorted(() => Math.random() - 0.5).slice(0, 6),
+	const [randomProjects, setRandomProjects] = useState(() =>
+		projectsData.slice(0, 6),
 	);
+
+	// Shuffled only after mount: `Math.random()` in the initial state would run
+	// during SSR too, giving the server and client different orders and
+	// triggering a hydration mismatch.
+	useEffect(() => {
+		setRandomProjects(
+			projectsData.toSorted(() => Math.random() - 0.5).slice(0, 6),
+		);
+	}, []);
 
 	return (
 		<div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-2">

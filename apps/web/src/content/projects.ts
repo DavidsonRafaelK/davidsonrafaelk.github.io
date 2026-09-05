@@ -44,6 +44,16 @@ export const projectsData: Projects[] = [
 		date: new Date("2026-06-06"),
 	},
 	{
+		title: "Evil Limiter",
+		description:
+			"Maintained fork of a network tool that monitors, analyzes, and limits device bandwidth on a LAN via ARP/NDP spoofing and traffic shaping, without administrative access to the router.",
+		imageUrl:
+			"https://raw.githubusercontent.com/DavidsonRafaelK/evillimiter/master/docs/images/logo.jpeg",
+		repoUrl: "https://github.com/DavidsonRafaelK/evillimiter",
+		invert: false,
+		date: "Present",
+	},
+	{
 		title: "MacOS Installation Guide",
 		description:
 			"Complete MacOS installation guide for Intel and AMD processors on VMware Workstation.",
