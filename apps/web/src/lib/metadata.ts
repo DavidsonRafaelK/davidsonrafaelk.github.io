@@ -20,6 +20,13 @@ export function getMetadata(): Metadata {
 				"text/plain": [{ url: "/llms.txt", title: "llms.txt" }],
 			},
 		},
+		icons: {
+			icon: [
+				{ url: "/icons/pwa/icon-192.png", sizes: "192x192", type: "image/png" },
+				{ url: "/icons/pwa/icon-512.png", sizes: "512x512", type: "image/png" },
+			],
+			apple: [{ url: "/icons/pwa/apple-touch-icon.png", sizes: "180x180" }],
+		},
 		openGraph: {
 			title: config.site.title,
 			description: config.site.description,

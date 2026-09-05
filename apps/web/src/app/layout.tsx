@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans, Geist, Geist_Mono } from "next/font/google";
 import "../index.css";
 import { cn } from "@homepage/ui/lib/utils";
@@ -25,6 +25,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = getMetadata();
+
+export const viewport: Viewport = {
+	width: "device-width",
+	initialScale: 1,
+	themeColor: "#cf885c",
+};
 
 export default function RootLayout({
 	children,
