@@ -292,4 +292,12 @@ export const dadJokes: string[] = [
 	"what did the pirate say on his 80th birthday? aye matey!",
 	"why did the a go to the bathroom and come out as an e? because he had a vowel movement.",
 	"yesterday a clown held a door open for me. i thought it was a nice jester.",
+	"i just got fired from a florist, apparently i took too many leaves.",
+	"why don’t skeletons ever go trick or treating? because they have nobody to go with.",
+	"what does a female snake use for support? a co-bra!",
+	'"dad, i\'m cold." "go stand in the corner, i hear it\'s 90 degrees."',
+	"child: dad, make me a sandwich. dad: poof! you're a sandwich.",
+	"which flower is most fierce? dandelion",
+	"why are graveyards so noisy? because of all the coffin.",
+	"what kind of bagel can fly? a plain bagel.",
 ];
