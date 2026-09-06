@@ -300,4 +300,12 @@ export const dadJokes: string[] = [
 	"which flower is most fierce? dandelion",
 	"why are graveyards so noisy? because of all the coffin.",
 	"what kind of bagel can fly? a plain bagel.",
+	"what do you call a cow with two legs? lean beef.",
+	"what did the big flower say to the littler flower? hi, bud!",
+	"i never wanted to believe that my dad was stealing from his job as a road worker. but when i got home, all the signs were there.",
+	"why do pumpkins sit on people’s porches? they have no hands to knock on the door.",
+	"who is the coolest doctor in the hospital? the hip doctor!",
+	"why was ten scared of seven? because seven ate nine.",
+	"what do you get when you cross a rabbit with a water hose? hare spray.",
+	"i applied to be a doorman but didn't get the job due to lack of experience. that surprised me, i thought it was an entry level position.",
 ];
