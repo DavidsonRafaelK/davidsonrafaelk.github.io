@@ -308,4 +308,12 @@ export const dadJokes: string[] = [
 	"why was ten scared of seven? because seven ate nine.",
 	"what do you get when you cross a rabbit with a water hose? hare spray.",
 	"i applied to be a doorman but didn't get the job due to lack of experience. that surprised me, i thought it was an entry level position.",
+	"why didn’t the orange win the race? it ran out of juice.",
+	"did you hear about the runner who was criticized? he just took it in stride",
+	"what animal is always at a game of cricket? a bat.",
+	"why did the clydesdale give the pony a glass of water? because he was a little horse!",
+	"i started a new business making yachts in my attic this year...the sails are going through the roof",
+	"if you think swimming with dolphins is expensive, you should try swimming with sharks--it cost me an arm and a leg!",
+	"what did the buffalo say to his little boy when he dropped him off at school? bison.",
+	"i used to have a job at a calendar factory but i got the sack because i took a couple of days off.",
 ];
