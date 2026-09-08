@@ -316,4 +316,12 @@ export const dadJokes: string[] = [
 	"if you think swimming with dolphins is expensive, you should try swimming with sharks--it cost me an arm and a leg!",
 	"what did the buffalo say to his little boy when he dropped him off at school? bison.",
 	"i used to have a job at a calendar factory but i got the sack because i took a couple of days off.",
+	"my friend told me that pepper is the best seasoning for a roast, but i took it with a grain of salt.",
+	"just watched a documentary about beavers… it was the best damn program i’ve ever seen.",
+	"why do choirs keep buckets handy? so they can carry their tune",
+	"did you hear about the kidnapping at school? it's ok, he woke up.",
+	"i asked my date to go to the gym the other day. they never showed up. that's when i knew we wouldn't work out.",
+	"you will never guess what elsa did to the balloon. she let it go.",
+	"did you hear about the two thieves who stole a calendar? they each got six months.",
+	"waking up this morning was an eye-opening experience.",
 ];
