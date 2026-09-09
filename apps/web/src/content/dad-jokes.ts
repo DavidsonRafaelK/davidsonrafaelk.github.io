@@ -324,4 +324,12 @@ export const dadJokes: string[] = [
 	"you will never guess what elsa did to the balloon. she let it go.",
 	"did you hear about the two thieves who stole a calendar? they each got six months.",
 	"waking up this morning was an eye-opening experience.",
+	"what do i look like? a joke machine!?",
+	"i bought shoes from a drug dealer once. i don't know what he laced them with, but i was tripping all day.",
+	"what is a tornado's favorite game to play? twister!",
+	"you know that cemetery up the road? people are dying to get in there.",
+	"pie is $2.50 in jamaica and $3.00 in the bahamas. these are the pie-rates of the caribbean.",
+	"did you hear about the mexican train killer? he had loco motives",
+	"can i watch the tv? dad: yes, but don’t turn it on.",
+	"what is worse then finding a worm in your apple? finding half a worm in your apple.",
 ];
