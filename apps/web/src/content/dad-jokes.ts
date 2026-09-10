@@ -332,4 +332,12 @@ export const dadJokes: string[] = [
 	"did you hear about the mexican train killer? he had loco motives",
 	"can i watch the tv? dad: yes, but don’t turn it on.",
 	"what is worse then finding a worm in your apple? finding half a worm in your apple.",
+	"why can't eggs have love? they will break up too soon.",
+	"you can't run through a camp site. you can only ran, because it's past tents.",
+	"they're making a movie about clocks. it's about time",
+	"i’ve just been reading a book about anti-gravity, it’s impossible to put down!",
+	"archaeology really is a career in ruins.",
+	"have you ever seen fruit preserves being made? it's jarring.",
+	"i was going to get a brain transplant, but i changed my mind",
+	"have you heard about the owl sanctuary job opening? it’s all night shifts but they’re all a hoot over there.",
 ];
