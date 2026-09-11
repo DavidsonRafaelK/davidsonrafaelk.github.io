@@ -340,4 +340,12 @@ export const dadJokes: string[] = [
 	"have you ever seen fruit preserves being made? it's jarring.",
 	"i was going to get a brain transplant, but i changed my mind",
 	"have you heard about the owl sanctuary job opening? it’s all night shifts but they’re all a hoot over there.",
+	"how does a scientist freshen their breath? with experi-mints!",
+	"what has ears but cannot hear? a field of corn.",
+	"people who don't eat gluten are really going against the grain.",
+	"sore throats are a pain in the neck!",
+	"how did darth vader know what luke was getting for christmas? he felt his presents.",
+	"what's the difference between a seal and a sea lion? an ion!",
+	"i think circles are pointless.",
+	"what did the dorito farmer say to the other dorito farmer? cool ranch!",
 ];
