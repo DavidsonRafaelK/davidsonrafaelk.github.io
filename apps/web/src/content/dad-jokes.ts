@@ -348,4 +348,12 @@ export const dadJokes: string[] = [
 	"what's the difference between a seal and a sea lion? an ion!",
 	"i think circles are pointless.",
 	"what did the dorito farmer say to the other dorito farmer? cool ranch!",
+	"two dyslexics walk into a bra.",
+	"i been watching a channel on tv that is strictly just about origami — of course it is paper-view.",
+	"milk is also the fastest liquid on earth – its pasteurized before you even see it",
+	"is the pool safe for diving? it deep ends.",
+	"why do scuba divers fall backwards into the water? because if they fell forwards they’d still be in the boat.",
+	"my wife told me to rub the herbs on the meat for better flavor. that's sage advice.",
+	"a man was caught stealing in a supermarket today while balanced on the shoulders of a couple of vampires. he was charged with shoplifting on two counts.",
+	"ben & jerry's really need to improve their operation. the only way to get there is down a rocky road.",
 ];
