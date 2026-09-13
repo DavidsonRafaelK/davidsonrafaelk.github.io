@@ -16,18 +16,50 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Wait for deploy to be live
+      # A 200 on its own proves nothing: the previous deployment keeps serving
+      # while a new one builds, and it keeps serving if that build fails. So
+      # wait for the site to report the commit this run was triggered for.
+      - name: Wait for this commit to be live
+        env:
+          EXPECTED_SHA: ${{ github.sha }}
+          GH_TOKEN: ${{ github.token }}
         run: |
+          live=""
+          code=""
           for i in $(seq 1 20); do
             code=$(curl -s -o /dev/null -w "%{http_code}" "$SITE_URL/")
-            if [ "$code" = "200" ]; then
-              echo "Site is live (attempt $i)."
+            live=$(curl -sI "$SITE_URL/" | tr -d '\r' \
+              | awk 'tolower($1) == "x-commit-sha:" { print $2 }')
+
+            if [ "$code" = "200" ] && [ "$live" = "$EXPECTED_SHA" ]; then
+              echo "Deployment for $EXPECTED_SHA is live (attempt $i)."
               exit 0
             fi
-            echo "Attempt $i: got $code, retrying in 15s..."
+
+            echo "Attempt $i: status=$code live=${live:-none} expected=$EXPECTED_SHA, retrying in 15s..."
             sleep 15
           done
-          echo "Site never came back up." >&2
+
+          # A newer push can win the race and deploy over this one. That is not a
+          # failure: this commit is in production history, and the newer commit's
+          # own run checks it.
+          if [ -n "$live" ] && [ "$live" != "$EXPECTED_SHA" ]; then
+            status=$(gh api "repos/${GITHUB_REPOSITORY}/compare/${EXPECTED_SHA}...${live}" \
+              --jq .status 2>/dev/null || echo "unknown")
+            if [ "$status" = "behind" ] || [ "$status" = "identical" ]; then
+              echo "Superseded: $live is live and already contains $EXPECTED_SHA. Passing."
+              exit 0
+            fi
+          fi
+
+          {
+            echo "- expected commit \`$EXPECTED_SHA\` never went live within 5 minutes"
+            echo "- last status: \`$code\`, live commit: \`${live:-none}\`"
+            if [ -z "$live" ]; then
+              echo "- no \`x-commit-sha\` header was returned, so the live build predates this check"
+            fi
+          } > /tmp/failures.txt
+          cat /tmp/failures.txt >&2
           exit 1
 
       - name: Check key endpoints

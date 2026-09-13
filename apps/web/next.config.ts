@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
 		],
 	},
 	async headers() {
+		// Baked in at build time by Vercel. It lets the post-deploy check confirm
+		// which build is actually answering, instead of trusting that any 200 came
+		// from the deployment it just triggered. Absent on local builds.
+		const commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
+
 		return [
 			{
 				source: "/(.*)",
@@ -26,6 +31,7 @@ const nextConfig: NextConfig = {
 					{ key: "X-Frame-Options", value: "DENY" },
 					{ key: "X-Content-Type-Options", value: "nosniff" },
 					{ key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+					...(commitSha ? [{ key: "X-Commit-Sha", value: commitSha }] : []),
 				],
 			},
 		];
