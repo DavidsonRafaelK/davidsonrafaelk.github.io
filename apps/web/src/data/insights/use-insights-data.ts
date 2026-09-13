@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { fetchInsights } from "./fetch-insights";
 import type { InsightsDay } from "./types";
 
 export function useInsightsData() {
@@ -8,30 +9,23 @@ export function useInsightsData() {
 	const [status, setStatus] = useState<"loading" | "ready">("loading");
 
 	useEffect(() => {
-		const controller = new AbortController();
+		let active = true;
 
-		(async () => {
-			try {
-				const r = await fetch(`/api/insights?t=${Date.now()}`, {
-					signal: controller.signal,
-				});
-				if (!r.ok) {
-					setData([]);
-					setStatus("ready");
-					return;
-				}
-				const d = await r.json();
-				const items = d.data ?? d;
+		fetchInsights()
+			.then((items) => {
+				if (!active) return;
 				setData(items);
 				setStatus("ready");
-			} catch (err) {
-				if (err instanceof DOMException && err.name === "AbortError") return;
+			})
+			.catch(() => {
+				if (!active) return;
 				setData([]);
 				setStatus("ready");
-			}
-		})();
+			});
 
-		return () => controller.abort();
+		return () => {
+			active = false;
+		};
 	}, []);
 
 	return { data, status };
