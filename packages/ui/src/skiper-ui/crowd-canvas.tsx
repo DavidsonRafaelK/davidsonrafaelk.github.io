@@ -283,17 +283,30 @@ export default function CrowdCanvas({
 			gsap.ticker.add(render);
 		};
 
-		img.onload = init;
+		// The canvas mounts behind an IntersectionObserver, so unmounting or
+		// changing `src` while the sprite sheet is still downloading is a real
+		// race. Without this guard a late `onload` runs `init()` after cleanup and
+		// re-adds `render` to the ticker, where nothing can ever remove it again.
+		let cancelled = false;
+
+		img.onload = () => {
+			if (cancelled) return;
+			init();
+		};
 		img.src = config.src;
 
 		const handleResize = () => resize();
 		window.addEventListener("resize", handleResize);
 
 		return () => {
+			cancelled = true;
+			img.onload = null;
 			window.removeEventListener("resize", handleResize);
 			gsap.ticker.remove(render);
-			crowd.forEach((peep) => {
-				if (peep.walk) peep.walk.kill();
+			// `allPeeps` is the superset of `crowd` and `availablePeeps`, so this
+			// also kills the timelines of peeps parked off-stage.
+			allPeeps.forEach((peep) => {
+				peep.walk?.kill();
 			});
 		};
 	}, [src, rows, cols]);

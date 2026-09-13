@@ -2,7 +2,7 @@
 
 import { usePathname, useSearchParams } from "next/navigation";
 import posthog from "posthog-js";
-import { Suspense, useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 
 /**
  * Renders nothing and, crucially, does not wrap the page. `useSearchParams`
@@ -26,24 +26,36 @@ function PageViewTracker() {
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
 	const initialized = useRef(false);
+	/**
+	 * React flushes child effects before parent effects, so a `PageViewTracker`
+	 * rendered unconditionally would `capture()` against an uninitialised
+	 * instance and posthog-js would drop that first pageview. Mounting it only
+	 * once `init()` has run makes the ordering explicit.
+	 */
+	const [ready, setReady] = useState(false);
 
 	useEffect(() => {
-		if (initialized.current) return;
-		initialized.current = true;
-
 		const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
 		if (!posthogKey) return;
-		posthog.init(posthogKey, {
-			api_host: "/a",
-			capture_pageview: false,
-		});
+
+		if (!initialized.current) {
+			initialized.current = true;
+			posthog.init(posthogKey, {
+				api_host: "/a",
+				capture_pageview: false,
+			});
+		}
+
+		setReady(true);
 	}, []);
 
 	return (
 		<>
-			<Suspense fallback={null}>
-				<PageViewTracker />
-			</Suspense>
+			{ready && (
+				<Suspense fallback={null}>
+					<PageViewTracker />
+				</Suspense>
+			)}
 			{children}
 		</>
 	);

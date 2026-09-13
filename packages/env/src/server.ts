@@ -4,9 +4,6 @@ import { z } from "zod";
 
 export const env = createEnv({
 	server: {
-		SPOTIFY_CLIENT_ID: z.string().min(1),
-		SPOTIFY_CLIENT_SECRET: z.string().min(1),
-		SPOTIFY_REFRESH_TOKEN: z.string().min(1),
 		POSTHOG_PERSONAL_API_KEY: z.string().min(1),
 		POSTHOG_PROJECT_ID: z.string().min(1),
 		NODE_ENV: z

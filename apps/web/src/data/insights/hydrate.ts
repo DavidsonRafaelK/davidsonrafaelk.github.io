@@ -1,5 +1,14 @@
+import { unstable_cache } from "next/cache";
 import { INSIGHTS_DAYS, queryPosthogEvents } from "./api";
 import type { InsightsDay } from "./types";
+
+/**
+ * How long a crawl result is reused. The route is public, so without this every
+ * anonymous request would spend a full paginated PostHog crawl on the owner's
+ * personal API key.
+ */
+const INSIGHTS_REVALIDATE_SECONDS = 300;
+export const INSIGHTS_CACHE_TAG = "insights";
 
 function seededRandom(seed: number) {
 	let s = seed;
@@ -34,7 +43,7 @@ function generateFallbackData(): InsightsDay[] {
 	return chartData;
 }
 
-export async function getInsightsData() {
+async function computeInsightsData() {
 	const events = await queryPosthogEvents();
 
 	const todayKey = new Date().toISOString().slice(0, 10);
@@ -98,3 +107,13 @@ export async function getInsightsData() {
 
 	return { data: chartData, meta: { isFallback: useFallbackForPast } };
 }
+
+/**
+ * Cached across requests and across both client consumers (the chart and the
+ * cursor badge), so a burst of visitors collapses onto one upstream crawl.
+ */
+export const getInsightsData = unstable_cache(
+	computeInsightsData,
+	["insights-data"],
+	{ revalidate: INSIGHTS_REVALIDATE_SECONDS, tags: [INSIGHTS_CACHE_TAG] },
+);
