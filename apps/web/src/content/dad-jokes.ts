@@ -356,4 +356,12 @@ export const dadJokes: string[] = [
 	"my wife told me to rub the herbs on the meat for better flavor. that's sage advice.",
 	"a man was caught stealing in a supermarket today while balanced on the shoulders of a couple of vampires. he was charged with shoplifting on two counts.",
 	"ben & jerry's really need to improve their operation. the only way to get there is down a rocky road.",
+	"what's the difference between roast beef and pea soup. anyone can roast beef, but nobody can pee soup.",
+	"leather is great for sneaking around because it's made of hide.",
+	"what do you get if you cross a turkey with a ghost? a poultry-geist!",
+	"people are making apocalypse jokes like there’s no tomorrow.",
+	"what is the tallest building in the world? the library – it’s got the most stories!",
+	"what kind of magic do cows believe in? moodoo.",
+	"what’s the longest word in the dictionary? smiles. because there’s a mile between the two s’s.",
+	"why don't eggs tell jokes? they'd crack each other up",
 ];
