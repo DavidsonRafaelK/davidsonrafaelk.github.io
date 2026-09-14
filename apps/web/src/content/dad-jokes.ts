@@ -364,4 +364,12 @@ export const dadJokes: string[] = [
 	"what kind of magic do cows believe in? moodoo.",
 	"what’s the longest word in the dictionary? smiles. because there’s a mile between the two s’s.",
 	"why don't eggs tell jokes? they'd crack each other up",
+	"what is a vampire's favorite fruit? a blood orange.",
+	"a cannibal is someone who is fed up with people.",
+	"why did the cookie cry? because his mother was a wafer so long",
+	"want to hear my pizza joke? never mind, it's too cheesy.",
+	"what did the grape do when he got stepped on? he let out a little wine.",
+	"what did the 0 say to the 8? nice belt.",
+	"why was the picture sent to prison? it was framed.",
+	"two peanuts were walking down the street. one was a salted.",
 ];
