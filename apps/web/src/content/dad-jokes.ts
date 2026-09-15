@@ -372,4 +372,12 @@ export const dadJokes: string[] = [
 	"what did the 0 say to the 8? nice belt.",
 	"why was the picture sent to prison? it was framed.",
 	"two peanuts were walking down the street. one was a salted.",
+	"i was thinking about moving to moscow but there is no point russian into things.",
+	"a man walks into a bar and orders helicopter flavor chips. the barman replies “sorry mate we only do plain”",
+	"it's been months since i bought the book \"how to scam people online\". it still hasn't turned up.",
+	"why is it a bad idea to iron your four-leaf clover? cause you shouldn't press your luck.",
+	"i got an a on my origami assignment when i turned my paper into my teacher",
+	"what did the fish say when it swam into a wall? damn!",
+	"i accidentally drank a bottle of invisible ink. now i’m in hospital, waiting to be seen.",
+	"why does waldo only wear stripes? because he doesn't want to be spotted.",
 ];
