@@ -380,4 +380,12 @@ export const dadJokes: string[] = [
 	"what did the fish say when it swam into a wall? damn!",
 	"i accidentally drank a bottle of invisible ink. now i’m in hospital, waiting to be seen.",
 	"why does waldo only wear stripes? because he doesn't want to be spotted.",
+	"i was in an 80's band called the prevention. we were better than the cure.",
+	"what did michael jackson name his denim store? billy jeans!",
+	"people saying 'boo! to their friends has risen by 85% in the last year.... that's a frightening statistic.",
+	"geology rocks, but geography is where it's at!",
+	"why does han solo like gum? it's chewy!",
+	'i was at the library and asked if they have any books on "paranoia", the librarian replied, "yes, they are right behind you"',
+	"have you heard of the band 1023mb? they haven't got a gig yet.",
+	"the urge to sing the lion king song is just a whim away.",
 ];
