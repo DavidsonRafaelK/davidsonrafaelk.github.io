@@ -388,4 +388,12 @@ export const dadJokes: string[] = [
 	'i was at the library and asked if they have any books on "paranoia", the librarian replied, "yes, they are right behind you"',
 	"have you heard of the band 1023mb? they haven't got a gig yet.",
 	"the urge to sing the lion king song is just a whim away.",
+	"what happens when you anger a brain surgeon? they will give you a piece of your mind.",
+	"i needed a password eight characters long so i picked snow white and the seven dwarfs.",
+	"i used to work at a stationery store. but, i didn't feel like i was going anywhere. so, i got a job at a travel agency. now, i know i'll be going places.",
+	"i used to work in a shoe recycling shop. it was sole destroying.",
+	"r.i.p. boiled water. you will be mist.",
+	"q: what did the spaghetti say to the other spaghetti? a: pasta la vista, baby!",
+	'the first time i got a universal remote control i thought to myself, "this changes everything"',
+	"why is the ocean always blue? because the shore never waves back.",
 ];
