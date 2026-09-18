@@ -396,4 +396,12 @@ export const dadJokes: string[] = [
 	"q: what did the spaghetti say to the other spaghetti? a: pasta la vista, baby!",
 	'the first time i got a universal remote control i thought to myself, "this changes everything"',
 	"why is the ocean always blue? because the shore never waves back.",
+	"my new years resolution is to stop leaving things so late.",
+	"why did the scarecrow win an award? because he was outstanding in his field.",
+	"americans can't switch from pounds to kilograms overnight. that would cause mass confusion.",
+	"an apple a day keeps the bullies away. if you throw it hard enough.",
+	"why does superman get invited to dinners? because he is a supperhero.",
+	"why is no one friends with dracula? because he's a pain in the neck.",
+	"a man got hit in the head with a can of coke, but he was alright because it was a soft drink.",
+	"what is the leading cause of dry skin? towels",
 ];
