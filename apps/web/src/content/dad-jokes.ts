@@ -404,4 +404,12 @@ export const dadJokes: string[] = [
 	"why is no one friends with dracula? because he's a pain in the neck.",
 	"a man got hit in the head with a can of coke, but he was alright because it was a soft drink.",
 	"what is the leading cause of dry skin? towels",
+	"somebody stole my microsoft office and they're going to pay - you have my word.",
+	"what concert costs only 45 cents? 50 cent featuring nickelback.",
+	"i couldn't figure out how the seat belt worked. then it just clicked.",
+	"what did the green grape say to the purple grape? breath!!",
+	"what do you call a dad that has fallen through the ice? a popsicle.",
+	'two parrots are sitting on a perch. one turns to the other and asks, "do you smell fish?"',
+	"bad at golf? join the club.",
+	"i had a pair of racing snails. i removed their shells to make them more aerodynamic, but they became sluggish.",
 ];
