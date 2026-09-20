@@ -412,4 +412,10 @@ export const dadJokes: string[] = [
 	'two parrots are sitting on a perch. one turns to the other and asks, "do you smell fish?"',
 	"bad at golf? join the club.",
 	"i had a pair of racing snails. i removed their shells to make them more aerodynamic, but they became sluggish.",
+	"a man walked in to a bar with some asphalt on his arm. he said “two beers please, one for me and one for the road.”",
+	"did you know the first french fries weren't actually cooked in france? they were cooked in greece.",
+	"i’ll tell you something about german sausages, they’re the wurst",
+	"where did captain hook get his hook? from a second hand store.",
+	"i got fired from a florist, apparently i took too many leaves.",
+	"two silk worms had a race. they ended up in a tie.",
 ];
