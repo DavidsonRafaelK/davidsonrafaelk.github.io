@@ -418,4 +418,9 @@ export const dadJokes: string[] = [
 	"where did captain hook get his hook? from a second hand store.",
 	"i got fired from a florist, apparently i took too many leaves.",
 	"two silk worms had a race. they ended up in a tie.",
+	"why did the feline fail the lie detector test? because he be lion.",
+	"why did the man put his money in the freezer? he wanted cold hard cash!",
+	"i decided to sell my hoover… well it was just collecting dust.",
+	"why do ducks make great detectives? they always quack the case.",
+	"what does a clock do when it's hungry? it goes back four seconds!",
 ];
