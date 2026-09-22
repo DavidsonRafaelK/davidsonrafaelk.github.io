@@ -423,4 +423,12 @@ export const dadJokes: string[] = [
 	"i decided to sell my hoover… well it was just collecting dust.",
 	"why do ducks make great detectives? they always quack the case.",
 	"what does a clock do when it's hungry? it goes back four seconds!",
+	"i am so good at sleeping i can do it with my eyes closed!",
+	"i wouldn't buy anything with velcro. it's a total rip-off.",
+	"what are the strongest days of the week? saturday and sunday...the rest are weekdays.",
+	'my friend said to me: "what rhymes with orange" i said: "no it doesn\'t"',
+	"i had a rough day, and then somebody went and ripped the front and back pages from my dictionary. it just goes from bad to worse.",
+	"i adopted my dog from a blacksmith. as soon as we got home he made a bolt for the door.",
+	"where does batman go to the bathroom? the batroom.",
+	"some people say that comedians who tell one too many light bulb jokes soon burn out, but they don't know watt they are talking about. they're not that bright.",
 ];
