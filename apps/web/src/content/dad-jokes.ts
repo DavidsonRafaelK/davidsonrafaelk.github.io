@@ -431,4 +431,12 @@ export const dadJokes: string[] = [
 	"i adopted my dog from a blacksmith. as soon as we got home he made a bolt for the door.",
 	"where does batman go to the bathroom? the batroom.",
 	"some people say that comedians who tell one too many light bulb jokes soon burn out, but they don't know watt they are talking about. they're not that bright.",
+	"a ghost walks into a bar and asks for a glass of vodka but the bar tender says, “sorry we don’t serve spirits”",
+	"you know what they say about cliffhangers...",
+	"why do wizards clean their teeth three times a day? to prevent bat breath!",
+	"someone asked me, what's the ninth letter of the alphabet? it was a complete guess, but i was right.",
+	"feeling pretty proud of myself. the sesame street puzzle i bought said 3-5 years, but i finished it in 18 months.",
+	"a termite walks into a bar and asks “is the bar tender here?”",
+	"why are fish so smart? because they live in schools!",
+	"how does the moon cut his hair? eclipse it.",
 ];
