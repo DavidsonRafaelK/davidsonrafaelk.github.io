@@ -439,4 +439,12 @@ export const dadJokes: string[] = [
 	"a termite walks into a bar and asks “is the bar tender here?”",
 	"why are fish so smart? because they live in schools!",
 	"how does the moon cut his hair? eclipse it.",
+	"what do you call a beehive without the b's? an eehive.",
+	"what kind of pants do ghosts wear? boo jeans.",
+	"two guys walked into a bar, the third one ducked.",
+	"i really want to buy one of those supermarket checkout dividers, but the cashier keeps putting it back.",
+	'a horse walks into a bar. the bar tender says "hey." the horse says "sure."',
+	"did you hear about the guy who invented lifesavers? they say he made a mint.",
+	"what's the difference between a poorly dressed man on a tricycle and a well dressed man on a bicycle? attire.",
+	"why are giraffes so slow to apologize? because it takes them a long time to swallow their pride.",
 ];
