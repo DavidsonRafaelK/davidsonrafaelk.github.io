@@ -447,4 +447,12 @@ export const dadJokes: string[] = [
 	"did you hear about the guy who invented lifesavers? they say he made a mint.",
 	"what's the difference between a poorly dressed man on a tricycle and a well dressed man on a bicycle? attire.",
 	"why are giraffes so slow to apologize? because it takes them a long time to swallow their pride.",
+	"when does a joke become a dad joke? when it becomes apparent.",
+	"what’s brown and sounds like a bell? dung!",
+	"what has a bed that you can’t sleep in? a river.",
+	"why do crabs never give to charity? because they’re shellfish.",
+	"what do you call a pig with three eyes? piiig",
+	"how do you make a hankie dance? put a little boogie in it.",
+	"sgt.: commissar! commissar! the troops are revolting! commissar: well, you’re pretty repulsive yourself.",
+	"the other day i was listening to a song about superglue, it’s been stuck in my head ever since.",
 ];
