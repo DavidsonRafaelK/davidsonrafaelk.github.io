@@ -3,6 +3,7 @@
 import { cn } from "@homepage/ui/lib/utils";
 import type * as React from "react";
 import { createMap } from "svg-dotted-map";
+import { DeferredUse } from "@/components/deferred-use";
 
 export interface Marker {
 	lat: number;
@@ -22,18 +23,30 @@ export interface Region {
 	lng: { min: number; max: number };
 }
 
-export interface DottedMapProps<M extends Marker = Marker>
-	extends React.SVGProps<SVGSVGElement> {
+/** Everything that decides where the dots land. */
+export interface DotGrid {
 	width?: number;
 	height?: number;
 	mapSamples?: number;
 	region?: Region;
+	dotRadius?: number;
+	stagger?: boolean;
+}
+
+export interface DottedMapProps<M extends Marker = Marker>
+	extends DotGrid,
+		Omit<React.SVGProps<SVGSVGElement>, keyof DotGrid> {
 	markers?: M[];
 	dotColor?: string;
 	markerColor?: string;
-	dotRadius?: number;
-	stagger?: boolean;
 	pulse?: boolean;
+	/**
+	 * URL of a document produced by `dotsSvg()` for the same grid, as
+	 * `path#dots`. The dots are then referenced with `<use>` instead of inlined,
+	 * which keeps thousands of <circle>s out of the HTML and the RSC payload,
+	 * and fetched only once the map nears the viewport.
+	 */
+	dotsHref?: string;
 
 	renderMarkerOverlay?: (args: {
 		marker: MapMarker<M>;
@@ -44,29 +57,28 @@ export interface DottedMapProps<M extends Marker = Marker>
 	}) => React.ReactNode;
 }
 
-export function DottedMap<M extends Marker = Marker>({
-	width = 150,
-	height = 75,
-	mapSamples = 5000,
-	region,
-	markers = [],
-	dotColor = "currentColor",
-	markerColor = "#FF6900",
-	dotRadius = 0.2,
-	stagger = true,
-	pulse = false,
-	renderMarkerOverlay,
-	className,
-	style,
-	...svgProps
-}: DottedMapProps<M>) {
+const GRID_DEFAULTS = {
+	width: 150,
+	height: 75,
+	mapSamples: 5000,
+	dotRadius: 0.2,
+	stagger: true,
+} satisfies DotGrid;
+
+/** Two decimals is far below a pixel at any size the map is drawn. */
+const round = (n: number) => Math.round(n * 100) / 100;
+
+function layoutGrid(grid: DotGrid) {
+	const { width, height, mapSamples, region, stagger } = {
+		...GRID_DEFAULTS,
+		...grid,
+	};
 	const { points, addMarkers } = createMap({
 		width,
 		height,
 		mapSamples,
 		region,
 	});
-	const processedMarkers = addMarkers(markers);
 
 	// Compute stagger helpers in a single, simple pass
 	const { xStep, yToRowIndex } = (() => {
@@ -93,6 +105,57 @@ export function DottedMap<M extends Marker = Marker>({
 		return { xStep: step || 1, yToRowIndex: rowMap };
 	})();
 
+	const offsetX = (y: number) => {
+		const rowIndex = yToRowIndex.get(y) ?? 0;
+		return stagger && rowIndex % 2 === 1 ? xStep / 2 : 0;
+	};
+
+	return { points, addMarkers, offsetX };
+}
+
+/**
+ * The dot grid as a standalone SVG document for `dotsHref`. The circles carry
+ * no fill of their own, so they take the fill (and `currentColor`) of the
+ * `<use>` that references `#dots`.
+ */
+export function dotsSvg(grid: DotGrid) {
+	const { width, height, dotRadius } = { ...GRID_DEFAULTS, ...grid };
+	const { points, offsetX } = layoutGrid(grid);
+	const circles = points
+		.map(
+			(p) =>
+				`<circle cx="${round(p.x + offsetX(p.y))}" cy="${round(p.y)}" r="${dotRadius}"/>`,
+		)
+		.join("");
+	return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}"><g id="dots">${circles}</g></svg>`;
+}
+
+export function DottedMap<M extends Marker = Marker>({
+	width = GRID_DEFAULTS.width,
+	height = GRID_DEFAULTS.height,
+	mapSamples = GRID_DEFAULTS.mapSamples,
+	region,
+	markers = [],
+	dotColor = "currentColor",
+	markerColor = "#FF6900",
+	dotRadius = GRID_DEFAULTS.dotRadius,
+	stagger = GRID_DEFAULTS.stagger,
+	pulse = false,
+	dotsHref,
+	renderMarkerOverlay,
+	className,
+	style,
+	...svgProps
+}: DottedMapProps<M>) {
+	const { points, addMarkers, offsetX } = layoutGrid({
+		width,
+		height,
+		mapSamples,
+		region,
+		stagger,
+	});
+	const processedMarkers = addMarkers(markers);
+
 	return (
 		<svg
 			viewBox={`0 0 ${width} ${height}`}
@@ -102,25 +165,22 @@ export function DottedMap<M extends Marker = Marker>({
 			aria-label="World map with highlighted locations"
 		>
 			<title>World Map</title>
-			{points.map((point, index) => {
-				const rowIndex = yToRowIndex.get(point.y) ?? 0;
-				const offsetX = stagger && rowIndex % 2 === 1 ? xStep / 2 : 0;
-				return (
+			{dotsHref ? (
+				<DeferredUse href={dotsHref} fill={dotColor} />
+			) : (
+				points.map((point, index) => (
 					<circle
-						cx={point.x + offsetX}
+						cx={point.x + offsetX(point.y)}
 						cy={point.y}
 						r={dotRadius}
 						fill={dotColor}
 						key={`${point.x}-${point.y}-${index}`}
 					/>
-				);
-			})}
+				))
+			)}
 
 			{processedMarkers.map((marker, index) => {
-				const rowIndex = yToRowIndex.get(marker.y) ?? 0;
-				const offsetX = stagger && rowIndex % 2 === 1 ? xStep / 2 : 0;
-
-				const x = marker.x + offsetX;
+				const x = marker.x + offsetX(marker.y);
 				const y = marker.y;
 				const r = marker.size ?? dotRadius;
 				const shouldPulse = pulse

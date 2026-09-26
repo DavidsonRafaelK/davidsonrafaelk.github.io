@@ -1,6 +1,7 @@
 import { Flex } from "@once-ui-system/core";
 import type { TCountryCode } from "countries-list";
 import { DottedMap, type Marker } from "@/components/dotted-map";
+import { homeMapDotsHref, homeMapGrid } from "@/content/map";
 
 type MyMarker = Marker & {
 	overlay: {
@@ -22,11 +23,8 @@ export default function MapSection({ id }: { id: string }) {
 	return (
 		<Flex id={id} fillWidth fitHeight>
 			<DottedMap<MyMarker>
-				width={150}
-				height={94}
-				mapSamples={10000}
-				region={{ lat: { min: -30, max: 30 }, lng: { min: 57, max: 157 } }}
-				dotRadius={0.12}
+				{...homeMapGrid}
+				dotsHref={homeMapDotsHref}
 				markers={markers}
 				pulse={true}
 				renderMarkerOverlay={({ marker, x, y, r }) => {
