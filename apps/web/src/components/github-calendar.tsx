@@ -7,10 +7,6 @@ import { useEffect, useRef, useState } from "react";
 import { CalendarGrid } from "./calendar-grid";
 import { CalendarSkeleton } from "./calendar-skeleton";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Types & Interfaces
-// ─────────────────────────────────────────────────────────────────────────────
-
 export interface ContributionDay {
 	date: string; // ISO date string "YYYY-MM-DD"
 	count: number;
@@ -48,10 +44,6 @@ export interface GitHubCalendarProps {
 	display?: GitHubCalendarDisplay;
 	onDataLoaded?: (data: ContributionDay[]) => void;
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Constants & Helpers
-// ─────────────────────────────────────────────────────────────────────────────
 
 const MONTH_LABELS = [
 	"Jan",
@@ -101,10 +93,6 @@ interface TooltipState {
 	date: string;
 	count: number;
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Hooks
-// ─────────────────────────────────────────────────────────────────────────────
 
 function useGitHubContributions(
 	username: string,
@@ -179,10 +167,6 @@ function useGitHubContributions(
 	return { data, loading, error, selectedYear, setSelectedYear };
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Components
-// ─────────────────────────────────────────────────────────────────────────────
-
 export function GitHubCalendar({
 	username,
 	colorScheme = "blue",
@@ -221,7 +205,6 @@ export function GitHubCalendar({
 	const { data, loading, error, selectedYear, setSelectedYear } =
 		useGitHubContributions(username, showYearButtons ?? false, onDataLoaded);
 
-	// ── Derive available years from data ─────────────────────────────────────
 	function deriveYears() {
 		if (!data.length) return [];
 		const yearSet = new Set(data.map((d) => d.date.split("-")[0]));
@@ -231,7 +214,6 @@ export function GitHubCalendar({
 	}
 	const years = deriveYears();
 
-	// ── Filter data based on year buttons / startDate-endDate range ─────────
 	function filterData() {
 		if (!data?.length) return [];
 
@@ -250,7 +232,6 @@ export function GitHubCalendar({
 	}
 	const filteredData = filterData();
 
-	// ── Build week columns ────────────────────────────────────────────────────
 	function buildWeeks() {
 		const grid: (ContributionDay | null)[][] = [];
 		if (!filteredData.length) return grid;
@@ -276,7 +257,6 @@ export function GitHubCalendar({
 	}
 	const weeks = buildWeeks();
 
-	// ── Month label positions ─────────────────────────────────────────────────
 	function buildMonthPositions() {
 		const positions: { label: string; col: number }[] = [];
 		let lastMonth = -1;
@@ -341,7 +321,6 @@ export function GitHubCalendar({
 		);
 	}
 
-	// ── Render Error State ────────────────────────────────────────────────────
 	if (error) {
 		return (
 			<div className="flex flex-col items-center justify-center rounded-lg border border-red-900/50 bg-red-950/20 px-4 py-8 text-center">

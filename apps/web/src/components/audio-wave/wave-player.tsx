@@ -148,10 +148,8 @@ export function WavePlayer({
 		setDuration(0);
 	};
 
-	// ── Derived
 	const _progress = duration > 0 ? currentTime / duration : 0;
 
-	// ── Render
 	return (
 		<div
 			className={cn(

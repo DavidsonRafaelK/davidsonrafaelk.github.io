@@ -50,7 +50,6 @@ const getEventName = (key: string) =>
 		$1.toLowerCase(),
 	) as keyof WaveSurferEvents;
 
-// ─── Component ───────────────────────────────────────────────────────────────
 const WavesurferPlayer = memo(
 	(props: WavesurferProps): ReactElement => {
 		const containerRef = useRef<HTMLDivElement | null>(null);
@@ -58,7 +57,6 @@ const WavesurferPlayer = memo(
 		const [isReady, setIsReady] = useState(false);
 		const { className, ...rest } = props;
 
-		// ── Separate options from event handlers
 		const [eventProps, options] = (() => {
 			const opts: Partial<WaveSurferOptions> = {};
 			const events: OnWavesurferEvents = {};
@@ -75,7 +73,6 @@ const WavesurferPlayer = memo(
 			return [events, opts] as const;
 		})();
 
-		// ── Resolve CSS vars
 		const waveColor =
 			(options.waveColor as string | undefined) ??
 			WAVESURFER_DEFAULTS.waveColor;
@@ -85,19 +82,16 @@ const WavesurferPlayer = memo(
 		const resolvedWaveColor = useCssVar(waveColor);
 		const resolvedProgressColor = useCssVar(progressColor);
 
-		// ── Keep event handlers in a ref — changes never cause re-subscription
 		const eventsRef = useRef(eventProps);
 		useEffect(() => {
 			eventsRef.current = eventProps;
 		}, [eventProps]);
 
-		// ── Keep non-url options in a ref — changes applied imperatively
 		const optionsRef = useRef(options);
 		useEffect(() => {
 			optionsRef.current = options;
 		}, [options]);
 
-		// ── Create instance only when url or structural options change
 		const url = options.url as string | undefined;
 		const height =
 			(options.height as number | undefined) ?? WAVESURFER_DEFAULTS.height;
@@ -177,7 +171,6 @@ const WavesurferPlayer = memo(
 			media,
 		]);
 
-		// ── Apply color changes imperatively — zero remount on theme switch
 		useEffect(() => {
 			wsRef.current?.setOptions({
 				waveColor: resolvedWaveColor,
@@ -185,7 +178,6 @@ const WavesurferPlayer = memo(
 			});
 		}, [resolvedWaveColor, resolvedProgressColor]);
 
-		// ── Skeleton
 		return (
 			<div className={className} style={{ position: "relative" }}>
 				{!isReady && (
@@ -228,7 +220,6 @@ const WavesurferPlayer = memo(
 
 export default WavesurferPlayer;
 
-// ─── CSS var resolver ────────────────────────────────────────────────────────
 function readCssVar(value: string): string {
 	const varName = value.match(/^var\((--[^)]+)\)$/)?.[1];
 	if (!varName || typeof document === "undefined") return value;
