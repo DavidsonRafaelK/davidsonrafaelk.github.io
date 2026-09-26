@@ -455,4 +455,9 @@ export const dadJokes: string[] = [
 	"how do you make a hankie dance? put a little boogie in it.",
 	"sgt.: commissar! commissar! the troops are revolting! commissar: well, you’re pretty repulsive yourself.",
 	"the other day i was listening to a song about superglue, it’s been stuck in my head ever since.",
+	"what do you call a pile of cats? a meowtain.",
+	"how do hens stay fit? they always egg-cercise!",
+	"can a kangaroo jump higher than the empire state building? of course. the empire state building can't jump.",
+	"what do you give a sick lemon? lemonaid.",
+	"i tried to milk a cow today, but was unsuccessful. udder failure.",
 ];
