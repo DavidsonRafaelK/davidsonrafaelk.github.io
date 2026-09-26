@@ -229,27 +229,29 @@ const WavesurferPlayer = memo(
 export default WavesurferPlayer;
 
 // ─── CSS var resolver ────────────────────────────────────────────────────────
+function readCssVar(value: string): string {
+	const varName = value.match(/^var\((--[^)]+)\)$/)?.[1];
+	if (!varName || typeof document === "undefined") return value;
+	const raw = getComputedStyle(document.documentElement)
+		.getPropertyValue(varName)
+		.trim();
+	const isHsl = /^[\d.]+ [\d.]+% [\d.]+%$/.test(raw);
+	return raw ? (isHsl ? `hsl(${raw})` : raw) : value;
+}
+
 export function useCssVar(value: string): string {
 	const isCssVar = value.startsWith("var(");
-	const [resolved, setResolved] = useState(value);
+	// Resolved on the first render, not after mount: the player is client-only,
+	// and a value that changed after mount re-created the wavesurfer instance,
+	// which fetched and decoded the audio a second time.
+	const [resolved, setResolved] = useState(() => readCssVar(value));
 
 	useEffect(() => {
 		if (!isCssVar) return;
 
-		const match = value.match(/^var\((--[^)]+)\)$/);
+		const resolve = () => setResolved(readCssVar(value));
 
-		const varName = match?.[1];
-		if (!varName) return;
-
-		const resolve = () => {
-			const raw = getComputedStyle(document.documentElement)
-				.getPropertyValue(varName)
-				.trim();
-			const isHsl = /^[\d.]+ [\d.]+% [\d.]+%$/.test(raw);
-			setResolved(raw ? (isHsl ? `hsl(${raw})` : raw) : value);
-		};
-
-		queueMicrotask(resolve);
+		resolve();
 		const observer = new MutationObserver(resolve);
 		observer.observe(document.documentElement, {
 			attributes: true,

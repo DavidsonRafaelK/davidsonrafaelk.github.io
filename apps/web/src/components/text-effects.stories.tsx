@@ -48,19 +48,20 @@ export const Wordmark: Story = {
  * Picks a line at random on mount. This is the one effect that changes meaning
  * rather than appearance.
  *
- * It is loaded with `ssr: false` everywhere it is used, with the first line of
- * the list as the loading fallback, so the server always renders real text.
- * Without that fallback the hero `h1` would be empty in the HTML, which is
- * exactly the sort of thing that costs you in search.
+ * The server always renders `fallback`, the first line of the pool, so the
+ * HTML carries real text. Without it the hero `h1` would be empty in the HTML,
+ * which is exactly the sort of thing that costs you in search. The pool itself
+ * is fetched as its own chunk after mount, and the hero swaps its line with an
+ * inline script before first paint so the `h1` never reflows.
  */
 export const Joke: Story = {
 	render: () => (
 		<div className="flex flex-col gap-3">
 			<p className="font-body text-foreground text-lg">
-				<RandomLine lines={programmerJokes} />
+				<RandomLine pool="programmer" fallback={programmerJokes[0]} />
 			</p>
 			<p className="font-body text-lg text-muted-foreground">
-				<RandomLine lines={dadJokes} />
+				<RandomLine pool="dad" fallback={dadJokes[0]} />
 			</p>
 			<p className="font-mono text-muted-foreground text-xs">
 				{programmerJokes.length} programmer lines, {dadJokes.length} dad lines,

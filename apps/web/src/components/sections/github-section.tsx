@@ -11,12 +11,24 @@ const GitHubCalendar = dynamic(
 	{ ssr: true },
 );
 
+const LEGEND_CELL_SIZE = 16;
+
 const ContributionLegend = dynamic(
 	() =>
 		import("@/components/github-calendar").then((m) => ({
 			default: m.ContributionLegend,
 		})),
-	{ ssr: false },
+	{
+		ssr: false,
+		// Same row height as the legend (a cell next to 11px text), so the page
+		// below does not shift when it mounts.
+		loading: () => (
+			<div className="flex items-center" aria-hidden="true">
+				<span className="text-[11px]">{"\u00a0"}</span>
+				<div style={{ height: LEGEND_CELL_SIZE }} />
+			</div>
+		),
+	},
 );
 
 export default function GitHubSection({ id }: { id: string }) {
@@ -41,7 +53,7 @@ export default function GitHubSection({ id }: { id: string }) {
 			<Flex fillWidth horizontal="end">
 				<ContributionLegend
 					colorScheme="orange"
-					cellSize={16}
+					cellSize={LEGEND_CELL_SIZE}
 					cellShape="rounded"
 				/>
 			</Flex>

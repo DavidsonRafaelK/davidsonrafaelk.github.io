@@ -1,6 +1,4 @@
-"use client";
-
-import dynamic from "next/dynamic";
+import { RandomLine } from "@/components/random-line";
 import { ActionRow } from "@/components/section-ui/action-row";
 import {
 	SectionHeading,
@@ -9,11 +7,6 @@ import {
 } from "@/components/section-ui/section-heading";
 import { dadJokes } from "@/content/dad-jokes";
 import { socials } from "@/content/socials";
-
-const JokeLine = dynamic(
-	() => import("@/components/random-line").then((m) => m.RandomLine),
-	{ ssr: false, loading: () => <>{dadJokes[0]}</> },
-);
 
 export default function AboutSection({ id }: { id: string }) {
 	return (
@@ -29,7 +22,7 @@ export default function AboutSection({ id }: { id: string }) {
 				honestly, I'll take it. <br />
 				<br />
 				And since every about page needs a dad joke:{" "}
-				<JokeLine lines={dadJokes} />
+				<RandomLine pool="dad" fallback={dadJokes[0]} />
 			</SectionText>
 			<ActionRow
 				buttons={[
