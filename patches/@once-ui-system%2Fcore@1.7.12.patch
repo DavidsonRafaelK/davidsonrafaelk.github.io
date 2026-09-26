@@ -1,0 +1,41 @@
+diff --git a/dist/package.json b/dist/package.json
+index f97575302ad6562014f816d76570fb17092b3df6..b650080b39caa6349ad77b928e7f7a50e1a66d15 100644
+--- a/dist/package.json
++++ b/dist/package.json
+@@ -23,6 +23,10 @@
+   },
+   "homepage": "https://docs.once-ui.com",
+   "main": "dist/index.js",
++  "sideEffects": [
++    "*.css",
++    "*.scss"
++  ],
+   "exports": {
+     ".": {
+       "import": "./dist/index.js",
+diff --git a/package.json b/package.json
+index 49f725754916a342f6367731e15f317671c96283..e6ed3e4f93b7263754d39a2ac8a6f4399ac2963c 100644
+--- a/package.json
++++ b/package.json
+@@ -23,6 +23,10 @@
+   },
+   "homepage": "https://docs.once-ui.com",
+   "main": "dist/index.js",
++  "sideEffects": [
++    "*.css",
++    "*.scss"
++  ],
+   "exports": {
+     ".": {
+       "import": "./dist/index.js",
+@@ -116,7 +120,9 @@
+     "sharp": "^0.33.4 || ^0.34"
+   },
+   "peerDependenciesMeta": {
+-    "sharp": { "optional": true }
++    "sharp": {
++      "optional": true
++    }
+   },
+   "devDependencies": {
+     "@biomejs/biome": "2.4.13",

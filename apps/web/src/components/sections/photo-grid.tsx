@@ -1,4 +1,8 @@
-import { MasonryGrid, Media } from "@once-ui-system/core";
+import { MasonryGrid } from "@once-ui-system/core";
+// Deep import: Media is a "use client" module, and reaching it through the
+// package barrel's `export *` from a Server Component resolves to undefined
+// once the package is marked side-effect free (patches/@once-ui-system...).
+import { Media } from "@once-ui-system/core/components/Media";
 import { Lens } from "@/components/lens";
 
 const BUCKET =

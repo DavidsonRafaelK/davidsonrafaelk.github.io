@@ -1,4 +1,8 @@
-import { Column, Media, Row, Text } from "@once-ui-system/core";
+import { Column, Row, Text } from "@once-ui-system/core";
+// Deep import: Media is a "use client" module, and reaching it through the
+// package barrel's `export *` from a Server Component resolves to undefined
+// once the package is marked side-effect free (patches/@once-ui-system...).
+import { Media } from "@once-ui-system/core/components/Media";
 import { ExternalLink } from "lucide-react";
 
 function formatDateRange(start: string, end?: string): string {
@@ -45,7 +49,7 @@ export function ExperienceBlock({ experiences }: ExperienceBlockProps) {
 							height={3}
 							minWidth={3}
 							minHeight={3}
-							unoptimized
+							sizes="48px"
 							maxWidth={3}
 							maxHeight={3}
 							className={`overflow-hidden rounded-xl ${exp.invert ? "invert-100" : ""}`}

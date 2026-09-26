@@ -109,6 +109,9 @@
       },
     },
   },
+  "patchedDependencies": {
+    "@once-ui-system/core@1.7.12": "patches/@once-ui-system%2Fcore@1.7.12.patch",
+  },
   "catalog": {
     "@types/bun": "^1.4.2",
     "@types/react": "^19.2.15",
