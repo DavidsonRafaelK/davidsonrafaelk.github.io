@@ -42,7 +42,6 @@ function ProjectCard() {
 						<CutoutCardImage
 							alt={project.title}
 							src={project.imageUrl ?? ""}
-							unoptimized
 							className="scale-110"
 						/>
 						{/* <CutoutCardPin className="top-0 right-0 rounded-bl-[16px] bg-primary px-6 py-3 font-semibold text-primary text-sm ring-1 ring-border/30 bg-accent">

@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
 	reactCompiler: true,
 	allowedDevOrigins: ["10.26.216.207"],
 	images: {
+		// Every source here is effectively static; the 4 hour default re-ran
+		// optimization for the same images several times a day.
+		minimumCacheTTL: 2678400,
 		remotePatterns: [
 			{ protocol: "https", hostname: "i.pinimg.com" },
 			{ protocol: "https", hostname: "mritcuhqiyieibsbspwt.supabase.co" },
@@ -24,7 +27,19 @@ const nextConfig: NextConfig = {
 		// from the deployment it just triggered. Absent on local builds.
 		const commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
 
+		// Media in /public changes rarely but is not content-hashed, so it gets a
+		// week of freshness plus a long revalidate window rather than `immutable`.
+		const publicMedia = [
+			{
+				key: "Cache-Control",
+				value: "public, max-age=604800, stale-while-revalidate=2592000",
+			},
+		];
+
 		return [
+			{ source: "/images/:path*", headers: publicMedia },
+			{ source: "/icons/stacks/:path*", headers: publicMedia },
+			{ source: "/:file([^/]+\\.(?:webp|mp3))", headers: publicMedia },
 			{
 				source: "/(.*)",
 				headers: [

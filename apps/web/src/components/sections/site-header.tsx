@@ -2,14 +2,20 @@
 
 import { Column, Flex, StatusIndicator, Text } from "@once-ui-system/core";
 import type { Route } from "next";
-import { DotGothic16 } from "next/font/google";
+import localFont from "next/font/local";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getDate } from "@/lib/get-date";
 
-const bitcountFont = DotGothic16({
-	subsets: ["latin"],
+/**
+ * DotGothic16's latin subset, self-hosted. `next/font/google` emits an
+ * @font-face for every one of its 120+ Japanese subsets regardless of
+ * `subsets`, which put ~33KB of render-blocking CSS on every page.
+ */
+const bitcountFont = localFont({
+	src: "../../fonts/dotgothic16-latin-400.woff2",
 	weight: "400",
+	display: "swap",
 });
 
 const navLinks = [
