@@ -1,28 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, Geist, Geist_Mono } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "../index.css";
 import { cn } from "@homepage/ui/lib/utils";
 import { Flex } from "@once-ui-system/core";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { ReactLenis } from "lenis/react";
 import Script from "next/script";
 import { CursorFollower } from "@/components/cursor-follower";
 import Providers from "@/components/providers";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import { JsonLd } from "@/content/json-ld";
 import { getMetadata } from "@/lib/metadata";
 
 const dmSans = DM_Sans({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-	variable: "--font-geist-sans",
-	subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-	variable: "--font-geist-mono",
-	subsets: ["latin"],
-});
 
 export const metadata: Metadata = getMetadata();
 
@@ -50,27 +40,24 @@ export default function RootLayout({
 					strategy="beforeInteractive"
 				/> */}
 			</head>
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} overflow-x-hidden antialiased`}
-			>
-				<ReactLenis root>
-					<JsonLd />
-					<Analytics />
-					<SpeedInsights /> <CursorFollower />
-					<main>
-						<Providers>
-							<Flex
-								fillWidth
-								fillHeight
-								className="bg-border dark:bg-accent-foreground"
-								horizontal="center"
-								vertical="start"
-							>
-								{children}
-							</Flex>
-						</Providers>{" "}
-					</main>
-				</ReactLenis>
+			<body className="overflow-x-hidden antialiased">
+				<SmoothScroll />
+				<JsonLd />
+				<Analytics />
+				<SpeedInsights /> <CursorFollower />
+				<main>
+					<Providers>
+						<Flex
+							fillWidth
+							fillHeight
+							className="bg-border dark:bg-accent-foreground"
+							horizontal="center"
+							vertical="start"
+						>
+							{children}
+						</Flex>
+					</Providers>{" "}
+				</main>
 			</body>
 		</html>
 	);

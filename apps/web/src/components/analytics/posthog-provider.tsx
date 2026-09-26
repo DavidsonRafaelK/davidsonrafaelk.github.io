@@ -1,8 +1,63 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import posthog from "posthog-js";
-import { Suspense, useEffect, useRef, useState } from "react";
+import type { PostHog } from "posthog-js";
+import { Suspense, useEffect } from "react";
+
+/** How long the page has to sit untouched after `load` before PostHog loads anyway. */
+const IDLE_LOAD_DELAY_MS = 4000;
+
+const INTERACTION_EVENTS = [
+	"pointerdown",
+	"keydown",
+	"touchstart",
+	"wheel",
+] as const;
+
+let client: Promise<PostHog | null> | undefined;
+
+function afterInteractionOrIdle() {
+	return new Promise<void>((resolve) => {
+		let timer: number | undefined;
+		const done = () => {
+			for (const event of INTERACTION_EVENTS) {
+				window.removeEventListener(event, done);
+			}
+			window.clearTimeout(timer);
+			resolve();
+		};
+		for (const event of INTERACTION_EVENTS) {
+			window.addEventListener(event, done, { once: true, passive: true });
+		}
+		const startTimer = () => {
+			timer = window.setTimeout(done, IDLE_LOAD_DELAY_MS);
+		};
+		if (document.readyState === "complete") startTimer();
+		else window.addEventListener("load", startTimer, { once: true });
+	});
+}
+
+/**
+ * posthog-js, and the recorder and surveys bundles it fetches after init, are
+ * the heaviest scripts on the page. They load on the visitor's first
+ * interaction, or a few seconds after `load` if there is none, so they never
+ * compete with hydration. Captures made before then queue on this promise,
+ * which also guarantees `init()` has run before the first `capture()`.
+ */
+function getPostHog() {
+	client ??= afterInteractionOrIdle().then(async () => {
+		const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
+		if (!posthogKey) return null;
+
+		const { default: posthog } = await import("posthog-js");
+		posthog.init(posthogKey, {
+			api_host: "/a",
+			capture_pageview: false,
+		});
+		return posthog;
+	});
+	return client;
+}
 
 /**
  * Renders nothing and, crucially, does not wrap the page. `useSearchParams`
@@ -16,46 +71,22 @@ function PageViewTracker() {
 		pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : "");
 
 	useEffect(() => {
-		posthog.capture("$pageview", {
-			$current_url: pageUrl,
-		});
+		getPostHog().then((posthog) =>
+			posthog?.capture("$pageview", {
+				$current_url: pageUrl,
+			}),
+		);
 	}, [pageUrl]);
 
 	return null;
 }
 
 export function PostHogProvider({ children }: { children: React.ReactNode }) {
-	const initialized = useRef(false);
-	/**
-	 * React flushes child effects before parent effects, so a `PageViewTracker`
-	 * rendered unconditionally would `capture()` against an uninitialised
-	 * instance and posthog-js would drop that first pageview. Mounting it only
-	 * once `init()` has run makes the ordering explicit.
-	 */
-	const [ready, setReady] = useState(false);
-
-	useEffect(() => {
-		const posthogKey = process.env.NEXT_PUBLIC_POSTHOG_KEY;
-		if (!posthogKey) return;
-
-		if (!initialized.current) {
-			initialized.current = true;
-			posthog.init(posthogKey, {
-				api_host: "/a",
-				capture_pageview: false,
-			});
-		}
-
-		setReady(true);
-	}, []);
-
 	return (
 		<>
-			{ready && (
-				<Suspense fallback={null}>
-					<PageViewTracker />
-				</Suspense>
-			)}
+			<Suspense fallback={null}>
+				<PageViewTracker />
+			</Suspense>
 			{children}
 		</>
 	);

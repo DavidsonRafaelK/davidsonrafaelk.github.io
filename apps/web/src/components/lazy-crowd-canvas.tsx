@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
+import { useNearViewport } from "@/components/use-near-viewport";
 
 const CrowdCanvas = dynamic(
 	() => import("@homepage/ui/skiper-ui/crowd-canvas").then((m) => m.default),
@@ -19,24 +20,7 @@ export function LazyCrowdCanvas(props: {
 	cols?: number;
 }) {
 	const ref = useRef<HTMLDivElement>(null);
-	const [visible, setVisible] = useState(false);
-
-	useEffect(() => {
-		const el = ref.current;
-		if (!el) return;
-
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					setVisible(true);
-					observer.disconnect();
-				}
-			},
-			{ rootMargin: "200px" },
-		);
-		observer.observe(el);
-		return () => observer.disconnect();
-	}, []);
+	const visible = useNearViewport(ref);
 
 	return (
 		<div ref={ref} className="absolute bottom-0 h-[90vh] w-full">

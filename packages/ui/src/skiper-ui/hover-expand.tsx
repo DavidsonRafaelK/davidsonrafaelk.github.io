@@ -1,11 +1,9 @@
 "use client";
 
+import { cn } from "@homepage/ui/lib/utils";
 import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
 import Image from "next/image";
-
 import { memo, useCallback, useState } from "react";
-import "swiper/swiper.css";
-import { cn } from "@homepage/ui/lib/utils";
 
 const images = [
 	{
