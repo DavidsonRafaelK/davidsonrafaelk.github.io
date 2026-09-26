@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@homepage/ui/lib/utils";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface PremiumButtonProps {
 	text?: string;
@@ -101,14 +101,29 @@ const Box = ({
 	boxColor?: string;
 	pattern: "arrow" | "x" | "mail" | "linkedin" | "repository" | "globe";
 }) => {
+	const ref = useRef<HTMLDivElement>(null);
 	const [step, setStep] = useState(0);
+	const [onScreen, setOnScreen] = useState(false);
+
+	// A page carries a dozen of these, each re-rendering 25 cells four times a
+	// second, so the ticker only runs while its button is on screen.
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
+		const observer = new IntersectionObserver(([entry]) =>
+			setOnScreen(entry.isIntersecting),
+		);
+		observer.observe(el);
+		return () => observer.disconnect();
+	}, []);
 
 	useEffect(() => {
+		if (!onScreen) return;
 		const timer = setInterval(() => {
 			setStep((prev) => (prev + 1) % 14);
 		}, 250);
 		return () => clearInterval(timer);
-	}, []);
+	}, [onScreen]);
 
 	const isHighlighted = (row: number, col: number) => {
 		const offset = step - 4;
@@ -123,6 +138,7 @@ const Box = ({
 
 	return (
 		<div
+			ref={ref}
 			className={`absolute inset-y-0 left-4 my-auto flex size-9 flex-col items-center justify-center gap-px rounded-[4px] shadow-sm transition-all duration-400 ease-out ${boxColor} `}
 		>
 			{[0, 1, 2, 3, 4].map((row) => (

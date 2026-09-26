@@ -15,24 +15,34 @@ export function CursorFollower() {
 	const elRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
-		let raf: number;
+		let raf = 0;
 		let targetX = -100;
 		let targetY = -100;
 		let currentX = -100;
 		let currentY = -100;
 
-		const handlePointerMove = (e: PointerEvent) => {
-			targetX = e.clientX + 18;
-			targetY = e.clientY + 18;
-		};
-
+		// Eases toward the pointer and stops once it has caught up, rather than
+		// writing a transform every frame for as long as the page is open.
 		const animate = () => {
 			currentX += (targetX - currentX) * 0.12;
 			currentY += (targetY - currentY) * 0.12;
+			const settled =
+				Math.abs(targetX - currentX) < 0.1 &&
+				Math.abs(targetY - currentY) < 0.1;
+			if (settled) {
+				currentX = targetX;
+				currentY = targetY;
+			}
 			if (elRef.current) {
 				elRef.current.style.transform = `translate(${currentX}px, ${currentY}px)`;
 			}
-			raf = requestAnimationFrame(animate);
+			raf = settled ? 0 : requestAnimationFrame(animate);
+		};
+
+		const handlePointerMove = (e: PointerEvent) => {
+			targetX = e.clientX + 18;
+			targetY = e.clientY + 18;
+			if (!raf) raf = requestAnimationFrame(animate);
 		};
 
 		window.addEventListener("pointermove", handlePointerMove);
