@@ -460,4 +460,12 @@ export const dadJokes: string[] = [
 	"can a kangaroo jump higher than the empire state building? of course. the empire state building can't jump.",
 	"what do you give a sick lemon? lemonaid.",
 	"i tried to milk a cow today, but was unsuccessful. udder failure.",
+	"what is the difference between ignorance and apathy? i don't know and i don't care.",
+	"i went to a foo fighters concert once... it was everlong...",
+	"why did the sentence fail the driving test? it never came to a full stop.",
+	"some people eat light bulbs. they say it's a nice light snack.",
+	"what's the difference between a rooster and a crow? a rooster can crow but a crow cannot rooster.",
+	"i went to the store to pick up eight cans of sprite... when i got home i realized i'd only picked seven up",
+	"i cut my finger chopping cheese, but i think that i may have grater problems.",
+	"yesterday, i accidentally swallowed some food coloring. the doctor says i’m okay, but i feel like i’ve dyed a little inside.",
 ];
