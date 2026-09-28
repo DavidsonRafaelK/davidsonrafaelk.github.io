@@ -468,4 +468,12 @@ export const dadJokes: string[] = [
 	"i went to the store to pick up eight cans of sprite... when i got home i realized i'd only picked seven up",
 	"i cut my finger chopping cheese, but i think that i may have grater problems.",
 	"yesterday, i accidentally swallowed some food coloring. the doctor says i’m okay, but i feel like i’ve dyed a little inside.",
+	"my sister bet me $15 that i couldn't build a car out of spaghetti. you should have seen the look on her face as i drove pasta.",
+	"my boss told me to have a good day... so i went home.",
+	"i just read a book about stockholm syndrome. it was pretty bad at first, but by the end i liked it.",
+	"why do trees seem suspicious on sunny days? dunno, they're just a bit shady.",
+	"if at first you don't succeed, sky diving is not for you!",
+	"i'd like to start a diet, but i've got too much on my plate right now.",
+	"what did the drummer name her twin daughters? anna one, anna two...",
+	"what kind of music do mummy's like? rap",
 ];
