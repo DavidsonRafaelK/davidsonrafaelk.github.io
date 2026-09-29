@@ -476,4 +476,12 @@ export const dadJokes: string[] = [
 	"i'd like to start a diet, but i've got too much on my plate right now.",
 	"what did the drummer name her twin daughters? anna one, anna two...",
 	"what kind of music do mummy's like? rap",
+	"i remember when i was a kid, i opened my fridge and noticed one of my vegetables were crying. i guess i have some emotional cabbage.",
+	"what's large, grey, and doesn't matter? an irrelephant.",
+	"frankenstein enters a bodybuilding competition and finds he has seriously misunderstood the objective.",
+	"a book just fell on my head. i only have my shelf to blame.",
+	"what did the dog say to the two trees? bark bark.",
+	"i've got a joke about vegetables for you... but it's a bit corny.",
+	"if a child refuses to sleep during nap time, are they guilty of resisting a rest?",
+	"why can't your nose be 12 inches long? because then it'd be a foot!",
 ];
