@@ -484,4 +484,12 @@ export const dadJokes: string[] = [
 	"i've got a joke about vegetables for you... but it's a bit corny.",
 	"if a child refuses to sleep during nap time, are they guilty of resisting a rest?",
 	"why can't your nose be 12 inches long? because then it'd be a foot!",
+	"a bartender broke up with her boyfriend, but he kept asking her for another shot.",
+	"what do you call a cow on a trampoline? a milk shake!",
+	"what do you call an eagle who can play the piano? talonted!",
+	"what do you call a boomerang that won't come back? a stick.",
+	"what do you call a duck that gets all a's? a wise quacker.",
+	"i used to work for an origami company but they folded.",
+	"there’s a new type of broom out, it’s sweeping the nation.",
+	"i just wrote a book on reverse psychology. do not read it!",
 ];
