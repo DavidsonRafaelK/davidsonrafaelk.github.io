@@ -492,4 +492,12 @@ export const dadJokes: string[] = [
 	"i used to work for an origami company but they folded.",
 	"there’s a new type of broom out, it’s sweeping the nation.",
 	"i just wrote a book on reverse psychology. do not read it!",
+	"why is peter pan always flying? because he neverlands.",
+	"what do you do on a remote island? try and find the tv island it belongs to.",
+	"did you know that protons have mass? i didn't even know they were catholic.",
+	"dad i’m hungry’ … ‘hi hungry i’m dad",
+	"i was fired from the keyboard factory yesterday. i wasn't putting in enough shifts.",
+	"whoever invented the knock-knock joke should get a no bell prize.",
+	"wife: honey i’m pregnant. me: well…. what do we do now? wife: well, i guess we should go to a baby doctor. me: hm.. i think i’d be a lot more comfortable going to an adult doctor.",
+	"have you heard the story about the magic tractor? it drove down the road and turned into a field.",
 ];
