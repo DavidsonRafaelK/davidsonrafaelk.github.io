@@ -500,4 +500,12 @@ export const dadJokes: string[] = [
 	"whoever invented the knock-knock joke should get a no bell prize.",
 	"wife: honey i’m pregnant. me: well…. what do we do now? wife: well, i guess we should go to a baby doctor. me: hm.. i think i’d be a lot more comfortable going to an adult doctor.",
 	"have you heard the story about the magic tractor? it drove down the road and turned into a field.",
+	"the shovel was a ground-breaking invention.",
+	"why don’t seagulls fly over the bay? because then they’d be bay-gulls!",
+	"parallel lines have so much in common. it’s a shame they’ll never meet.",
+	"the best time on a clock is 6:30--hands down.",
+	"what do you call a magician who has lost their magic? ian.",
+	"why do fish live in salt water? because pepper makes them sneeze!",
+	"when do doctors get angry? when they run out of patients.",
+	"a man tried to sell me a coffin today. i told him that's the last thing i need.",
 ];
