@@ -508,4 +508,12 @@ export const dadJokes: string[] = [
 	"why do fish live in salt water? because pepper makes them sneeze!",
 	"when do doctors get angry? when they run out of patients.",
 	"a man tried to sell me a coffin today. i told him that's the last thing i need.",
+	"today a girl said she recognized me from vegetarian club, but i’m sure i’ve never met herbivore.",
+	"how do you make holy water? you boil the hell out of it.",
+	'a man is washing the car with his son. the son asks...... "dad, can’t you just use a sponge?"',
+	"they laughed when i said i wanted to be a comedian – they’re not laughing now.",
+	"what does an angry pepper do? it gets jalapeño face.",
+	"don't buy flowers at a monastery. because only you can prevent florist friars.",
+	"hostess: do you have a preference of where you sit? dad: down.",
+	"did you hear about the submarine industry? it really took a dive...",
 ];
