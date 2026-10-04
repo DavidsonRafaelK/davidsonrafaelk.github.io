@@ -516,4 +516,12 @@ export const dadJokes: string[] = [
 	"don't buy flowers at a monastery. because only you can prevent florist friars.",
 	"hostess: do you have a preference of where you sit? dad: down.",
 	"did you hear about the submarine industry? it really took a dive...",
+	"i've started telling everyone about the benefits of eating dried grapes. it's all about raisin awareness.",
+	"“doctor, i’ve broken my arm in several places” doctor “well don’t go to those places.”",
+	"where was the declaration of independence signed? at the bottom!",
+	"what’s the difference between an african elephant and an indian elephant? about 5000 miles.",
+	"two peanuts were walking down the street. one was a salted",
+	"don’t interrupt someone working intently on a puzzle. chances are, you’ll hear some crosswords.",
+	"today a man knocked on my door and asked for a small donation towards the local swimming pool. i gave him a glass of water.",
+	"what did the zen buddist say to the hotdog vendor? make me one with everything.",
 ];
