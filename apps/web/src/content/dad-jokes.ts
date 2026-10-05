@@ -524,4 +524,12 @@ export const dadJokes: string[] = [
 	"don’t interrupt someone working intently on a puzzle. chances are, you’ll hear some crosswords.",
 	"today a man knocked on my door and asked for a small donation towards the local swimming pool. i gave him a glass of water.",
 	"what did the zen buddist say to the hotdog vendor? make me one with everything.",
+	"how many apples grow on a tree? all of them!",
+	"what do you call a careful wolf? aware wolf.",
+	"i was just looking at my ceiling. not sure if it’s the best ceiling in the world, but it’s definitely up there.",
+	"why do valley girls hang out in odd numbered groups? because they can't even.",
+	"“my dog has no nose.” “how does he smell?” “awful”",
+	"why are snake races so exciting? they're always neck and neck.",
+	"why did the half blind man fall in the well? because he couldn't see that well!",
+	"as i suspected, someone has been adding soil to my garden. the plot thickens.",
 ];
