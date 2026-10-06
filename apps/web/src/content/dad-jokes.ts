@@ -532,4 +532,12 @@ export const dadJokes: string[] = [
 	"why are snake races so exciting? they're always neck and neck.",
 	"why did the half blind man fall in the well? because he couldn't see that well!",
 	"as i suspected, someone has been adding soil to my garden. the plot thickens.",
+	"what do vegetarian zombies eat? grrrrrainnnnnssss.",
+	'"i\'m sorry." "hi sorry, i\'m dad"',
+	"what is the hardest part about sky diving? the ground.",
+	"why did the cowboy have a weiner dog? somebody told him to get a long little doggy.",
+	'my friend keeps telling me "cheer up. you aren\'t stuck in a deep hole in the ground, filled with water." i know he means well.',
+	"who did the wizard marry? his ghoul-friend",
+	"how many seconds are in a year? 12. january 2nd, february 2nd, march 2nd, april 2nd.... etc",
+	"i ordered a chicken and an egg from amazon. i'll let you know.",
 ];
