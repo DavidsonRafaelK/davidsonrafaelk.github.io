@@ -540,4 +540,12 @@ export const dadJokes: string[] = [
 	"who did the wizard marry? his ghoul-friend",
 	"how many seconds are in a year? 12. january 2nd, february 2nd, march 2nd, april 2nd.... etc",
 	"i ordered a chicken and an egg from amazon. i'll let you know.",
+	"the other day, my wife asked me to pass her lipstick but i accidentally passed her a glue stick. she still isn't talking to me.",
+	"what do you get when you cross a chicken with a skunk? a fowl smell!",
+	"where do you take someone who’s been injured in a peek-a-boo accident? to the i.c.u.",
+	"as i get older, i think of all the people i lost along the way. maybe a career as a tour guide wasn't such a good idea.",
+	"how many hipsters does it take to change a lightbulb? oh, it's a really obscure number. you've probably never heard of it.",
+	"where do sheep go to get their hair cut? the baa-baa shop.",
+	"our wedding was so beautiful, even the cake was in tiers.",
+	"why did the miner get fired from his job? he took it for granite...",
 ];
