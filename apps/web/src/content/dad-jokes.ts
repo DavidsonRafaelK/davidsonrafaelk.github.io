@@ -548,4 +548,10 @@ export const dadJokes: string[] = [
 	"where do sheep go to get their hair cut? the baa-baa shop.",
 	"our wedding was so beautiful, even the cake was in tiers.",
 	"why did the miner get fired from his job? he took it for granite...",
+	"i just broke my guitar. it's okay, i won't fret",
+	"it's only a murder of crows if there's probable caws.",
+	"how many kids with add does it take to change a lightbulb? let's go ride bikes!",
+	"where do hamburgers go to dance? the meat-ball.",
+	"i invented a new word! plagiarism!",
+	"did you know that ghosts call their true love their ghoul-friend?",
 ];
