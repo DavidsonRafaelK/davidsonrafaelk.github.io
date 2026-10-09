@@ -554,4 +554,12 @@ export const dadJokes: string[] = [
 	"where do hamburgers go to dance? the meat-ball.",
 	"i invented a new word! plagiarism!",
 	"did you know that ghosts call their true love their ghoul-friend?",
+	"i knew a guy who collected candy canes, they were all in mint condition",
+	'a boy dug three holes in the yard. when his mother saw, she exclaimed: "well, well, well"',
+	"why do nurses carry around red crayons? sometimes they need to draw blood.",
+	"why was the shirt happy to hang around the tank top? because it was armless",
+	"why does a chicken coop only have two doors? because if it had four doors it would be a chicken sedan.",
+	"\"i'll call you later.\" don't call me later, call me dad.",
+	"why did the teddy bear say “no” to dessert? because she was stuffed.",
+	"i don't trust sushi, there's something fishy about it.",
 ];
