@@ -562,4 +562,12 @@ export const dadJokes: string[] = [
 	"\"i'll call you later.\" don't call me later, call me dad.",
 	"why did the teddy bear say “no” to dessert? because she was stuffed.",
 	"i don't trust sushi, there's something fishy about it.",
+	"when will the little snake arrive? i don't know but he won't be long...",
+	"why was pavlov's beard so soft? because he conditioned it.",
+	"do i enjoy making courthouse puns? guilty",
+	"why did the kid throw the clock out the window? he wanted to see time fly!",
+	"hear about the new restaurant called karma? there’s no menu: you get what you deserve.",
+	"why couldn't the kid see the pirate movie? because it was rated arrr!",
+	"it was so cold yesterday my computer froze. my own fault though, i left too many windows open.",
+	"man, i really love my furniture... me and my recliner go way back.",
 ];
