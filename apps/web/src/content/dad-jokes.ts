@@ -570,4 +570,12 @@ export const dadJokes: string[] = [
 	"why couldn't the kid see the pirate movie? because it was rated arrr!",
 	"it was so cold yesterday my computer froze. my own fault though, i left too many windows open.",
 	"man, i really love my furniture... me and my recliner go way back.",
+	"what do bees do after they are married? they go on a honeymoon.",
+	"if i could name myself after any egyptian god, i'd be set.",
+	"why doesn't the chimney-sweep call out sick from work? because he's used to working with a flue.",
+	"it’s hard to explain puns to kleptomaniacs, because they take everything literally.",
+	"it's difficult to say what my wife does, she sells sea shells by the sea shore.",
+	"why did dracula lie in the wrong coffin? he made a grave mistake.",
+	"what did one plate say to the other plate? dinner is on me!",
+	"what do you call a dog that can do magic tricks? a labracadabrador",
 ];
