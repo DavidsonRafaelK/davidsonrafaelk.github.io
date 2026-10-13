@@ -578,4 +578,12 @@ export const dadJokes: string[] = [
 	"why did dracula lie in the wrong coffin? he made a grave mistake.",
 	"what did one plate say to the other plate? dinner is on me!",
 	"what do you call a dog that can do magic tricks? a labracadabrador",
+	"why did the opera singer go sailing? they wanted to hit the high cs.",
+	"bought a new jacket suit the other day and it burst into flames. well, it was a blazer",
+	"whats a penguins favorite relative? aunt arctica.",
+	"never trust someone with graph paper... they're always plotting something.",
+	"what do you call an elephant that doesn’t matter? an irrelephant.",
+	"what do you call a group of disorganized cats? a cat-tastrophe.",
+	"what is bread's favorite number? leaven.",
+	"why can’t you hear a pterodactyl go to the bathroom? the p is silent.",
 ];
