@@ -586,4 +586,12 @@ export const dadJokes: string[] = [
 	"what do you call a group of disorganized cats? a cat-tastrophe.",
 	"what is bread's favorite number? leaven.",
 	"why can’t you hear a pterodactyl go to the bathroom? the p is silent.",
+	"ever wondered why bees hum? it's because they don't know the words.",
+	"how many optometrists does it take to change a light bulb? 1 or 2? 1... or 2?",
+	"there's not really any training for garbagemen. they just pick things up as they go.",
+	"did you hear about the cow who jumped over the barbed wire fence? it was udder destruction.",
+	"i was shocked when i was diagnosed as colorblind... it came out of the purple.",
+	"where does astronauts hangout after work? at the spacebar.",
+	"what do you call a bear with no teeth? a gummy bear!",
+	"i’ve deleted the phone numbers of all the germans i know from my mobile phone. now it’s hans free.",
 ];
