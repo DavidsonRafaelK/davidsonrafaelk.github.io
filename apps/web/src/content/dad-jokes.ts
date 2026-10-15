@@ -594,4 +594,8 @@ export const dadJokes: string[] = [
 	"where does astronauts hangout after work? at the spacebar.",
 	"what do you call a bear with no teeth? a gummy bear!",
 	"i’ve deleted the phone numbers of all the germans i know from my mobile phone. now it’s hans free.",
+	"the biggest knight at king arthur's round table was sir cumference. he acquired his size from eating too much pi.",
+	"to the person who stole my anti-depressant pills: i hope you're happy now.",
+	"how do you get a baby alien to sleep? you rocket.",
+	'why do pirates not know the alphabet? they always get stuck at "c".',
 ];
