@@ -598,4 +598,10 @@ export const dadJokes: string[] = [
 	"to the person who stole my anti-depressant pills: i hope you're happy now.",
 	"how do you get a baby alien to sleep? you rocket.",
 	'why do pirates not know the alphabet? they always get stuck at "c".',
+	"why did the worker get fired from the orange juice factory? lack of concentration.",
+	"i couldn't get a reservation at the library. they were completely booked.",
+	"dad, can you put my shoes on? i don't think they'll fit me.",
+	"how do you get two whales in a car? start in england and drive west.",
+	"what do you call an argentinian with a rubber toe? roberto",
+	"i tried taking some high resolution photos of local farmland, but they all turned out a bit grainy.",
 ];
