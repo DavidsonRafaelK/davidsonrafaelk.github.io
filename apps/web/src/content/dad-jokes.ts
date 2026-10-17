@@ -604,4 +604,9 @@ export const dadJokes: string[] = [
 	"how do you get two whales in a car? start in england and drive west.",
 	"what do you call an argentinian with a rubber toe? roberto",
 	"i tried taking some high resolution photos of local farmland, but they all turned out a bit grainy.",
+	"doctor: do you want to hear the good news or the bad news? patient: good news please. doctor: we're naming a disease after you.",
+	"atheism is a non-prophet organisation.",
+	"i tried to write a chemistry joke, but could never get a reaction.",
+	"i gave my friend 10 puns hoping that one of them would make him laugh. sadly, no pun in ten did.",
+	"what do computers and air conditioners have in common? they both become useless when you open windows.",
 ];
