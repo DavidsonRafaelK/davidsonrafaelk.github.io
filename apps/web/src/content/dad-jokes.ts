@@ -609,4 +609,12 @@ export const dadJokes: string[] = [
 	"i tried to write a chemistry joke, but could never get a reaction.",
 	"i gave my friend 10 puns hoping that one of them would make him laugh. sadly, no pun in ten did.",
 	"what do computers and air conditioners have in common? they both become useless when you open windows.",
+	"two satellites decided to get married. the wedding wasn't much, but the reception was incredible.",
+	"what do you get if you put a duck in a cement mixer? quacks in the pavement.",
+	"they tried to make a diamond shaped like a duck. it quacked under the pressure.",
+	"where’s the bin? dad: i haven’t been anywhere!",
+	"my wife said i was immature. so i told her to get out of my fort.",
+	"why did the knife dress up in a suit? because it wanted to look sharp",
+	"how do you make a water bed more bouncy. you use spring water",
+	"i considered building the patio by myself. but i didn't have the stones.",
 ];
