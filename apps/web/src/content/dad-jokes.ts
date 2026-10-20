@@ -617,4 +617,12 @@ export const dadJokes: string[] = [
 	"why did the knife dress up in a suit? because it wanted to look sharp",
 	"how do you make a water bed more bouncy. you use spring water",
 	"i considered building the patio by myself. but i didn't have the stones.",
+	"have you ever heard of a music group called cellophane? they mostly wrap.",
+	"what do you call a boy who stopped digging holes? douglas.",
+	"what did the mountain climber name his son? cliff.",
+	"why should you never trust a pig with a secret? because it's bound to squeal.",
+	"why are mummys scared of vacation? they're afraid to unwind.",
+	"whiteboards ... are remarkable.",
+	"what kind of dinosaur loves to sleep? a stega-snore-us.",
+	"what has three letters and starts with gas? a car.",
 ];
