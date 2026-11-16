@@ -37,7 +37,7 @@ export const ThreeOptions: Story = {
 				text: "Connect on LinkedIn",
 				boxColor: "bg-sky-500",
 				pattern: "linkedin",
-				href: "https://www.linkedin.com/in/davidson-rafael-5b2683428/",
+				href: "https://www.linkedin.com/in/davidsonrafael/",
 			},
 		],
 	},

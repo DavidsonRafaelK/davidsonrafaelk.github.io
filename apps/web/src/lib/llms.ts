@@ -59,10 +59,10 @@ export function buildProfile(docs: ProjectDoc[]) {
 - Location: ${person.locality}, ${person.country}${lastUpdated ? `\n- Last updated: ${isoDay(lastUpdated)}` : ""}
 
 ## Overview
-${site.name} is a web developer and Computer Science student at ${person.alumniOf.name} in ${person.locality}, ${person.country}. He builds full-stack web platforms — most often with Next.js, React, and TypeScript on the front end and Python or Node.js on the back end — and freelances on web projects alongside his studies. His other interest is AI/ML.
+${site.name} is a web developer and Information Technology student at ${person.alumniOf.name} in ${person.locality}, ${person.country}. He builds full-stack web platforms — most often with Next.js, React, and TypeScript on the front end and Python or Node.js on the back end — and freelances on web projects alongside his studies. His other interest is AI/ML.
 
 ## Quick answers
-- Who is ${site.name}? A ${person.jobTitle.toLowerCase()} and Computer Science student based in ${person.locality}, ${person.country}.
+- Who is ${site.name}? A ${person.jobTitle.toLowerCase()} and Information Technology student based in ${person.locality}, ${person.country}.
 - Where does he study? ${person.alumniOf.name}, ${person.locality}.
 - What does he build with? Mostly Next.js, React, and TypeScript, with Python or Node.js on the back end.
 - Does he take freelance work? He freelances on web projects alongside his studies; email ${email}.

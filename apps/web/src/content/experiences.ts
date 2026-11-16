@@ -2,6 +2,12 @@ import type { Experience } from "@/components/experience-block";
 
 export const experiences: Experience[] = [
 	{
+		company: "Google Student Ambassador",
+		role: "Student Ambassador",
+		logo: "https://www.google.com/s2/favicons?domain=google.com&sz=64",
+		startDate: "Oct 2026",
+	},
+	{
 		company: "Independent",
 		role: "Freelance Web Developer",
 		logo: "/whj.webp",
@@ -13,15 +19,15 @@ export const experiences: Experience[] = [
 export const education: Experience[] = [
 	{
 		company: "UKRIDA",
-		role: "Computer Science",
+		role: "Information Technology",
 		logo: "/ukrida.webp",
 		url: "https://ukrida.ac.id",
 		startDate: "2024",
-		endDate: "Now",
+		endDate: "2028",
 	},
 	{
 		company: "SMK Yadika 2",
-		role: "Senior High School",
+		role: "Computer and Network Engineering",
 		logo: "/yadika2.webp",
 		startDate: "2021",
 		endDate: "2024",

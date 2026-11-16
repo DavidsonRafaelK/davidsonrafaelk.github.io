@@ -13,10 +13,10 @@ export default function AboutSection({ id }: { id: string }) {
 		<SectionRoot id={id}>
 			<SectionHeading before="A little about" highlight="me." />
 			<SectionText>
-				I'm a Computer Science student at UKRIDA, freelancing on web projects on
-				the side. Interest-wise it's AI/ML and web development, and outside of
-				code I'm at the gym, going for a run, or buried in manga/anime with
-				music always playing in the background. <br />
+				I'm an Information Technology student at UKRIDA, freelancing on web
+				projects on the side. Interest-wise it's AI/ML and web development, and
+				outside of code I'm at the gym, going for a run, or buried in
+				manga/anime with music always playing in the background. <br />
 				<br />
 				Fun fact: people say I look like Park Seo-roi from Itaewon Class, and
 				honestly, I'll take it. <br />
