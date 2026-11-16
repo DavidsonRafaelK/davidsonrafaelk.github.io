@@ -77,12 +77,16 @@ const CardItem = memo(function CardItem({
 	return (
 		<m.div
 			role="button"
+			tabIndex={0}
 			className="relative cursor-pointer overflow-hidden rounded-[20px]"
 			animate={isActive ? CARD_ACTIVE : CARD_INACTIVE}
 			transition={CARD_TRANSITION}
 			onClick={handleActivate}
 			onKeyDown={(e) => {
-				if (e.key === "Enter" || e.key === " ") handleActivate();
+				if (e.key !== "Enter" && e.key !== " ") return;
+				// Space would otherwise also scroll the page.
+				e.preventDefault();
+				handleActivate();
 			}}
 			onMouseEnter={handleActivate}
 		>

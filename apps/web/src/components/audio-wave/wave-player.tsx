@@ -178,7 +178,7 @@ export function WavePlayer({
           </span>
           • */}
 					<span className="w-fit shrink-0 text-right text-[13px] text-foreground tabular-nums">
-						{formatTime(duration - currentTime)}
+						{formatTime(Math.max(0, duration - currentTime))}
 					</span>
 				</div>
 				<div className="relative w-full overflow-hidden rounded-sm">

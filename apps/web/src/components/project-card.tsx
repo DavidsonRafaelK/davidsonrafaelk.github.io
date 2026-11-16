@@ -29,9 +29,14 @@ function ProjectCard() {
 	// during SSR too, giving the server and client different orders and
 	// triggering a hydration mismatch.
 	useEffect(() => {
-		setRandomProjects(
-			projectsData.toSorted(() => Math.random() - 0.5).slice(0, 6),
-		);
+		// Fisher-Yates: a random sort comparator is not a valid ordering and
+		// skews the result toward the input order.
+		const shuffled = [...projectsData];
+		for (let i = shuffled.length - 1; i > 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			[shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+		}
+		setRandomProjects(shuffled.slice(0, 6));
 	}, []);
 
 	return (

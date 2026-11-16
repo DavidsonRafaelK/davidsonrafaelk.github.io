@@ -57,7 +57,7 @@ export function CursorFollower() {
 	return (
 		<div
 			ref={elRef}
-			className="pointer-events-none fixed top-0 left-0 z-[99999] whitespace-nowrap rounded-full border border-neutral-500 bg-neutral-800 px-[1.375rem] py-[0.7rem] font-medium text-white text-xs opacity-90 dark:bg-neutral-100 dark:text-white"
+			className="pointer-events-none fixed top-0 left-0 z-[99999] whitespace-nowrap rounded-full border border-neutral-500 bg-neutral-800 px-[1.375rem] py-[0.7rem] font-medium text-white text-xs opacity-90 dark:bg-neutral-100 dark:text-neutral-900"
 		>
 			{totalUsers > 0 ? `${ordinal(totalUsers)} User` : "—"}
 		</div>
