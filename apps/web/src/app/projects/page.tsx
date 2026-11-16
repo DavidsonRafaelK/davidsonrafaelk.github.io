@@ -1,27 +1,29 @@
-import { Column, Row, Text } from "@once-ui-system/core";
+import { Column } from "@once-ui-system/core";
 import type { Metadata } from "next";
-import Image from "next/image";
-import Link from "next/link";
 import { PageShell } from "@/components/page-shell";
+import { ProjectList } from "@/components/project-list";
 import { ActionRow } from "@/components/section-ui/action-row";
 import {
 	SectionHeading,
 	SectionRoot,
 	SectionText,
 } from "@/components/section-ui/section-heading";
+import { toSafeJson } from "@/content/json-ld";
 import config from "@/content/metadata.json" with { type: "json" };
 import { socials } from "@/content/socials";
 import { getProjects } from "@/lib/projects-content";
 
+const title = "Projects & Case Studies";
+const description =
+	"Project case studies by Davidson Rafael, a web developer in Jakarta: what each one solves, how it was built, and what went wrong along the way.";
+
 export const metadata: Metadata = {
-	title: "Projects",
-	description:
-		"Write-ups from Davidson Rafael on the things he's built: reservation systems, commerce platforms, and inventory tooling using Next.js, TypeScript, and Postgres.",
+	title,
+	description,
 	alternates: { canonical: "/projects" },
 	openGraph: {
-		title: `Projects — ${config.site.name}`,
-		description:
-			"Write-ups from Davidson Rafael on the things he's built: reservation systems, commerce platforms, and inventory tooling.",
+		title: `${title} — ${config.site.name}`,
+		description,
 		url: `${config.site.url}/projects`,
 		type: "website",
 		// `openGraph` replaces the root object instead of merging, so the share
@@ -39,7 +41,10 @@ export default async function ProjectsPage() {
 			{
 				"@type": "CollectionPage",
 				"@id": `${config.site.url}/projects`,
-				name: "Projects",
+				url: `${config.site.url}/projects`,
+				name: title,
+				description,
+				inLanguage: "en",
 				isPartOf: { "@id": `${config.site.url}/#website` },
 				about: { "@id": `${config.site.url}/#person` },
 			},
@@ -77,53 +82,17 @@ export default async function ProjectsPage() {
 		<PageShell>
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(listSchema).replace(/</g, "\\u003C"),
-				}}
+				dangerouslySetInnerHTML={{ __html: toSafeJson(listSchema) }}
 			/>
 			<SectionRoot id="projects">
-				<SectionHeading before="Selected" highlight="projects." />
+				<SectionHeading as="h1" before="Selected" highlight="projects." />
 				<SectionText>
 					Longer write-ups of what I've built. What the problem actually was,
 					and what I got wrong.
 				</SectionText>
 
-				<Column fillWidth gap={1.5} marginTop={1}>
-					{projects.map((project) => (
-						<Link
-							key={project.slug}
-							href={`/projects/${project.slug}`}
-							className="rounded-2xl no-underline transition-opacity hover:opacity-80"
-						>
-							<Row fillWidth center gap={0.65} className="overflow-hidden">
-								{project.frontmatter.cover && (
-									<div className="size-[48px] shrink-0 overflow-hidden rounded-xl">
-										<Image
-											src={project.frontmatter.cover.src}
-											alt={project.frontmatter.cover.alt}
-											width={48}
-											height={48}
-											className="size-full object-cover"
-											unoptimized
-										/>
-									</div>
-								)}
-								<Column
-									fillWidth
-									vertical="center"
-									horizontal="start"
-									className="min-w-0"
-								>
-									<Text className="font-body font-medium text-foreground/80 text-lg">
-										{project.frontmatter.title}
-									</Text>
-									<span className="font-body font-normal text-md text-muted-foreground">
-										{project.frontmatter.summary}
-									</span>
-								</Column>
-							</Row>
-						</Link>
-					))}
+				<Column fillWidth marginTop={1}>
+					<ProjectList projects={projects} />
 				</Column>
 
 				<ActionRow

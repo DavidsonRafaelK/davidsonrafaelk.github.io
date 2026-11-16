@@ -1,5 +1,6 @@
 import { ProgressiveBlur } from "@homepage/ui/skiper-ui/progressive-blur";
 import { Column, Flex } from "@once-ui-system/core";
+import type { Metadata } from "next";
 import { FluidGradientText } from "@/components/fluid-gradient-text";
 import { LazyCrowdCanvas } from "@/components/lazy-crowd-canvas";
 import AboutSection from "@/components/sections/about-section";
@@ -14,9 +15,27 @@ import ProjectsSection from "@/components/sections/projects-section";
 import SiteHeader from "@/components/sections/site-header";
 import SkillsSection from "@/components/sections/skills-section";
 import TimerSection from "@/components/sections/timer-section";
+import { ProfilePageJsonLd } from "@/content/json-ld";
+
+// The canonical lives here rather than in the root layout: `alternates` set
+// there is inherited by every route without its own, which pointed the 404
+// page (and any future page) at the homepage.
+export const metadata: Metadata = {
+	alternates: {
+		canonical: "/",
+		types: {
+			"text/plain": [
+				{ url: "/llms.txt", title: "llms.txt" },
+				{ url: "/llms-full.txt", title: "llms-full.txt" },
+			],
+		},
+	},
+};
+
 export default function Home() {
 	return (
 		<>
+			<ProfilePageJsonLd />
 			<ProgressiveBlur position="top" backgroundColor="#f5f4f3" height="0px" />
 			<Flex
 				fillWidth

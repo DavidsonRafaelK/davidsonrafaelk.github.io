@@ -10,9 +10,9 @@ import { socials } from "@/content/socials";
 const JOKE_ID = "hero-joke";
 
 /**
- * Swaps the hero joke before first paint, so the `h1` (the page's LCP element)
- * is laid out once with its final text instead of reflowing the hero when a
- * client-side pick lands after hydration.
+ * Swaps the hero joke before first paint, so the heading line (the page's LCP
+ * element) is laid out once with its final text instead of reflowing the hero
+ * when a client-side pick lands after hydration.
  */
 const pickJokeBeforePaint = `(function(){var e=document.getElementById("${JOKE_ID}"),l=${JSON.stringify(programmerJokes).replace(/</g, "\\u003c")};if(!e)return;e.textContent=l[Math.floor(Math.random()*l.length)];e.dataset.picked="1"})()`;
 
@@ -27,21 +27,24 @@ export default function HeroSection({ id }: { id: string }) {
 			gap={1}
 		>
 			<HeroAvatar />
+			{/* The joke shares the heading's line and type, but sits outside the
+			    `h1`: a random joke per visit is not what the page is about, and
+			    search engines were reading it as part of the page's main heading. */}
 			<Inline
-				as="h1"
+				as="div"
 				className="wrap-break-word font-display font-normal font-s text-foreground opacity-90"
 				style={{ fontWeight: "500" }}
 			>
-				<>
-					Hi I'm Davidson Rafael, web developer.{" "}
-					<span className="text-muted-foreground">
-						<RandomLine
-							id={JOKE_ID}
-							pool="programmer"
-							fallback={programmerJokes[0]}
-						/>
-					</span>
-				</>
+				<Inline as="h1" style={{ font: "inherit", letterSpacing: "inherit" }}>
+					Hi I'm Davidson Rafael, web developer.
+				</Inline>{" "}
+				<span className="text-muted-foreground">
+					<RandomLine
+						id={JOKE_ID}
+						pool="programmer"
+						fallback={programmerJokes[0]}
+					/>
+				</span>
 			</Inline>
 			<script dangerouslySetInnerHTML={{ __html: pickJokeBeforePaint }} />
 			<Text

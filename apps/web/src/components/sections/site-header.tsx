@@ -24,7 +24,6 @@ const navLinks = [
 	{ label: "Stacks", href: "/#skills" },
 	{ label: "Works", href: "/#experience" },
 	{ label: "Projects", href: "/projects" },
-	{ label: "Awards", href: "/#awards" },
 	{ label: "Insights", href: "/#insights" },
 ];
 
@@ -97,21 +96,24 @@ export default function SiteHeader() {
 					fillHeight
 					m={{ hide: true }}
 				>
-					{navLinks.map((link) => (
-						<Link
-							key={link.href}
-							href={link.href as Route}
-							onClick={scrollToHash}
-							className="flex min-h-11 min-w-11 cursor-pointer touch-manipulation items-center justify-center"
-						>
-							<Text
-								variant="label-default-l"
-								className="text-muted-foreground transition-colors hover:text-foreground"
+					{/* `contents` keeps the links as direct flex items of the row. */}
+					<nav aria-label="Primary" className="contents">
+						{navLinks.map((link) => (
+							<Link
+								key={link.href}
+								href={link.href as Route}
+								onClick={scrollToHash}
+								className="flex min-h-11 min-w-11 cursor-pointer touch-manipulation items-center justify-center"
 							>
-								{link.label}
-							</Text>
-						</Link>
-					))}
+								<Text
+									variant="label-default-l"
+									className="text-muted-foreground transition-colors hover:text-foreground"
+								>
+									{link.label}
+								</Text>
+							</Link>
+						))}
+					</nav>
 				</Flex>
 			</Column>
 		</Flex>

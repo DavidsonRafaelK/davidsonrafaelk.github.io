@@ -1,6 +1,8 @@
 import { Column, Row, Text } from "@once-ui-system/core";
 import { ExternalLink } from "lucide-react";
+import type { Route } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 export interface Projects {
 	title: string;
@@ -8,6 +10,8 @@ export interface Projects {
 	imageUrl?: string;
 	repoUrl?: string;
 	liveUrl?: string;
+	/** Path of the write-up under `/projects`, when the project has one. */
+	caseStudy?: string;
 	date: Date | string;
 	invert?: boolean;
 }
@@ -115,7 +119,16 @@ export function ProjectsBlock({ projects = [] }: ProjectsBlockProps) {
 						>
 							<Row gap={0.5} center>
 								<Text className="font-body font-medium text-foreground/80 text-lg">
-									{exp.title}
+									{exp.caseStudy ? (
+										<Link
+											href={exp.caseStudy as Route}
+											className="text-inherit no-underline hover:underline"
+										>
+											{exp.title}
+										</Link>
+									) : (
+										exp.title
+									)}
 								</Text>
 								{exp.liveUrl && (
 									<a

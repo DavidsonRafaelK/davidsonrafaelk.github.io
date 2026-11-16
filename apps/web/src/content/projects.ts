@@ -18,6 +18,7 @@ export const projectsData: Projects[] = [
 		imageUrl:
 			"https://i.pinimg.com/736x/1a/f9/7b/1af97bbcaba8b8ed28f2ae1137ab9793.jpg",
 		repoUrl: "https://github.com/DavidsonRafaelK/U-Reserve",
+		caseStudy: "/projects/u-reserve",
 		liveUrl: "https://u-reserve.vercel.app",
 		invert: false,
 		date: "Present",
@@ -50,6 +51,7 @@ export const projectsData: Projects[] = [
 		imageUrl:
 			"https://raw.githubusercontent.com/DavidsonRafaelK/evillimiter/master/docs/images/logo.jpeg",
 		repoUrl: "https://github.com/DavidsonRafaelK/evillimiter",
+		caseStudy: "/projects/evillimiter",
 		invert: false,
 		date: "Present",
 	},
@@ -60,6 +62,7 @@ export const projectsData: Projects[] = [
 		imageUrl:
 			"https://i.pinimg.com/736x/df/8d/d8/df8dd859bd92cd770839e0c6fa010ab2.jpg",
 		repoUrl: "https://github.com/DavidsonRafaelK/MacOS-Installation",
+		caseStudy: "/projects/macos-installation",
 		invert: true,
 		date: new Date("2026-03-01"),
 	},

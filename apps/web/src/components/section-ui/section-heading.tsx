@@ -5,12 +5,18 @@ import { Inline } from "@/components/inline";
 type SectionHeadingProps = {
 	before: string;
 	highlight?: string;
+	/** `h1` on a subpage where this is the page's main heading. */
+	as?: "h1" | "h2";
 };
 
-export function SectionHeading({ before, highlight }: SectionHeadingProps) {
+export function SectionHeading({
+	before,
+	highlight,
+	as = "h2",
+}: SectionHeadingProps) {
 	return (
 		<Inline
-			as="h2"
+			as={as}
 			className="font-default font-display font-s text-foreground"
 		>
 			<b>

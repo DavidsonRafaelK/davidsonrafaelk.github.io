@@ -9,6 +9,9 @@ const CONTENT_DIR = join(process.cwd(), "src/content/projects");
 // meta description or an unparseable date — it fails the build instead.
 const frontmatterSchema = z.object({
 	title: z.string().min(1),
+	// Search-result title. `title` stays the short on-page name ("U-Reserve");
+	// this one says what the thing is, for people who have never heard of it.
+	seoTitle: z.string().min(1).max(60).optional(),
 	summary: z.string().min(50).max(160),
 	publishedAt: z.coerce.date(),
 	updatedAt: z.coerce.date().optional(),
@@ -73,6 +76,16 @@ async function readAllDocs(): Promise<ProjectDoc[]> {
 export async function getProjects(): Promise<ProjectDoc[]> {
 	const docs = await readAllDocs();
 	return docs.filter((doc) => !doc.frontmatter.draft);
+}
+
+/** Most recent publish or update date across `docs`. */
+export function getLastModified(docs: ProjectDoc[]): Date | undefined {
+	let latest: Date | undefined;
+	for (const { frontmatter } of docs) {
+		const date = frontmatter.updatedAt ?? frontmatter.publishedAt;
+		if (!latest || date > latest) latest = date;
+	}
+	return latest;
 }
 
 export async function getProject(slug: string): Promise<ProjectDoc | null> {

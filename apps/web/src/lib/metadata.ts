@@ -14,12 +14,6 @@ export function getMetadata(): Metadata {
 		authors: [{ name: config.site.name, url: config.site.url }],
 		creator: config.site.name,
 		publisher: config.site.name,
-		alternates: {
-			canonical: "/",
-			types: {
-				"text/plain": [{ url: "/llms.txt", title: "llms.txt" }],
-			},
-		},
 		icons: {
 			icon: [
 				{ url: "/icons/pwa/icon-192.png", sizes: "192x192", type: "image/png" },

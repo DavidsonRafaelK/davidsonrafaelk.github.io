@@ -10,21 +10,29 @@ const aiCrawlers = [
 	"ChatGPT-User",
 	"ClaudeBot",
 	"Claude-User",
+	"Claude-SearchBot",
 	"anthropic-ai",
 	"PerplexityBot",
 	"Perplexity-User",
 	"Applebot-Extended",
 	"CCBot",
+	"Amazonbot",
+	"DuckAssistBot",
+	"meta-externalagent",
 	"Bingbot",
 ];
+
+// Not content: the insights/weather JSON endpoints and the PostHog proxy. A
+// crawler that matches a named group ignores the wildcard one, so the same
+// exclusions are repeated in both.
+const disallow = ["/api/", "/a/"];
 
 export default function robots(): MetadataRoute.Robots {
 	return {
 		rules: [
-			{ userAgent: "*", allow: "/" },
-			{ userAgent: aiCrawlers, allow: "/" },
+			{ userAgent: "*", allow: "/", disallow },
+			{ userAgent: aiCrawlers, allow: "/", disallow },
 		],
 		sitemap: `${config.site.url}/sitemap.xml`,
-		host: config.site.url,
 	};
 }

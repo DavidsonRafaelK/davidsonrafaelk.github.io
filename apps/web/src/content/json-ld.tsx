@@ -69,12 +69,19 @@ const profilePageSchema = {
 	primaryImageOfPage: config.person.image,
 };
 
-const schemaGraph = {
+// Person and WebSite are site-wide entities the project pages reference by
+// `@id`. ProfilePage describes the homepage only, so it is emitted there.
+const siteGraph = {
 	"@context": "https://schema.org",
-	"@graph": [personSchema, webSiteSchema, profilePageSchema],
+	"@graph": [personSchema, webSiteSchema],
 };
 
-function toSafeJson(data: unknown): string {
+const profilePageGraph = {
+	"@context": "https://schema.org",
+	...profilePageSchema,
+};
+
+export function toSafeJson(data: unknown): string {
 	return JSON.stringify(data)
 		.replace(/&/g, "\\u0026")
 		.replace(/</g, "\\u003C")
@@ -82,13 +89,23 @@ function toSafeJson(data: unknown): string {
 		.replace(/\//g, "\\u002F");
 }
 
-const schemaScript = toSafeJson(schemaGraph);
+const siteScript = toSafeJson(siteGraph);
+const profilePageScript = toSafeJson(profilePageGraph);
 
 export function JsonLd() {
 	return (
 		<script
 			type="application/ld+json"
-			dangerouslySetInnerHTML={{ __html: schemaScript }}
+			dangerouslySetInnerHTML={{ __html: siteScript }}
+		/>
+	);
+}
+
+export function ProfilePageJsonLd() {
+	return (
+		<script
+			type="application/ld+json"
+			dangerouslySetInnerHTML={{ __html: profilePageScript }}
 		/>
 	);
 }

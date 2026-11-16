@@ -6,15 +6,22 @@ import { compileMDX } from "next-mdx-remote/rsc";
 import { Inline } from "@/components/inline";
 import { mdxComponents } from "@/components/mdx-components";
 import { PageShell } from "@/components/page-shell";
+import { ProjectList } from "@/components/project-list";
 import { ProjectStackRow } from "@/components/project-stack-row";
 import { ActionRow } from "@/components/section-ui/action-row";
 import {
+	SectionHeading,
 	SectionRoot,
 	SectionText,
 } from "@/components/section-ui/section-heading";
+import { toSafeJson } from "@/content/json-ld";
 import config from "@/content/metadata.json" with { type: "json" };
 import { mdxOptions } from "@/lib/mdx";
-import { getProject, getProjectSlugs } from "@/lib/projects-content";
+import {
+	getProject,
+	getProjectSlugs,
+	getProjects,
+} from "@/lib/projects-content";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -28,9 +35,10 @@ export async function generateMetadata({
 }: PageProps): Promise<Metadata> {
 	const { slug } = await params;
 	const project = await getProject(slug);
-	if (!project) return {};
+	if (!project || project.frontmatter.draft) return {};
 
-	const { title, summary, publishedAt, updatedAt, cover } = project.frontmatter;
+	const { summary, publishedAt, updatedAt, cover } = project.frontmatter;
+	const title = project.frontmatter.seoTitle ?? project.frontmatter.title;
 	const url = `${config.site.url}/projects/${slug}`;
 
 	// Setting `openGraph` here replaces the root object rather than merging into
@@ -81,33 +89,51 @@ export default async function ProjectPage({ params }: PageProps) {
 		components: mdxComponents,
 	});
 
+	const otherProjects = (await getProjects()).filter(
+		(other) => other.slug !== slug,
+	);
+
 	const url = `${config.site.url}/projects/${slug}`;
+	const person = { "@id": `${config.site.url}/#person` };
+	const keywords = frontmatter.stack.join(", ");
 	const articleSchema = {
 		"@context": "https://schema.org",
 		"@graph": [
 			{
 				"@type": "TechArticle",
-				headline: frontmatter.title,
+				"@id": `${url}#article`,
+				url,
+				headline: frontmatter.seoTitle ?? frontmatter.title,
 				description: frontmatter.summary,
+				inLanguage: "en",
 				datePublished: frontmatter.publishedAt.toISOString(),
 				dateModified: (
 					frontmatter.updatedAt ?? frontmatter.publishedAt
 				).toISOString(),
-				author: { "@id": `${config.site.url}/#person` },
+				author: person,
+				publisher: person,
 				isPartOf: { "@id": `${config.site.url}/#website` },
 				mainEntityOfPage: url,
-				about: frontmatter.stack,
-				...(frontmatter.cover ? { image: frontmatter.cover.src } : {}),
+				keywords,
+				image:
+					frontmatter.cover?.src ??
+					`${config.site.url}${config.openGraph.image}`,
 			},
-			{
-				"@type": "SoftwareSourceCode",
-				name: frontmatter.title,
-				description: frontmatter.summary,
-				url,
-				author: { "@id": `${config.site.url}/#person` },
-				programmingLanguage: frontmatter.stack,
-				...(frontmatter.repoUrl ? { codeRepository: frontmatter.repoUrl } : {}),
-			},
+			// Only when there is a repository to point at; `stack` mixes languages
+			// with tools and techniques, so it is not a `programmingLanguage`.
+			...(frontmatter.repoUrl
+				? [
+						{
+							"@type": "SoftwareSourceCode",
+							name: frontmatter.title,
+							description: frontmatter.summary,
+							url,
+							author: person,
+							keywords,
+							codeRepository: frontmatter.repoUrl,
+						},
+					]
+				: []),
 			{
 				"@type": "BreadcrumbList",
 				itemListElement: [
@@ -138,9 +164,7 @@ export default async function ProjectPage({ params }: PageProps) {
 		<PageShell>
 			<script
 				type="application/ld+json"
-				dangerouslySetInnerHTML={{
-					__html: JSON.stringify(articleSchema).replace(/</g, "\\u003C"),
-				}}
+				dangerouslySetInnerHTML={{ __html: toSafeJson(articleSchema) }}
 			/>
 
 			<SectionRoot id="project">
@@ -156,7 +180,10 @@ export default async function ProjectPage({ params }: PageProps) {
 
 				<Row fillWidth vertical="center">
 					<span className="font-body font-medium text-stone-500 text-xs">
-						Published {formatDate(frontmatter.publishedAt)}
+						Published{" "}
+						<time dateTime={frontmatter.publishedAt.toISOString()}>
+							{formatDate(frontmatter.publishedAt)}
+						</time>
 					</span>
 				</Row>
 
@@ -213,6 +240,15 @@ export default async function ProjectPage({ params }: PageProps) {
 					]}
 				/>
 			</SectionRoot>
+
+			{/* Each write-up links to the others, so none of them depends on the
+			    /projects index as its only way in. */}
+			{otherProjects.length > 0 && (
+				<SectionRoot id="more-projects">
+					<SectionHeading before="More" highlight="projects." />
+					<ProjectList projects={otherProjects} />
+				</SectionRoot>
+			)}
 		</PageShell>
 	);
 }
