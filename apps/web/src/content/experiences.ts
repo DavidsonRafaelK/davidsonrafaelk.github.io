@@ -32,18 +32,4 @@ export const education: Experience[] = [
 		startDate: "2021",
 		endDate: "2024",
 	},
-	{
-		company: "SMP Strada Pelita Pejompongan",
-		role: "Junior High School",
-		logo: "/cat.webp",
-		startDate: "2018",
-		endDate: "2021",
-	},
-	{
-		company: "SD Strada Pelita Pejompongan",
-		role: "Elementary School",
-		logo: "/cat.webp",
-		startDate: "2012",
-		endDate: "2018",
-	},
 ];
