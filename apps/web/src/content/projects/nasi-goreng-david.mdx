@@ -1,0 +1,106 @@
+---
+title: Nasi Goreng David
+seoTitle: "Nasi Goreng David: A WhatsApp Order Bot with Gemini"
+summary: How I sell nasi goreng to my classmates by WhatsApp pre-order, and the Gemini-powered assistant that turns their chats into a daily order recap.
+publishedAt: 2026-11-27
+role: Solo, side business
+stack:
+  - Rust
+  - Gemini API
+  - Ollama
+  - SQLite
+  - WhatsApp
+draft: false
+---
+
+I sell nasi goreng to my classmates. One menu, one price, ordered the day before
+and paid the next day in class, by QRIS or cash.
+
+It started small, the way these things do. A few friends asked if I could bring
+some, then their friends asked, and pretty soon my WhatsApp was the order form.
+
+## The problem was never the cooking
+
+Nasi goreng sounds simple until you take orders for it. Everyone wants theirs a
+little different. With or without vegetables. Spicy or not. And the egg is its
+own conversation: dadar, ceplok matang, or ceplok setengah matang.
+
+Nobody sends that as a neat list. They send it the way people actually text.
+"2 ya, satu pedes satu engga, telurnya ceplok aja." Sometimes over three
+messages. Sometimes the name comes an hour later. Sometimes they change their
+mind after I've already written it down.
+
+So every night I'd scroll back through every chat and rebuild the list by hand.
+Who ordered, how many portions, which egg, spicy or not. It's not hard work, but
+it's slow, and it's exactly the kind of work where you miss one message and
+someone gets the wrong plate the next morning.
+
+## Why not just use if-else
+
+My first thought was to match keywords. If the message says "pedas", mark it
+spicy. If it says "dadar", that's the egg.
+
+I dropped that idea quickly. My classmates don't write in keywords. They write
+"jangan pedes", "ga usah sayur", "ceplok yang setengah mateng ya". A keyword
+matcher either misses those or forces people to type in a fixed format, and the
+moment I tell my friends to order in a template, it stops feeling like texting a
+friend and starts feeling like filling out a form. That was the whole reason
+they ordered from me in the first place.
+
+What I needed was something that could read a normal chat and understand it.
+
+## Bringing in Gemini
+
+So I built an assistant with the Gemini API and connected it to WhatsApp. I
+named her Serena.
+
+Serena reads what a customer sends, works out what they want, and asks for
+whatever is still missing in one message instead of five. Once the order is
+complete she shows a summary with the total, and only saves it after the
+customer says yes. She's honest about what she is, too. If someone asks whether
+they're talking to a person, she says she's Nasi Goreng David's AI assistant.
+
+The part that matters most to me is the recap. Every order lands in a structured
+list instead of scattered chats, and the bot summarizes it for me. Now every
+morning I just open the recap and cook. No scrolling, no rebuilding the list
+from memory, no "wait, did you say ceplok or dadar?"
+
+For my classmates, nothing about ordering got harder. They still text me like
+they always did, in their own words, whenever they want. They just get a reply
+right away instead of waiting until I see the message between classes.
+
+## Making it last
+
+A side business has a budget of roughly zero, so I rebuilt the bot to be cheap
+to run and harder to break.
+
+The new version is written in Rust. Plain code runs the ordering steps: asking
+for missing details, showing the summary, saving, cancelling. A small model
+running locally handles reading routine orders, so a normal order doesn't cost
+anything.
+
+Gemini handles the part that actually needs a conversation: the questions that
+aren't orders. "Kak, besok bisa bayar pakai QRIS?" "Is it still available
+tomorrow?" Gemini also steps in as the backup reader whenever the local model
+can't be reached, so a customer never gets ignored because my laptop is having a
+bad day.
+
+There are a few small rules that came straight from running the business. At
+9 PM the bot sends me the day's recap. At 5 PM, yesterday's orders that are
+still waiting for payment are marked complete, because by then everyone has paid
+me in class. And each customer is capped at 20 messages an hour, because
+classmates are classmates.
+
+The rebuilt version hasn't taken live orders yet. The idea it's built on
+already has.
+
+## What it taught me
+
+The thing I keep coming back to is that the AI didn't replace anything my
+customers liked. It replaced the part I didn't like: the late-night scroll
+through chat history. My classmates still get to text me like a friend. I just
+don't have to be the one who turns those texts into a list anymore.
+
+That's the kind of AI use I want to show people on campus as a Google Student
+Ambassador. Not something flashy. A real, small problem that a student actually
+has, solved with a tool anyone can start using today.
