@@ -625,4 +625,12 @@ export const dadJokes: string[] = [
 	"whiteboards ... are remarkable.",
 	"what kind of dinosaur loves to sleep? a stega-snore-us.",
 	"what has three letters and starts with gas? a car.",
+	"\"dad, i'm hungry.\" hello, hungry. i'm dad.",
+	"i'm practicing for a bug-eating contest and i've got butterflies in my stomach.",
+	"i have the heart of a lion... and a lifetime ban from the san diego zoo.",
+	"what do you call a guy lying on your doorstep? matt.",
+	"i met this girl on a dating site and, i don't know, we just clicked.",
+	"what did the calculator say to the student? you can count on me.",
+	"what do you call a gorilla wearing headphones? anything you'd like, it can't hear you.",
+	"have you heard about corduroy pillows? they're making headlines!",
 ];
