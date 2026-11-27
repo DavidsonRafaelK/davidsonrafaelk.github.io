@@ -22,7 +22,7 @@ jobs:
         run: bun run scripts/fetch-jokes.ts
 
       - name: Format
-        run: bunx @biomejs/biome check --write apps/web/src/content/dad-jokes.ts apps/web/src/content/programmer-jokes.ts
+        run: bunx @biomejs/biome@2.5.13 check --write apps/web/src/content/dad-jokes.ts apps/web/src/content/programmer-jokes.ts
 
       - name: Commit if changed
         run: |
