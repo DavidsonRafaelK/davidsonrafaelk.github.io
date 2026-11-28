@@ -633,4 +633,12 @@ export const dadJokes: string[] = [
 	"what did the calculator say to the student? you can count on me.",
 	"what do you call a gorilla wearing headphones? anything you'd like, it can't hear you.",
 	"have you heard about corduroy pillows? they're making headlines!",
+	"what don't watermelons get married? because they cantaloupe.",
+	"if you’re struggling to think of what to get someone for christmas. get them a fridge and watch their face light up when they open it.",
+	"the great thing about stationery shops is they're always in the same place...",
+	"did you hear about the cheese who saved the world? it was legend-dairy!",
+	"what do you call cheese by itself? provolone.",
+	"how do you fix a broken pizza? with tomato paste.",
+	"what's red and bad for your teeth? a brick.",
+	"i heard there was a new store called moderation. they have everything there",
 ];
